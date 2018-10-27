@@ -13702,7 +13702,6 @@ __webpack_require__(12);
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 window._ = __webpack_require__(13);
 window.Popper = __webpack_require__(3).default;
 
@@ -13739,7 +13738,7 @@ var token = document.head.querySelector('meta[name="csrf-token"]');
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found in this page: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
