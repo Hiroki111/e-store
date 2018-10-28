@@ -8,6 +8,6 @@ $factory->define(App\Slide::class, function (Faker $faker) {
         'title'       => $faker->text(20),
         'description' => $faker->realText(rand(0, 200)),
         'src'         => "test.jpg",
-        'is_active'   => $faker,
+        'is_active'   => rand(0, 1),
     ];
 });

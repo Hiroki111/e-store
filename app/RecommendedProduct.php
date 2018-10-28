@@ -5,7 +5,7 @@ namespace App;
 use App\Product;
 use Illuminate\Database\Eloquent\Model;
 
-class Slide extends Model
+class RecommendedProduct extends Model
 {
     protected $guarded = [];
     protected $dates   = ['date'];
@@ -15,8 +15,10 @@ class Slide extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function scopeActive($query)
+    public static function getProducts()
     {
-        return $query->where('is_active', 1);
+        return self::all()->map(function ($recommendedProduct) {
+            return $recommendedProduct->product;
+        });
     }
 }
