@@ -126,8 +126,19 @@
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm">
             <img class="card-img-top" src="{{$product->src}}" style="height: 250px;">
-            <div class="card-body">
-              <p class="card-text"></p>
+            <div class="card-body text-center">
+              <h5 class="card-text" style="font-weight: bold;">{{$product->name}}</h5>
+              <div class="flex-wrapper flex-wrapper-first">
+                <div class="product-tile-price-big"
+                     style="color: #D2232A; display: flex;">
+                  <div class="price-bundle-new">
+                    <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
+                      <span class="currency" style="font-size: 12px;">$</span>{{$product->dollars}}<span class="cents" style="font-size: 12px;">.{{$product->sents}}</span>
+                    </span>
+                  </div>
+                  <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
+                </div>
+              </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">

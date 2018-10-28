@@ -6,7 +6,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
     $products = [
         ['name' => 'Beer', 'type_id' => 1],
         ['name' => 'Red Wine', 'type_id' => 2],
-        ['name' => 'Wihte Wine', 'type_id' => 3],
+        ['name' => 'White Wine', 'type_id' => 3],
         ['name' => 'Whiskey', 'type_id' => 4],
     ];
     $i = rand(0, 3);
