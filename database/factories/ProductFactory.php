@@ -11,9 +11,8 @@ $factory->define(App\Product::class, function (Faker $faker) {
     ];
     $i = rand(0, 3);
     return [
-        'name'       => $products[$i]['name'],
-        'price'      => rand(0, 400) / 10,
-        'type_id'    => $products[$i]['type_id'],
-        'is_popular' => rand(0, 1),
+        'name'    => $products[$i]['name'],
+        'price'   => rand(0, 400) / 10,
+        'type_id' => $products[$i]['type_id'],
     ];
 });
