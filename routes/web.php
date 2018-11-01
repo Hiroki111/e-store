@@ -18,3 +18,4 @@ Auth::routes();
 //Internal APIs - ones which are not used by external applications
 //They don't need to be in api.php
 Route::resource('cart', 'CartController');
+Route::post('cart/add', 'CartController@add');

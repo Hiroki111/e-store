@@ -11,3 +11,11 @@ nav {
 	-1px 1px 0 #000,
 	1px 1px 0 #000;  
 }
+
+#added-item {
+	position: fixed; 
+	right: 20px; 
+	bottom: 20px; 
+	z-index: 2;
+	opacity: 0;
+}

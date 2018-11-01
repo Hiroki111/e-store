@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="An imagenary liquor store">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>Hiroki's Liquor Store</title>
 
@@ -11,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="/css/carousel.css">
   <link rel="stylesheet" type="text/css" href="/css/custom.css">
   <script type="text/javascript" src="/js/app.js"></script>
+  <script type="text/javascript" src="/js/home.js"></script>
 </head>
 <body>
   <header>
@@ -40,6 +42,7 @@
         <div style="position: absolute;right: 3%;">
           <div style="background-color: white; padding: 5px 10px; border-radius: 5px 5px 0 0; height: 40px;">
             <i class="fa fa-2x fa-shopping-cart"></i>
+            <span id="cart-counter" style="margin-left: 15px; font-weight: bold;"></span>
           </div>
           <div style="padding: 10px 10px; border-radius: 0 0 5px 5px; background-color: red; height: 40px; color: white; font-weight: bold;">
             CHECKOUT
@@ -130,39 +133,54 @@
               <h5 class="card-text" style="font-weight: bold;">{{$product->name}}</h5>
               <div class="flex-wrapper flex-wrapper-first">
                 <div class="product-tile-price-big"
-                     style="color: #D2232A; display: flex;">
-                  <div class="price-bundle-new">
-                    <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
-                      <span class="currency" style="font-size: 12px;">$</span>{{$product->dollars}}<span class="cents" style="font-size: 12px;">.{{$product->sents}}</span>
-                    </span>
-                  </div>
-                  <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
+                style="color: #D2232A; display: flex;">
+                <div class="price-bundle-new">
+                  <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
+                    <span class="currency" style="font-size: 12px;">$</span>{{$product->dollars}}<span class="cents" style="font-size: 12px;">.{{$product->sents}}</span>
+                  </span>
                 </div>
+                <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
-                  </div>
-                  <input type="number" min="0" max="50" name="" value="1" style="text-align: center;" class="form-control">
-                  <div class="input-group-append">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" >+</button>
-                  </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
+                </div>
+                <input type="number" id="product-{{$product->id}}" min="1" max="50" name="" value="1" style="text-align: center;" class="form-control">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" >+</button>
                 </div>
               </div>
             </div>
+            <div class="input-group">
+              <button data-product-id="{{$product->id}}" data-product-src="{{$product->src}}" type="button" class="btn add-product" style="width: 100%; font-weight: bold; color: white; background-color: red; margin-top: 5px;">Add to Cart</button>
+            </div>
           </div>
         </div>
-        @endforeach
+      </div>
+      @endforeach
+      <div>
+        <button id="ad" class="btn btn-lg">Test the ad on the corner</button>
       </div>
 
+      <div id="added-item" class="col-md-3">
+        <div class="card mb-3 shadow-sm">
+          <img id="added-item-img" class="card-img-top" src=""  style="height: 250px;">
+          <div class="card-body text-center">
+            <h5 id="added-item-text" class="card-text" style="font-weight: bold;"></h5>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <!-- FOOTER -->
-      <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-    </main>
+    <!-- FOOTER -->
+    <footer class="container">
+      <p class="float-right"><a href="#">Back to top</a></p>
+      <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+  </main>
 
-  </body>
-  </html>
+
+</body>
+</html>
