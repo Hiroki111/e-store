@@ -19,3 +19,11 @@ nav {
 	z-index: 2;
 	opacity: 0;
 }
+
+.add-to-cart-button {
+	width: 100%; 
+	font-weight: bold; 
+	color: white; 
+	background-color: red; 
+	margin-top: 5px;
+}

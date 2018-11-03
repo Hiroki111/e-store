@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\RecommendedBundle;
 use App\RecommendedProduct;
 use App\Slide;
 
@@ -11,7 +12,7 @@ class HomeController extends Controller
     {
         return view('www.index', [
             'slides'              => Slide::active()->get(),
-            'recommendedBundles'  => [],
+            'recommendedBundles'  => RecommendedBundle::getBundles(),
             'recommendedProducts' => RecommendedProduct::getProducts(),
         ]);
     }

@@ -107,14 +107,37 @@
         @foreach($recommendedBundles as $bundle)
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm">
-            <img class="card-img-top" data-src="{{$bundle->src}}" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text"></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">+</button>
+            <img class="card-img-top" src="{{$bundle->src}}" style="height: 250px;">
+            <div class="card-body text-center">
+              <h5 class="card-text" style="font-weight: bold;">{{$bundle->name}}</h5>
+              <div class="flex-wrapper flex-wrapper-first">
+                <div class="product-tile-price-big" style="color: #D2232A; display: flex;">
+                  <div class="price-bundle-new">
+                    <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
+                      <span class="currency" style="font-size: 12px;">$</span>
+                      {{$bundle->dollars}}
+                      @if($bundle->id > 12)
+                       -- {{65.9 - 65.0}} ---
+                      @endif
+                      <span class="cents" style="font-size: 12px;">.{{$bundle->sents}}</span>
+                    </span>
+                  </div>
+                  <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
                 </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
+                  </div>
+                  <input type="number" id="product-{{$bundle->id}}" min="1" max="50" name="" value="1" style="text-align: center;" class="form-control">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" >+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group">
+                <button data-product-id="{{$bundle->id}}" data-product-src="{{$bundle->src}}" type="button" class="btn add-product add-to-cart-button" >Add to Cart</button>
               </div>
             </div>
           </div>
@@ -132,34 +155,36 @@
             <div class="card-body text-center">
               <h5 class="card-text" style="font-weight: bold;">{{$product->name}}</h5>
               <div class="flex-wrapper flex-wrapper-first">
-                <div class="product-tile-price-big"
-                style="color: #D2232A; display: flex;">
-                <div class="price-bundle-new">
-                  <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
-                    <span class="currency" style="font-size: 12px;">$</span>{{$product->dollars}}<span class="cents" style="font-size: 12px;">.{{$product->sents}}</span>
-                  </span>
+                <div class="product-tile-price-big" style="color: #D2232A; display: flex;">
+                  <div class="price-bundle-new">
+                    <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
+                      <span class="currency" style="font-size: 12px;">$</span>
+                      {{$product->dollars}}
+                      <span class="cents" style="font-size: 12px;">.{{$product->sents}}</span>
+                    </span>
+                  </div>
+                  <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
                 </div>
-                <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
               </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
+                  </div>
+                  <input type="number" id="product-{{$product->id}}" min="1" max="50" name="" value="1" style="text-align: center;" class="form-control">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" >+</button>
+                  </div>
+                </div>
+              </div>
               <div class="input-group">
-                <div class="input-group-prepend">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
-                </div>
-                <input type="number" id="product-{{$product->id}}" min="1" max="50" name="" value="1" style="text-align: center;" class="form-control">
-                <div class="input-group-append">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" >+</button>
-                </div>
+                <button data-product-id="{{$product->id}}" data-product-src="{{$product->src}}" type="button" class="btn add-product add-to-cart-button" >Add to Cart</button>
               </div>
-            </div>
-            <div class="input-group">
-              <button data-product-id="{{$product->id}}" data-product-src="{{$product->src}}" type="button" class="btn add-product" style="width: 100%; font-weight: bold; color: white; background-color: red; margin-top: 5px;">Add to Cart</button>
             </div>
           </div>
         </div>
+        @endforeach
       </div>
-      @endforeach
 
       <div id="added-item" class="col-md-3">
         <div class="card mb-3 shadow-sm">
@@ -169,15 +194,14 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- FOOTER -->
-    <footer class="container">
-      <p class="float-right"><a href="#">Back to top</a></p>
-      <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
-  </main>
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+    </main>
 
 
-</body>
-</html>
+  </body>
+  </html>
