@@ -27,7 +27,8 @@ $(document).ready(function() {
 	});
 
 	function updateCartLabel(cart) {
-		if (!cart.products) return;
+		if (!cart.products)
+			return $('#cart-counter').text(0);
 
 		var qty = Object.values(cart.products).reduce(function(totalQty, qty) {
 			return totalQty + qty;
@@ -43,6 +44,15 @@ $(document).ready(function() {
 		$('#added-item').animate({
 			opacity: 1,
 		});
+
+		if (state.timer)
+			clearTimeout(state.timer);
+
+		state.timer = setTimeout(function() {
+			$('#added-item').animate({
+				opacity: 0,
+			});
+		}, 3000);
 	}
 
 	init();

@@ -160,9 +160,6 @@
         </div>
       </div>
       @endforeach
-      <div>
-        <button id="ad" class="btn btn-lg">Test the ad on the corner</button>
-      </div>
 
       <div id="added-item" class="col-md-3">
         <div class="card mb-3 shadow-sm">
