@@ -21,11 +21,11 @@ class CartController extends Controller
         $type = request('type');
         $cart = session('cart');
 
-        if (empty($cart[$type][request('productId')])) {
-            $cart[$type][request('productId')] = 0;
+        if (empty($cart[$type][request('itemId')])) {
+            $cart[$type][request('itemId')] = 0;
         }
 
-        $cart[$type][request('productId')] += request('qty');
+        $cart[$type][request('itemId')] += request('qty');
 
         session(['cart' => $cart]);
 
@@ -39,9 +39,9 @@ class CartController extends Controller
             'qty'  => ['required', 'integer', 'min:0'],
         ]);
 
-        $cart                              = session('cart');
-        $type                              = request('type');
-        $cart[$type][request('productId')] = request('qty');
+        $cart                           = session('cart');
+        $type                           = request('type');
+        $cart[$type][request('itemId')] = request('qty');
 
         session(['cart' => $cart]);
 

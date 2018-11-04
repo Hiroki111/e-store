@@ -15,9 +15,9 @@ class CartTest extends TestCase
         $this->assertEquals(session('cart'), null);
 
         $this->post('/cart/add', [
-            'type'      => 'products',
-            'productId' => 1,
-            'qty'       => 1,
+            'type'   => 'products',
+            'itemId' => 1,
+            'qty'    => 1,
         ]);
 
         $expected = [
@@ -28,20 +28,28 @@ class CartTest extends TestCase
         $this->assertEquals(session('cart'), $expected);
 
         $this->post('/cart/add', [
-            'type'      => 'products',
-            'productId' => 2,
-            'qty'       => 1,
+            'type'   => 'products',
+            'itemId' => 2,
+            'qty'    => 1,
         ]);
         $this->post('/cart/add', [
-            'type'      => 'products',
-            'productId' => 1,
-            'qty'       => 2,
+            'type'   => 'products',
+            'itemId' => 1,
+            'qty'    => 2,
+        ]);
+        $this->post('/cart/add', [
+            'type'   => 'bundles',
+            'itemId' => 10,
+            'qty'    => 3,
         ]);
 
         $expected = [
             'products' => [
                 1 => 3,
                 2 => 1,
+            ],
+            'bundles'  => [
+                10 => 3,
             ],
         ];
         $this->assertEquals(session('cart'), $expected);
@@ -53,23 +61,43 @@ class CartTest extends TestCase
         $this->assertEquals(session('cart'), null);
 
         $this->post('/cart', [
-            'type'      => 'products',
-            'productId' => 1,
-            'qty'       => 3,
+            'type'   => 'products',
+            'itemId' => 1,
+            'qty'    => 3,
         ]);
         $this->post('/cart', [
-            'type'      => 'products',
-            'productId' => 2,
-            'qty'       => 1,
+            'type'   => 'products',
+            'itemId' => 2,
+            'qty'    => 1,
         ]);
         $this->post('/cart', [
-            'type'      => 'products',
-            'productId' => 1,
-            'qty'       => 0,
+            'type'   => 'products',
+            'itemId' => 1,
+            'qty'    => 0,
+        ]);
+
+        $this->post('/cart', [
+            'type'   => 'bundles',
+            'itemId' => 1,
+            'qty'    => 3,
+        ]);
+        $this->post('/cart', [
+            'type'   => 'bundles',
+            'itemId' => 2,
+            'qty'    => 1,
+        ]);
+        $this->post('/cart', [
+            'type'   => 'bundles',
+            'itemId' => 1,
+            'qty'    => 0,
         ]);
 
         $expected = [
             'products' => [
+                1 => 0,
+                2 => 1,
+            ],
+            'bundles'  => [
                 1 => 0,
                 2 => 1,
             ],
@@ -83,15 +111,15 @@ class CartTest extends TestCase
         $this->assertEquals(session('cart'), null);
 
         $response = $this->json('post', '/cart', [
-            'productId' => 1,
-            'qty'       => 3,
+            'itemId' => 1,
+            'qty'    => 3,
         ]);
         $response->assertStatus(422);
         $this->assertEquals(session('cart'), null);
 
         $response = $this->json('post', '/cart', [
-            'type'      => 'products',
-            'productId' => 1,
+            'type'   => 'products',
+            'itemId' => 1,
         ]);
         $response->assertStatus(422);
         $this->assertEquals(session('cart'), null);

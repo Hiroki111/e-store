@@ -9,18 +9,20 @@ $(document).ready(function() {
 		});
 	}
 
-	$('.add-product').click(function() {
-		var productId = $(this).attr('data-product-id');
-		var productSrc = $(this).attr('data-product-src');
-		var qty = $("#product-" + productId).val();
+	$('.add-item').click(function() {
+		var itemId = $(this).attr('data-item-id');
+		var itemSrc = $(this).attr('data-item-src');
+		var qty = $("#item-" + itemId).val();
+		var type = $(this).attr('data-item-type');
 
 		axios.post('/cart/add', {
-			type: 'products',
-			productId: productId,
+			type: type,
+			itemId: itemId,
 			qty: Number(qty)
 		}).then(function(result) {
+			console.log('result.data', result.data);
 			updateCartLabel(result.data);
-			showCartUpdate(productSrc, qty);
+			showCartUpdate(itemSrc, qty);
 		}).catch(function(error) {
 			alert("Due to an internal error, it failed to update the cart. Sorry for the inconvenience.");
 		});
@@ -30,10 +32,14 @@ $(document).ready(function() {
 		if (!cart.products)
 			return $('#cart-counter').text(0);
 
-		var qty = Object.values(cart.products).reduce(function(totalQty, qty) {
+		var productsQty = Object.values(cart.products).reduce(function(totalQty, qty) {
 			return totalQty + qty;
 		}, 0);
-		$('#cart-counter').text(qty);
+		var bundlesQty = Object.values(cart.bundles).reduce(function(totalQty, qty) {
+			return totalQty + qty;
+		}, 0);
+
+		$('#cart-counter').text(productsQty + bundlesQty);
 	}
 
 	function showCartUpdate(src, qty) {

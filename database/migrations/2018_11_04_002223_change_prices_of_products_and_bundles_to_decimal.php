@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\DBAL\Types\FloatType;
+use Doctrine\DBAL\Types\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -28,6 +30,9 @@ class ChangePricesOfProductsAndBundlesToDecimal extends Migration
      */
     public function down()
     {
+        if (!Type::hasType('double')) {
+            Type::addType('double', FloatType::class);
+        }
         Schema::table('products', function (Blueprint $table) {
             $table->double('price', 8, 2)->default(0.00)->change();
         });

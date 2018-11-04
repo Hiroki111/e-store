@@ -127,14 +127,14 @@
                   <div class="input-group-prepend">
                     <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
                   </div>
-                  <input type="number" id="product-{{$bundle->id}}" min="1" max="50" name="" value="1" style="text-align: center;" class="form-control">
+                  <input type="number" id="item-{{$bundle->id}}" min="1" max="50" name="" value="1" style="text-align: center;" class="form-control">
                   <div class="input-group-append">
                     <button type="button" class="btn btn-sm btn-outline-secondary" >+</button>
                   </div>
                 </div>
               </div>
               <div class="input-group">
-                <button data-product-id="{{$bundle->id}}" data-product-src="{{$bundle->src}}" type="button" class="btn add-product add-to-cart-button" >Add to Cart</button>
+                <button data-item-type="bundles" data-item-id="{{$bundle->id}}" data-item-src="{{$bundle->src}}" type="button" class="btn add-item add-to-cart-button" >Add to Cart</button>
               </div>
             </div>
           </div>
@@ -168,14 +168,14 @@
                   <div class="input-group-prepend">
                     <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
                   </div>
-                  <input type="number" id="product-{{$product->id}}" min="1" max="50" name="" value="1" style="text-align: center;" class="form-control">
+                  <input type="number" id="item-{{$product->id}}" min="1" max="50" name="" value="1" style="text-align: center;" class="form-control">
                   <div class="input-group-append">
                     <button type="button" class="btn btn-sm btn-outline-secondary" >+</button>
                   </div>
                 </div>
               </div>
               <div class="input-group">
-                <button data-product-id="{{$product->id}}" data-product-src="{{$product->src}}" type="button" class="btn add-product add-to-cart-button" >Add to Cart</button>
+                <button data-item-type="products" data-item-id="{{$product->id}}" data-item-src="{{$product->src}}" type="button" class="btn add-item add-to-cart-button" >Add to Cart</button>
               </div>
             </div>
           </div>
