@@ -116,9 +116,6 @@
                     <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
                       <span class="currency" style="font-size: 12px;">$</span>
                       {{$bundle->dollars}}
-                      @if($bundle->id > 12)
-                       -- {{65.9 - 65.0}} ---
-                      @endif
                       <span class="cents" style="font-size: 12px;">.{{$bundle->sents}}</span>
                     </span>
                   </div>
