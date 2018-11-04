@@ -17,7 +17,7 @@ nav {
 	right: 20px; 
 	bottom: 20px; 
 	z-index: 2;
-	opacity: 0;
+	display: none;
 }
 
 .add-to-cart-button {

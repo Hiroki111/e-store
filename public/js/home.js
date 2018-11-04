@@ -20,7 +20,6 @@ $(document).ready(function() {
 			itemId: itemId,
 			qty: Number(qty)
 		}).then(function(result) {
-			console.log('result.data', result.data);
 			updateCartLabel(result.data);
 			showCartUpdate(itemSrc, qty);
 		}).catch(function(error) {
@@ -29,15 +28,19 @@ $(document).ready(function() {
 	});
 
 	function updateCartLabel(cart) {
-		if (!cart.products)
-			return $('#cart-counter').text(0);
+		var productsQty = 0;
+		if (cart.products) {
+			productsQty = Object.values(cart.products).reduce(function(totalQty, qty) {
+				return totalQty + qty;
+			}, 0);
+		}
 
-		var productsQty = Object.values(cart.products).reduce(function(totalQty, qty) {
-			return totalQty + qty;
-		}, 0);
-		var bundlesQty = Object.values(cart.bundles).reduce(function(totalQty, qty) {
-			return totalQty + qty;
-		}, 0);
+		var bundlesQty = 0;
+		if (cart.bundles) {
+			bundlesQty = Object.values(cart.bundles).reduce(function(totalQty, qty) {
+				return totalQty + qty;
+			}, 0);
+		}
 
 		$('#cart-counter').text(productsQty + bundlesQty);
 	}
@@ -47,17 +50,13 @@ $(document).ready(function() {
 		text = text + " added to cart";
 		$('#added-item-text').text(text);
 		$('#added-item-img').attr('src', src);
-		$('#added-item').animate({
-			opacity: 1,
-		});
+		$('#added-item').fadeIn();
 
 		if (state.timer)
 			clearTimeout(state.timer);
 
 		state.timer = setTimeout(function() {
-			$('#added-item').animate({
-				opacity: 0,
-			});
+			$('#added-item').fadeOut();
 		}, 3000);
 	}
 
