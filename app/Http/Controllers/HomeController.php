@@ -18,4 +18,14 @@ class HomeController extends Controller
             'productTypes'        => ProductType::all(),
         ]);
     }
+
+    public function productType($id)
+    {
+        return view('www.producttype', [
+            'slides'              => Slide::active()->get(),
+            'recommendedBundles'  => RecommendedBundle::getBundles(),
+            'recommendedProducts' => RecommendedProduct::getProducts(),
+            'productTypes'        => ProductType::all(),
+        ]);
+    }
 }
