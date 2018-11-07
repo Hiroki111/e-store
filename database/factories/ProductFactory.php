@@ -4,15 +4,16 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Product::class, function (Faker $faker) {
     $products = [
-        ['name' => 'Beer', 'type_id' => 1],
-        ['name' => 'Red Wine', 'type_id' => 2],
-        ['name' => 'White Wine', 'type_id' => 3],
-        ['name' => 'Whiskey', 'type_id' => 4],
+        1 => ['name' => 'Beer', 'product_type_id' => 1],
+        2 => ['name' => 'Red Wine', 'product_type_id' => 2],
+        3 => ['name' => 'White Wine', 'product_type_id' => 3],
+        4 => ['name' => 'Whiskey', 'product_type_id' => 4],
     ];
-    $i = rand(0, 3);
+    $i = rand(1, 4);
     return [
-        'name'    => $products[$i]['name'],
-        'price'   => rand(0, 400) / 10,
-        'type_id' => $products[$i]['type_id'],
+        'name'            => $products[$i]['name'] . ' - ' . $faker->text(8),
+        'price'           => rand(0, 400) / 10,
+        'src'             => "/images/products/" . $i . ".jpeg",
+        'product_type_id' => $products[$i]['product_type_id'],
     ];
 });

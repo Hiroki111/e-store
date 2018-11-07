@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductType;
 use App\RecommendedBundle;
 use App\RecommendedProduct;
 use App\Slide;
-use App\Type;
 
 class HomeController extends Controller
 {
@@ -15,7 +15,7 @@ class HomeController extends Controller
             'slides'              => Slide::active()->get(),
             'recommendedBundles'  => RecommendedBundle::getBundles(),
             'recommendedProducts' => RecommendedProduct::getProducts(),
-            'types'               => Type::all(),
+            'productTypes'        => ProductType::all(),
         ]);
     }
 }

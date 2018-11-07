@@ -28,9 +28,9 @@
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
           </form>
           <ul class="navbar-nav">
-            @foreach($types as $type)
+            @foreach($productTypes as $productType)
             <li class="nav-item">
-              <a class="nav-link" href="/type/{{$type->id}}">{{$type->name}}</a>
+              <a class="nav-link font-weight-bold lead" href="/product-type/{{$productType->id}}">{{$productType->name}}</a>
             </li>
             @endforeach
           </ul>

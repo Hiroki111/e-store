@@ -39,7 +39,7 @@ $(document).ready(function() {
 	});
 
 	function updateCartLabel(cart) {
-		var groundTotal = _(cart).flatMap()
+		var groundTotal = _(cart).valuesIn()
 			.map(function(item) {
 				return _.valuesIn(item);
 			}).map(function(item) {
