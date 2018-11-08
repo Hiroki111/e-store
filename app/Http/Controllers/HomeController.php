@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\ProductType;
 use App\RecommendedBundle;
 use App\RecommendedProduct;
@@ -22,10 +23,9 @@ class HomeController extends Controller
     public function productType($id)
     {
         return view('www.producttype', [
-            'slides'              => Slide::active()->get(),
-            'recommendedBundles'  => RecommendedBundle::getBundles(),
-            'recommendedProducts' => RecommendedProduct::getProducts(),
-            'productTypes'        => ProductType::all(),
+            'productTypes' => ProductType::all(),
+            'productType'  => ProductType::find($id),
+            'products'     => Product::where('product_type_id', $id)->get(),
         ]);
     }
 }
