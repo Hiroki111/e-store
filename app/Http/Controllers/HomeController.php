@@ -25,7 +25,7 @@ class HomeController extends Controller
         return view('www.producttype', [
             'productTypes' => ProductType::all(),
             'productType'  => ProductType::find($id),
-            'products'     => Product::where('product_type_id', $id)->paginate(8),
+            'products'     => Product::where('product_type_id', $id)->paginate(12),
         ]);
     }
 }

@@ -88,7 +88,7 @@ body > .container {
 	color: #252d6c;
 }
 
-.product-type-pagination span {
+.product-type-pagination .active span {
 	background-color: #252d6c !important;
 	border-color:  #252d6c !important;
 }

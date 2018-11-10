@@ -166,6 +166,7 @@
       <div class="product-type-pagination">{{ $products->links() }}</div>
     </div>
   </div>
+  @include('www.layout.addeditem')
 </div>
 
 @endsection
