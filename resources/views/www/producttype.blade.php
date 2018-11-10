@@ -163,6 +163,7 @@
         </div>
         @endforeach
       </div>
+      <div class="product-type-pagination">{{ $products->links() }}</div>
     </div>
   </div>
 </div>

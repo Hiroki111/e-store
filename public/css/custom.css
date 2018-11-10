@@ -83,3 +83,12 @@ body > .container {
 #product-filter ul{
 	list-style: none;
 }
+
+.product-type-pagination a {
+	color: #252d6c;
+}
+
+.product-type-pagination span {
+	background-color: #252d6c !important;
+	border-color:  #252d6c !important;
+}
