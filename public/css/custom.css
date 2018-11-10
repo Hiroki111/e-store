@@ -79,3 +79,7 @@ footer > .container {
 body > .container {
 	padding: 60px 15px 0;
 }
+
+#product-filter ul{
+	list-style: none;
+}
