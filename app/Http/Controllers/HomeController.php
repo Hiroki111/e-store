@@ -22,10 +22,15 @@ class HomeController extends Controller
 
     public function productType($id)
     {
+        $sortColumn = request('sort_by', 'name');
+        $sortOrder  = request('order_by', 'asc');
+
         return view('www.producttype', [
             'productTypes' => ProductType::all(),
             'productType'  => ProductType::find($id),
-            'products'     => Product::where('product_type_id', $id)->paginate(12),
+            'products'     => Product::where('product_type_id', $id)
+                ->orderBy($sortColumn, $sortOrder)
+                ->paginate(12),
         ]);
     }
 }

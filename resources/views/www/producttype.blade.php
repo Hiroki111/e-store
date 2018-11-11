@@ -4,6 +4,7 @@
 
 @section('content')
 
+<script type="text/javascript" src="/js/producttype.js"></script>
 <div id="breadcrumbs" class="container">
   <ul>
     <li>
@@ -125,11 +126,22 @@
     </div>
     <div class="col-sm-9">
       <h1 class="font-weight-bold text-uppercase">{{$productType->name}}</h1>
+      <div class="row no-gutters" style="margin: 10px 0 15px 0;">
+        <div class="col-1" style="padding: 0.375rem 0 0.375rem 0;">Sort By</div>
+        <div class="col-4">
+          <select id="sort-items" class="custom-select">
+            <option data-column="name" data-order="asc" >Name (A - Z)</option>
+            <option data-column="name" data-order="desc" >Name (Z - A)</option>
+            <option data-column="price" data-order="asc" >Price (Low to High)</option>
+            <option data-column="price" data-order="desc" >Price (High to Low)</option>
+          </select>
+        </div>
+      </div>
       <div class="row">
         @foreach($products as $product)
-        <div class="col-md-3">
-          <div class="card mb-3 shadow-sm">
-            <img class="card-img-top" src="{{$product->src}}" style="height: 250px;">
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src="{{$product->src}}">
             <div class="card-body text-center">
               <h5 class="card-text" style="font-weight: bold;">{{$product->name}}</h5>
               <div class="flex-wrapper flex-wrapper-first">

@@ -15,6 +15,12 @@ main {
 	margin-top: 120px;
 }
 
+.card-img-top {
+	height: 250px;
+    width: fit-content;
+    margin: auto;
+}
+
 .outlined-text {
 	color: white;
 	text-shadow:

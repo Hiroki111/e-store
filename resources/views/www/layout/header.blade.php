@@ -13,7 +13,7 @@
         <ul class="navbar-nav">
           @foreach($productTypes as $productType)
           <li class="nav-item">
-            <a class="nav-link font-weight-bold lead" href="/product-type/{{$productType->id}}">{{$productType->name}}</a>
+            <a class="nav-link font-weight-bold lead" style="font-family: Arial, Helvetica, sans-serif;" href="/product-type/{{$productType->id}}">{{$productType->name}}</a>
           </li>
           @endforeach
         </ul>
