@@ -28,9 +28,11 @@ class HomeController extends Controller
         return view('www.producttype', [
             'productTypes' => ProductType::all(),
             'productType'  => ProductType::find($id),
+            'priceRanges'  => Product::getPriceRanges($id),
             'products'     => Product::where('product_type_id', $id)
                 ->orderBy($sortColumn, $sortOrder)
                 ->paginate(12),
+
         ]);
     }
 }

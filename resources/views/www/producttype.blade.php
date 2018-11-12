@@ -20,26 +20,28 @@
     <div class="col-sm-3">
       <div style="border: 1px solid #c9c9c9; border-radius: 4px; padding-left: 16px; padding-right: 16px;">
         <div id="product-filter">
-          <h4 class="font-weight-bold" style="margin: 20px 0 10px 0;">Filter</h4>
+        <div class="row no-gutters" style="margin-top: 16px;">
+            <div class="col-8" style="margin-top: 10px;">
+              <h4 class="font-weight-bold">Filter</h4>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-danger pull-right">Apply</button>
+            </div>
+          </div>
           <hr>
           <div>
             <div>
               <h5 class="font-weight-bold">Price Range</h5>
               <ul>
+                @foreach($priceRanges as $priceRange)
                 <li>
                   <label>
-                    <input type="checkbox" name="">
-                    Below $10
-                    <span>()</span>
+                    <input type="radio" name="price-range-radio">
+                    ${{ $priceRange->min }} - ${{ $priceRange->max }}
+                    <span>({{ $priceRange->qty }})</span>
                   </label>
                 </li>
-                <li>
-                  <label>
-                    <input type="checkbox" name="">
-                    $10 - $20
-                    <span>()</span>
-                  </label>
-                </li>
+                @endforeach
               </ul>
             </div>
             <div>

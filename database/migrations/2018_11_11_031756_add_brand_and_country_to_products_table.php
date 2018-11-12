@@ -27,8 +27,10 @@ class AddBrandAndCountryToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('brand_id');
             $table->dropColumn('country_id');
+        });
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('brand_id');
         });
     }
 }
