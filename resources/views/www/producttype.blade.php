@@ -25,7 +25,7 @@
               <h4 class="font-weight-bold">Filter</h4>
             </div>
             <div class="col-4">
-              <button class="btn btn-danger pull-right">Apply</button>
+              <button id="apply-filter-btn" class="btn btn-danger pull-right">Apply</button>
             </div>
           </div>
           <hr>
@@ -36,7 +36,7 @@
                 @foreach($priceRanges as $priceRange)
                 <li>
                   <label>
-                    <input type="radio" name="price-range-radio">
+                    <input type="radio" name="price-range-radio" data-price-min="{{ $priceRange->min }}" data-price-max="{{ $priceRange->max }}">
                     ${{ $priceRange->min }} - ${{ $priceRange->max }}
                     <span>({{ $priceRange->qty }})</span>
                   </label>
