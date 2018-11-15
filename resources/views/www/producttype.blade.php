@@ -36,7 +36,7 @@
                 @foreach($priceRanges as $priceRange)
                 <li>
                   <label>
-                    <input type="radio" name="price-range-radio" data-price-min="{{ $priceRange->min }}" data-price-max="{{ $priceRange->max }}">
+                    <input type="checkbox" class="price-range-checkbox" data-price-min="{{ $priceRange->min }}" data-price-max="{{ $priceRange->max }}">
                     ${{ $priceRange->min }} - ${{ $priceRange->max }}
                     <span>({{ $priceRange->qty }})</span>
                   </label>

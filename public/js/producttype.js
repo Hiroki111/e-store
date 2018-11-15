@@ -4,10 +4,12 @@ $(document).ready(function() {
 		var url = new URL(location.href);
 		var sortBy = url.searchParams.get("sort_by");
 		var orderBy = url.searchParams.get("order_by");
-		var price_min = url.searchParams.get("price_min");
+		var priceMin = url.searchParams.get("price_min") || "";
 
 		$("option[data-column='" + sortBy + "'][data-order='" + orderBy + "']").prop('selected', true);
-		$("input[data-price-min='" + price_min + "']").prop('checked', true);
+		priceMin.split(",").forEach(function(price) {
+			$("input[data-price-min='" + price + "']").prop('checked', true);
+		});
 	}
 
 	$('#sort-items').on('change', function() {
@@ -21,8 +23,12 @@ $(document).ready(function() {
 	function applyFilter() {
 		var sort_by = $("#sort-items").find("option:selected").attr('data-column');
 		var order_by = $("#sort-items").find("option:selected").attr('data-order');
-		var price_min = $('input[name=price-range-radio]:checked').attr('data-price-min');
-		var price_max = $('input[name=price-range-radio]:checked').attr('data-price-max');
+		var price_min = $('.price-range-checkbox:checked').map(function() {
+			return $(this).attr('data-price-min');
+		}).toArray().join(",");
+		var price_max = $('.price-range-checkbox:checked').map(function() {
+			return $(this).attr('data-price-max');
+		}).toArray().join(",");
 
 		var parameters = [
 			{ key: "sort_by", value: sort_by },

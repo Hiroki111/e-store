@@ -22,14 +22,21 @@ class HomeController extends Controller
 
     public function productType($id)
     {
-        $sortColumn = request('sort_by', 'name');
-        $sortOrder  = request('order_by', 'asc');
-        $priceMin   = request('price_min', 0);
-        $priceMax   = request('price_max', 100000);
-        $products   = Product::where('product_type_id', $id)
-            ->whereBetween('price', [$priceMin, $priceMax])
+        $sortColumn  = request('sort_by', 'name');
+        $sortOrder   = request('order_by', 'asc');
+        $priceMin    = explode(',', request('price_min', 0));
+        $priceMax    = explode(',', request('price_max', 10000));
+        $priceRanges = collect($priceMin)->zip($priceMax);
+
+        $products = Product::where('product_type_id', $id)
+            ->where(function ($query) use ($priceRanges) {
+                $priceRanges->each(function ($priceRange, $i) use ($query) {
+                    $command = ($i === 0) ? "whereBetween" : "orWhereBetween";
+                    $query->$command('price', [$priceRange[0], $priceRange[1]]);
+                });
+            })
             ->orderBy($sortColumn, $sortOrder)
-            ->paginate(12);
+            ->paginate(9);
 
         return view('www.producttype', [
             'productTypes' => ProductType::all(),
