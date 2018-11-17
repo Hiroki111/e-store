@@ -25,6 +25,9 @@ class Country extends Model
 
     public static function getIdsFromUrlSafeNames($countryNames)
     {
+        if (!$countryNames) {
+            return null;
+        }
         $urlSafeNames = explode(',', $countryNames);
         $names        = array_map(function ($name) {
             return str_replace("-", " ", $name);
@@ -33,9 +36,9 @@ class Country extends Model
         return self::whereIn('name', $names)->pluck('id');
     }
 
-    public static function getWithQtyOfProducts($productTypeId)
+    public static function getWithQtyOfProducts($ids)
     {
-        $mapCountryIdToQty = Product::where('product_type_id', $productTypeId)
+        $mapCountryIdToQty = Product::whereIn('id', $ids)
             ->get()
             ->groupBy('country_id')
             ->map(function ($products) {

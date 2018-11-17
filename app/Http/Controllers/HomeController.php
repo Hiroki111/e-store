@@ -41,16 +41,15 @@ class HomeController extends Controller
                     $command = ($i === 0) ? "whereBetween" : "orWhereBetween";
                     $query->$command('price', [$priceRange[0], $priceRange[1]]);
                 });
-            })
-            ->orderBy($sortColumn, $sortOrder)
-            ->paginate(12);
+            });
 
         return view('www.producttype', [
             'productTypes' => ProductType::all(),
             'productType'  => ProductType::find($productTypeId),
-            'priceRanges'  => Product::getPriceRanges($productTypeId),
-            'countries'    => Country::getWithQtyOfProducts($productTypeId),
-            'products'     => $products,
+            'priceRanges'  => Product::getPriceRanges($products->pluck('id')),
+            'countries'    => Country::getWithQtyOfProducts($products->pluck('id')),
+            'products'     => $products->orderBy($sortColumn, $sortOrder)
+                ->paginate(12),
         ]);
     }
 }

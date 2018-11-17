@@ -18,26 +18,27 @@ class CountryTest extends TestCase
         $southAfrica = factory(Country::class)->create(['name' => 'South Africa']);
         $denmark     = factory(Country::class)->create(['name' => 'Denmark']);
         $blank       = factory(Country::class)->create(['name' => 'blank']);
+        $ids         = [];
 
         foreach (range(1, 20) as $i) {
-            factory(Product::class)->create([
+            $ids[] = factory(Product::class)->create([
                 'country_id'      => $australia->id,
                 'product_type_id' => 1,
-            ]);
+            ])->id;
         }
 
         foreach (range(1, 15) as $i) {
-            factory(Product::class)->create([
+            $ids[] = factory(Product::class)->create([
                 'country_id'      => $southAfrica->id,
                 'product_type_id' => 1,
-            ]);
+            ])->id;
         }
 
         foreach (range(1, 10) as $i) {
-            factory(Product::class)->create([
+            $ids[] = factory(Product::class)->create([
                 'country_id'      => $denmark->id,
                 'product_type_id' => 1,
-            ]);
+            ])->id;
         }
 
         foreach (range(1, 10) as $i) {
@@ -47,7 +48,7 @@ class CountryTest extends TestCase
             ]);
         }
 
-        $countries = Country::getWithQtyOfProducts(1);
+        $countries = Country::getWithQtyOfProducts($ids);
 
         $this->assertEquals($countries[0]->name, "Australia");
         $this->assertEquals($countries[0]->qty, 20);

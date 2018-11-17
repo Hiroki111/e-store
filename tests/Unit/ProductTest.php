@@ -42,17 +42,17 @@ class ProductTest extends TestCase
     public function canGetPriceRanges()
     {
         //tier 1
-        factory(Product::class)->create(['price' => 0.90, 'product_type_id' => 1]);
-        factory(Product::class)->create(['price' => 1.10, 'product_type_id' => 1]);
-        factory(Product::class)->create(['price' => 1.11, 'product_type_id' => 1]);
+        $p1 = factory(Product::class)->create(['price' => 0.90, 'product_type_id' => 1]);
+        $p2 = factory(Product::class)->create(['price' => 1.10, 'product_type_id' => 1]);
+        $p3 = factory(Product::class)->create(['price' => 1.11, 'product_type_id' => 1]);
         //tier 2
-        factory(Product::class)->create(['price' => 10.90, 'product_type_id' => 1]);
-        factory(Product::class)->create(['price' => 10.10, 'product_type_id' => 1]);
-        factory(Product::class)->create(['price' => 15.11, 'product_type_id' => 1]);
+        $p4 = factory(Product::class)->create(['price' => 10.90, 'product_type_id' => 1]);
+        $p5 = factory(Product::class)->create(['price' => 10.10, 'product_type_id' => 1]);
+        $p6 = factory(Product::class)->create(['price' => 15.11, 'product_type_id' => 1]);
         //tier 3
-        factory(Product::class)->create(['price' => 50.00, 'product_type_id' => 1]);
+        $p7 = factory(Product::class)->create(['price' => 50.00, 'product_type_id' => 1]);
         //tier 4
-        factory(Product::class)->create(['price' => 100.00, 'product_type_id' => 1]);
+        $p8 = factory(Product::class)->create(['price' => 100.00, 'product_type_id' => 1]);
 
         //irrelevant types
         factory(Product::class)->create(['price' => 0.90, 'product_type_id' => 2]);
@@ -64,7 +64,9 @@ class ProductTest extends TestCase
         factory(Product::class)->create(['price' => 50.00, 'product_type_id' => 3]);
         factory(Product::class)->create(['price' => 100.00, 'product_type_id' => 3]);
 
-        $priceRanges = Product::getPriceRanges(1);
+        $priceRanges = Product::getPriceRanges([
+            $p1->id, $p2->id, $p3->id, $p4->id, $p5->id, $p6->id, $p7->id, $p8->id,
+        ]);
 
         $this->assertEquals(sizeof($priceRanges), 4);
         $this->assertEquals($priceRanges[0]->min, 0);
