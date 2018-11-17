@@ -61,20 +61,15 @@
             <div>
               <h5 class="font-weight-bold">Brand</h5>
               <ul>
+                @foreach($brands as $brand)
                 <li>
                   <label>
-                    <input type="checkbox" name="">
-                    Penfolds
-                    <span>()</span>
+                    <input type="checkbox" class="brand-checkbox" data-brand-name="{{ $brand->url_safe_name }}">
+                    {{ $brand->name }}
+                    <span>({{ $brand->qty }})</span>
                   </label>
                 </li>
-                <li>
-                  <label>
-                    <input type="checkbox" name="">
-                    Other
-                    <span>()</span>
-                  </label>
-                </li>
+                @endforeach
               </ul>
             </div>
             <div>

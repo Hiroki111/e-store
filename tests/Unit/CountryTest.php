@@ -63,7 +63,9 @@ class CountryTest extends TestCase
     public function canGetIdsFromUrlSafeNames()
     {
         $australia    = factory(Country::class)->create(['name' => 'Australia']);
+        $france       = factory(Country::class)->create(['name' => 'France']);
         $southAfrica  = factory(Country::class)->create(['name' => 'South Africa']);
+        $argentina    = factory(Country::class)->create(['name' => 'Argentina']);
         $unitedStates = factory(Country::class)->create(['name' => 'United States']);
 
         $ids = Country::getIdsFromUrlSafeNames("Australia,South-Africa,United-States");

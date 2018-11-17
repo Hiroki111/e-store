@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Country;
 use App\Product;
 use App\ProductType;
@@ -29,6 +30,7 @@ class HomeController extends Controller
         $priceMax    = explode(',', request('price_max', 10000));
         $priceRanges = collect($priceMin)->zip($priceMax);
         $countryIds  = Country::getIdsFromUrlSafeNames(request('country_names', null));
+        $brandIds    = Brand::getIdsFromUrlSafeNames(request('brand_names', null));
 
         $products = Product::where('product_type_id', $productTypeId)
             ->where(function ($query) use ($countryIds) {
@@ -48,6 +50,7 @@ class HomeController extends Controller
             'productType'  => ProductType::find($productTypeId),
             'priceRanges'  => Product::getPriceRanges($products->pluck('id')),
             'countries'    => Country::getWithQtyOfProducts($products->pluck('id')),
+            'brands'       => Brand::getWithQtyOfProducts($products->pluck('id')),
             'products'     => $products->orderBy($sortColumn, $sortOrder)
                 ->paginate(12),
         ]);
