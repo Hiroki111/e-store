@@ -11,11 +11,26 @@ class Country extends Model
     use SoftDeletes;
     protected $guarded = [];
     protected $dates   = ['date'];
-    protected $appends = ['qty'];
+    protected $appends = ['qty', 'url_safe_name'];
 
     public function getQtyAttribute()
     {
         return $this->attributes['qty'];
+    }
+
+    public function getUrlSafeNameAttribute()
+    {
+        return str_replace(" ", "-", $this->name);
+    }
+
+    public static function getIdsFromUrlSafeNames($countryNames)
+    {
+        $urlSafeNames = explode(',', $countryNames);
+        $names        = array_map(function ($name) {
+            return str_replace("-", " ", $name);
+        }, $urlSafeNames);
+
+        return self::whereIn('name', $names)->pluck('id');
     }
 
     public static function getWithQtyOfProducts($productTypeId)

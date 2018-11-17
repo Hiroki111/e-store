@@ -28,8 +28,14 @@ class HomeController extends Controller
         $priceMin    = explode(',', request('price_min', 0));
         $priceMax    = explode(',', request('price_max', 10000));
         $priceRanges = collect($priceMin)->zip($priceMax);
+        $countryIds  = Country::getIdsFromUrlSafeNames(request('country_names', null));
 
         $products = Product::where('product_type_id', $productTypeId)
+            ->where(function ($query) use ($countryIds) {
+                if ($countryIds) {
+                    $query->whereIn('country_id', $countryIds);
+                }
+            })
             ->where(function ($query) use ($priceRanges) {
                 $priceRanges->each(function ($priceRange, $i) use ($query) {
                     $command = ($i === 0) ? "whereBetween" : "orWhereBetween";

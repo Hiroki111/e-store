@@ -50,7 +50,7 @@
                 @foreach($countries as $country)
                 <li>
                   <label>
-                    <input type="checkbox" name="">
+                    <input type="checkbox" class="country-checkbox" data-country-name="{{ $country->url_safe_name }}">
                     {{ $country->name }}
                     <span>({{ $country->qty }})</span>
                   </label>

@@ -57,4 +57,19 @@ class CountryTest extends TestCase
         $this->assertEquals($countries[2]->qty, 15);
         $this->assertEquals(sizeof($countries), 3);
     }
+
+    /** @test */
+    public function canGetIdsFromUrlSafeNames()
+    {
+        $australia    = factory(Country::class)->create(['name' => 'Australia']);
+        $southAfrica  = factory(Country::class)->create(['name' => 'South Africa']);
+        $unitedStates = factory(Country::class)->create(['name' => 'United States']);
+
+        $ids = Country::getIdsFromUrlSafeNames("Australia,South-Africa,United-States");
+
+        $this->assertEquals($ids[0], $australia->id);
+        $this->assertEquals($ids[1], $southAfrica->id);
+        $this->assertEquals($ids[2], $unitedStates->id);
+        $this->assertEquals(sizeof($ids), 3);
+    }
 }
