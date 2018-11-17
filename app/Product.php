@@ -14,9 +14,9 @@ class Product extends Model
     protected $guarded = [];
     protected $dates   = ['date'];
 
-    public static function getPriceRanges($productType)
+    public static function getPriceRanges($productTypeId)
     {
-        return self::where('product_type_id', $productType)
+        return self::where('product_type_id', $productTypeId)
             ->get()
             ->groupBy(function ($product) {
                 return bcdiv($product->price, 10);

@@ -47,20 +47,15 @@
             <div>
               <h5 class="font-weight-bold">Country</h5>
               <ul>
+                @foreach($countries as $country)
                 <li>
                   <label>
                     <input type="checkbox" name="">
-                    Australia
-                    <span>()</span>
+                    {{ $country->name }}
+                    <span>({{ $country->qty }})</span>
                   </label>
                 </li>
-                <li>
-                  <label>
-                    <input type="checkbox" name="">
-                    Other
-                    <span>()</span>
-                  </label>
-                </li>
+                @endforeach
               </ul>
             </div>
             <div>

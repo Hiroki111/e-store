@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Product;
 use App\ProductType;
 use App\RecommendedBundle;
@@ -20,7 +21,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function productType($id)
+    public function productType($productTypeId)
     {
         $sortColumn  = request('sort_by', 'name');
         $sortOrder   = request('order_by', 'asc');
@@ -28,7 +29,7 @@ class HomeController extends Controller
         $priceMax    = explode(',', request('price_max', 10000));
         $priceRanges = collect($priceMin)->zip($priceMax);
 
-        $products = Product::where('product_type_id', $id)
+        $products = Product::where('product_type_id', $productTypeId)
             ->where(function ($query) use ($priceRanges) {
                 $priceRanges->each(function ($priceRange, $i) use ($query) {
                     $command = ($i === 0) ? "whereBetween" : "orWhereBetween";
@@ -36,13 +37,13 @@ class HomeController extends Controller
                 });
             })
             ->orderBy($sortColumn, $sortOrder)
-            ->paginate(9);
+            ->paginate(12);
 
         return view('www.producttype', [
             'productTypes' => ProductType::all(),
-            'productType'  => ProductType::find($id),
-            'priceRanges'  => Product::getPriceRanges($id),
-            'countries'    => [],
+            'productType'  => ProductType::find($productTypeId),
+            'priceRanges'  => Product::getPriceRanges($productTypeId),
+            'countries'    => Country::getWithQtyOfProducts($productTypeId),
             'products'     => $products,
         ]);
     }
