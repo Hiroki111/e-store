@@ -6,13 +6,17 @@ $(document).ready(function() {
 		var orderBy = url.searchParams.get("order_by");
 		var priceMin = url.searchParams.get("price_min") || "";
 		var countryNames = url.searchParams.get("country_names") || "";
+		var brandNames = url.searchParams.get("brand_names") || "";
 
 		$("option[data-column='" + sortBy + "'][data-order='" + orderBy + "']").prop('selected', true);
 		priceMin.split(",").forEach(function(price) {
-			$("input[data-price-min='" + price + "']").prop('checked', true);
+			$('input[data-price-min="' + price + '"]').prop('checked', true);
 		});
 		countryNames.split(",").forEach(function(countryName) {
-			$("input[data-country-name='" + countryName + "']").prop('checked', true);
+			$('input[data-country-name="' + countryName + '"]').prop('checked', true);
+		});
+		brandNames.split(",").forEach(function(brandName) {
+			$('input[data-brand-name="' + brandName + '"]').prop('checked', true);
 		});
 	}
 
@@ -36,13 +40,17 @@ $(document).ready(function() {
 		var countryNames = $('.country-checkbox:checked').map(function() {
 			return $(this).attr('data-country-name');
 		}).toArray().join(",");
+		var brandNames = $('.brand-checkbox:checked').map(function() {
+			return $(this).attr('data-brand-name');
+		}).toArray().join(",");
 
 		var parameters = [
 			{ key: "sort_by", value: sortBy },
 			{ key: "order_by", value: orderBy },
 			{ key: "price_min", value: priceMin },
 			{ key: "price_max", value: priceMax },
-			{ key: "country_names", value: countryNames }
+			{ key: "country_names", value: countryNames },
+			{ key: "brand_names", value: brandNames }
 		].filter(function(item) {
 			return item.value;
 		}).reduce(function(total, item, index) {

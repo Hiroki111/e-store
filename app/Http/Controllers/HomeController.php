@@ -38,6 +38,11 @@ class HomeController extends Controller
                     $query->whereIn('country_id', $countryIds);
                 }
             })
+            ->where(function ($query) use ($brandIds) {
+                if ($brandIds) {
+                    $query->whereIn('brand_id', $brandIds);
+                }
+            })
             ->where(function ($query) use ($priceRanges) {
                 $priceRanges->each(function ($priceRange, $i) use ($query) {
                     $command = ($i === 0) ? "whereBetween" : "orWhereBetween";
