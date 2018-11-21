@@ -20,7 +20,7 @@
     <div class="col-sm-3">
       <div style="border: 1px solid #c9c9c9; border-radius: 4px; padding-left: 16px; padding-right: 16px;">
         <div id="product-filter">
-        <div class="row no-gutters" style="margin-top: 16px;">
+          <div class="row no-gutters" style="margin-top: 16px;">
             <div class="col-8" style="margin-top: 10px;">
               <h4 class="font-weight-bold">Filter</h4>
             </div>
@@ -70,46 +70,6 @@
                   </label>
                 </li>
                 @endforeach
-              </ul>
-            </div>
-            <div>
-              <h5 class="font-weight-bold">Sweetness</h5>
-              <ul>
-                <li>
-                  <label>
-                    <input type="checkbox" name="">
-                    Very Dry
-                    <span>()</span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input type="checkbox" name="">
-                    Off Dry
-                    <span>()</span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input type="checkbox" name="">
-                    Medium
-                    <span>()</span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input type="checkbox" name="">
-                    Sweet
-                    <span>()</span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input type="checkbox" name="">
-                    Very Sweet
-                    <span>()</span>
-                  </label>
-                </li>
               </ul>
             </div>
           </div>
