@@ -31,8 +31,10 @@
           <hr>
           <div>
             <div>
-              <h5 class="font-weight-bold">Price Range</h5>
-              <ul>
+              <div style="margin-bottom: 20px;">
+                <h5 class="filter-keyword font-weight-bold" data-filter-keyword="price-range">Price Range<i class="pull-right fa fa-minus"></i></h5>
+              </div>
+              <ul id="price-range-ul">
                 @foreach($priceRanges as $priceRange)
                 <li>
                   <label>
@@ -45,8 +47,10 @@
               </ul>
             </div>
             <div>
-              <h5 class="font-weight-bold">Country</h5>
-              <ul>
+              <div style="margin-bottom: 20px;">
+                <h5 class="filter-keyword font-weight-bold" data-filter-keyword="country">Country<i class="pull-right fa fa-plus"></i></h5>
+              </div>
+              <ul id="country-ul" style="display: none;">
                 @foreach($countries as $country)
                 <li>
                   <label>
@@ -59,8 +63,8 @@
               </ul>
             </div>
             <div>
-              <h5 class="font-weight-bold">Brand</h5>
-              <ul>
+              <h5 class="filter-keyword font-weight-bold" data-filter-keyword="brand">Brand<i class="pull-right fa fa-plus"></i></h5>
+              <ul id="brand-ul" style="display: none;">
                 @foreach($brands as $brand)
                 <li>
                   <label>

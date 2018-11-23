@@ -20,6 +20,18 @@ $(document).ready(function() {
 		});
 	}
 
+	$('.filter-keyword').on('click', function() {
+		var targetUl = '#' + $(this).attr('data-filter-keyword') + '-ul';
+
+		if ($(targetUl).css('display') === 'none') {
+			$(targetUl).slideDown();
+			$(this).find("i").removeClass('fa-plus').addClass('fa-minus');
+		} else {
+			$(targetUl).slideUp();
+			$(this).find("i").removeClass('fa-minus').addClass('fa-plus');
+		}
+	});
+
 	$('#sort-items').on('change', function() {
 		applyFilter();
 	});
