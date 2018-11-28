@@ -8,6 +8,7 @@ use App\Product;
 use App\ProductType;
 use App\RecommendedBundle;
 use App\RecommendedProduct;
+use App\SelectedFilter;
 use App\Slide;
 
 class HomeController extends Controller
@@ -51,13 +52,13 @@ class HomeController extends Controller
             });
 
         return view('www.producttype', [
-            'productTypes' => ProductType::all(),
-            'productType'  => ProductType::find($productTypeId),
-            'priceRanges'  => Product::getPriceRanges($products->pluck('id')),
-            'countries'    => Country::getWithQtyOfProducts($products->pluck('id')),
-            'brands'       => Brand::getWithQtyOfProducts($products->pluck('id')),
-            'products'     => $products->orderBy($sortColumn, $sortOrder)
-                ->paginate(12),
+            'productTypes'   => ProductType::all(),
+            'productType'    => ProductType::find($productTypeId),
+            'selectedFilter' => new SelectedFilter(request()->input()),
+            'priceRanges'    => Product::getPriceRanges($products->pluck('id')),
+            'countries'      => Country::getWithQtyOfProducts($products->pluck('id')),
+            'brands'         => Brand::getWithQtyOfProducts($products->pluck('id')),
+            'products'       => $products->orderBy($sortColumn, $sortOrder)->paginate(12),
         ]);
     }
 }

@@ -18,6 +18,17 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
+      <div style="padding: 10px 0 10px 0; border-radius: 4px; padding-left: 16px; padding-right: 16px; background-color: #ebebeb;">
+        <h5 class="font-weight-bold">You have chosen:</h5>
+        @foreach($selectedFilter as $category => $items)
+        <h6 class="font-weight-bold" style="margin: 0 0 0 20px;">{{ $category }}</h6>
+        <ul style="margin-bottom: 0; list-style: none;">
+          @foreach($items as $item)
+          <li style="margin: 3px 0 3px 0;">{{ $item }}<i class="pull-right fa fa-times" style="background-color: white; padding: 3px;"></i></li>
+          @endforeach
+        </ul>
+        @endforeach
+      </div>
       <div style="border: 1px solid #c9c9c9; border-radius: 4px; padding-left: 16px; padding-right: 16px;">
         <div id="product-filter">
           <div class="row no-gutters" style="margin-top: 16px;">
@@ -28,7 +39,7 @@
               <button id="apply-filter-btn" class="btn btn-danger pull-right">Apply</button>
             </div>
           </div>
-          <hr>
+          <hr style="margin-top: 5px;">
           <div>
             <div>
               <div style="margin-bottom: 20px;">
