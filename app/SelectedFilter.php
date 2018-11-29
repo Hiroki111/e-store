@@ -13,12 +13,11 @@ class SelectedFilter implements IteratorAggregate
     public function __construct($conditions)
     {
         $this->conditions = collect($conditions);
-        $this->items      = [];
     }
 
-    public function getIterator()
+    public function getSelectedFilter()
     {
-        $items = $this->conditions->map(function ($value, $key) {
+        return $this->conditions->map(function ($value, $key) {
             if ($key === 'price_min') {
                 $priceMin = explode(',', $this->conditions['price_min']);
                 $priceMax = explode(',', $this->conditions['price_max']);
@@ -33,7 +32,15 @@ class SelectedFilter implements IteratorAggregate
 
             return null;
         })->collapse()->all();
+    }
 
-        return new ArrayIterator($items);
+    public function getIterator()
+    {
+        return new ArrayIterator($this->getSelectedFilter());
+    }
+
+    public function isEmpty()
+    {
+        return empty($this->getSelectedFilter());
     }
 }

@@ -18,6 +18,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
+      @if(!$selectedFilter->isEmpty())
       <div style="padding: 10px 0 10px 0; border-radius: 4px; padding-left: 16px; padding-right: 16px; background-color: #ebebeb;">
         <h5 class="font-weight-bold">You have chosen:</h5>
         @foreach($selectedFilter as $category => $items)
@@ -29,6 +30,7 @@
         </ul>
         @endforeach
       </div>
+      @endif
       <div style="border: 1px solid #c9c9c9; border-radius: 4px; padding-left: 16px; padding-right: 16px;">
         <div id="product-filter">
           <div class="row no-gutters" style="margin-top: 16px;">
