@@ -22,10 +22,11 @@
       <div style="padding: 10px 0 10px 0; border-radius: 4px; padding-left: 16px; padding-right: 16px; background-color: #ebebeb;">
         <h5 class="font-weight-bold">You have chosen:</h5>
         @foreach($selectedFilter as $category => $items)
-        <h6 class="font-weight-bold" style="margin: 0 0 0 20px;">{{ $category }}</h6>
+        <hr>
+        <h6 class="font-weight-bold" style="margin: 0 0 0 20px;">{{ $category }}<i class="pull-right remove-selected-filter fa fa-times" data-remove-category="{{ $category }}" style="background-color: white; padding: 3px;"></i></h6>
         <ul style="margin-bottom: 0; list-style: none;">
           @foreach($items as $item)
-          <li style="margin: 3px 0 3px 0;">{{ $item }}<i class="pull-right fa fa-times" style="background-color: white; padding: 3px;"></i></li>
+          <li style="margin: 3px 0 3px 0;">{{ $item }}</li>
           @endforeach
         </ul>
         @endforeach

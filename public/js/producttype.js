@@ -32,6 +32,13 @@ $(document).ready(function() {
 		}
 	});
 
+	$('.remove-selected-filter').on('click', function() {
+		var category = $(this).attr('data-remove-category').replace(" ", "-").toLowerCase();
+		$("." + category + "-checkbox").prop('checked', false);
+
+		applyFilter();
+	});
+
 	$('#sort-items').on('change', function() {
 		applyFilter();
 	});
