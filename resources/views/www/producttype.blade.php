@@ -107,6 +107,7 @@
           </select>
         </div>
       </div>
+      <div class="row no-gutters" style="margin-bottom: 15px;">{{$products->total()}} products found</div>
       <div class="row">
         @foreach($products as $product)
         <div class="col-md-4">
