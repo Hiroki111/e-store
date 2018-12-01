@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="min-height: 120px;">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="min-height: 120px; padding: 0 16px 0 16px;">
     <div class="container d-flex justify-content-between">
       <div class="row" style="width: 100%;">
         <div class="col-3">
@@ -15,7 +15,7 @@
               <ul class="navbar-nav">
                 @foreach($productTypes as $productType)
                 <li class="nav-item">
-                  <a class="nav-link font-weight-bold lead" style="color: white; font-family: Arial, Helvetica, sans-serif;" href="/product-type/{{$productType->id}}">{{$productType->name}}</a>
+                  <a data-nav-product-type="{{$productType->name}}" class="product-type-link nav-link font-weight-bold lead" style="color: white; font-family: Arial, Helvetica, sans-serif;" href="/product-type/{{$productType->id}}">{{$productType->name}}</a>
                 </li>
                 @endforeach
               </ul>

@@ -95,7 +95,7 @@
       </div>
     </div>
     <div class="col-sm-9">
-      <h1 class="font-weight-bold text-uppercase">{{$productType->name}}</h1>
+      <h1 id="selected-product-type" class="font-weight-bold text-uppercase">{{$productType->name}}</h1>
       <div class="row no-gutters" style="margin: 10px 0 15px 0;">
         <div class="col-1" style="padding: 0.375rem 0 0.375rem 0;">Sort By</div>
         <div class="col-4">

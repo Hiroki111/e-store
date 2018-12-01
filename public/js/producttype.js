@@ -18,6 +18,12 @@ $(document).ready(function() {
 		brandNames.split(",").forEach(function(brandName) {
 			$('input[data-brand-name="' + brandName + '"]').prop('checked', true);
 		});
+
+		$('.product-type-link').each(function() {
+			if ($(this).attr('data-nav-product-type') === $('#selected-product-type').text()) {
+				$(this).addClass('product-type-link-active').removeClass('product-type-link');
+			}
+		});
 	}
 
 	$('.filter-keyword').on('click', function() {
