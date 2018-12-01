@@ -19,7 +19,6 @@ class HomeController extends Controller
             'slides'              => Slide::active()->get(),
             'recommendedBundles'  => RecommendedBundle::getBundles(),
             'recommendedProducts' => RecommendedProduct::getProducts(),
-            'productTypes'        => ProductType::all(),
         ]);
     }
 
@@ -52,7 +51,6 @@ class HomeController extends Controller
             });
 
         return view('www.producttype', [
-            'productTypes'   => ProductType::all(),
             'productType'    => ProductType::find($productTypeId),
             'selectedFilter' => new SelectedFilter(request()->input()),
             'priceRanges'    => Product::getPriceRanges($products->pluck('id')),
