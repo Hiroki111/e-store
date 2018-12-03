@@ -82,4 +82,21 @@ class ProductTest extends TestCase
         $this->assertEquals($priceRanges[3]->max, 109.99);
         $this->assertEquals($priceRanges[3]->qty, 1);
     }
+
+    /** @test */
+    public function canGetHashedId()
+    {
+        $product = factory(Product::class)->create();
+
+        $this->assertTrue(strlen($product->hashedId) >= 6);
+    }
+
+    /** @test */
+    public function canDecodeHashedId()
+    {
+        $product  = factory(Product::class)->create();
+        $hashedId = $product->hashedId;
+
+        $this->assertEquals(Product::getByHashedId($hashedId)->id, $product->id);
+    }
 }
