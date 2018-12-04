@@ -98,10 +98,10 @@
     @foreach($recommendedProducts as $product)
     <div class="col-md-3">
       <div class="card mb-3 shadow-sm">
-        <img class="card-img-top" src="{{$product->src}}">
+          <a href="/product/{{$product->hashed_id}}"><img class="card-img-top" src="{{$product->src}}"></a>
         <div class="card-body text-center">
           <h5 class="card-text" style="font-weight: bold;">{{$product->name}}</h5>
-          <div class="flex-wrapper flex-wrapper-first">
+          <div class=" flex-wrapper flex-wrapper-first">
             <div class="product-tile-price-big" style="color: #D2232A; display: flex;">
               <div class="price-bundle-new">
                 <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
@@ -116,16 +116,16 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="input-group">
               <div class="input-group-prepend">
-                <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="-1" data-item-type="product" data-item-id="{{$product->id}}">-</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="-1" data-item-type="product" data-item-id="{{$product->hashed_id}}">-</button>
               </div>
-              <input type="number" id="product-{{$product->id}}" min="1" max="50" value="1" style="text-align: center;" class="form-control">
+              <input type="number" id="product-{{$product->hashed_id}}" min="1" max="50" value="1" style="text-align: center;" class="form-control">
               <div class="input-group-append">
-                <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="1" data-item-type="product" data-item-id="{{$product->id}}" >+</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="1" data-item-type="product" data-item-id="{{$product->hashed_id}}" >+</button>
               </div>
             </div>
           </div>
           <div class="input-group">
-            <button data-item-type="product" data-item-id="{{$product->id}}" data-item-src="{{$product->src}}" type="button" class="btn add-item add-to-cart-button" >Add to Cart</button>
+            <button data-item-type="product" data-item-id="{{$product->hashed_id}}" data-item-src="{{$product->src}}" type="button" class="btn add-item add-to-cart-button" >Add to Cart</button>
           </div>
         </div>
       </div>

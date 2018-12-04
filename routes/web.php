@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/product-type/{id}', 'HomeController@productType');
+Route::get('/product/{hashedId}', 'HomeController@product');
 
 Auth::routes();
 

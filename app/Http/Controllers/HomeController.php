@@ -59,4 +59,14 @@ class HomeController extends Controller
             'products'       => $products->orderBy($sortColumn, $sortOrder)->paginate(12),
         ]);
     }
+
+    public function product($hashedId)
+    {
+        $product = Product::getByHashedId($hashedId);
+
+        return view('www.product', [
+            'productType' => ProductType::find($product->product_type_id),
+            'product'     => $product,
+        ]);
+    }
 }

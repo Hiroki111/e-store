@@ -19,6 +19,7 @@ main {
 	height: 250px;
 	width: fit-content;
 	margin: auto;
+	display:block;
 }
 
 .outlined-text {
