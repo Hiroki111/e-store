@@ -13,9 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('www.layout.header', function ($view) {
-            $view->with('productTypes', \App\ProductType::all());
-        });
+        view()->composer(
+            ['www.layout.header'],
+            'App\Http\ViewComposers\ProductTypes'
+        );
     }
 
     /**
