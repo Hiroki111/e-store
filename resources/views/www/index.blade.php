@@ -57,7 +57,9 @@
     @foreach($recommendedBundles as $bundle)
     <div class="col-md-3">
       <div class="card mb-3 shadow-sm">
-        <img class="card-img-top" src="{{$bundle->src}}">
+        <div class="card-img-frame" style="height: 200px;">
+          <img class="card-img-top" src="{{$bundle->src}}">
+        </div>
         <div class="card-body text-center">
           <h5 class="card-text" style="font-weight: bold;">{{$bundle->name}}</h5>
           <div class="flex-wrapper flex-wrapper-first">
@@ -98,7 +100,11 @@
     @foreach($recommendedProducts as $product)
     <div class="col-md-3">
       <div class="card mb-3 shadow-sm">
-          <a href="/product/{{$product->hashed_id}}"><img class="card-img-top" src="{{$product->src}}"></a>
+        <a href="/product/{{$product->hashed_id}}">
+          <div class="card-img-frame">
+            <img class="card-img-top" src="{{$product->src}}">
+          </div>
+        </a>
         <div class="card-body text-center">
           <h5 class="card-text" style="font-weight: bold;">{{$product->name}}</h5>
           <div class=" flex-wrapper flex-wrapper-first">

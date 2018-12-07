@@ -15,9 +15,17 @@ main {
 	margin-top: 120px;
 }
 
-.card-img-top {
+.card-img-frame {
 	height: 250px;
-	width: fit-content;
+	display: flex;
+}
+
+
+.card-img-top {
+	max-height: 250px;
+	max-width: 250px;
+	height: auto;
+	width: auto;
 	margin: auto;
 	display:block;
 }

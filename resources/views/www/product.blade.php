@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-sm-5">
     <div style="max-width: 100%;">
-        <img class="" src="{{$product->src}}">
+        <img class="" style="width: 100%;" src="{{$product->src}}">
       </div>
     </div>
     <div class="col-sm-7">

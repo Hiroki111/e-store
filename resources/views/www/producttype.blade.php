@@ -112,7 +112,11 @@
         @foreach($products as $product)
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{$product->src}}">
+            <a href="/product/{{$product->hashed_id}}">
+              <div class="card-img-frame">
+                <img class="card-img-top" src="{{$product->src}}">
+              </div>
+            </a>
             <div class="card-body text-center">
               <h5 class="card-text" style="font-weight: bold;">{{$product->name}}</h5>
               <div class="flex-wrapper flex-wrapper-first">
