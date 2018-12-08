@@ -160,3 +160,28 @@ body > .container {
 	font-weight: bold; 
 	color: red;
 }
+
+#product-details-heading {
+	font-family: Arial, Helvetica, sans-serif; 
+	font-weight: bold; 
+}
+
+.product-details-ul {
+	list-style-type: none;
+	padding: 0;	
+}
+
+.product-details-ul > li{
+	font-weight: bold;
+	padding: 5px;
+}
+
+.product-details-ul > li:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+.product-details-ul > li > span{
+	float: right;
+	font-weight: normal;
+}
+

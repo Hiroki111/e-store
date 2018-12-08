@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Brand;
+use App\Country;
 use App\Traits\Price;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,6 +26,11 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 
     public static function getPriceRanges($ids)
