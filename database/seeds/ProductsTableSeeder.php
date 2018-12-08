@@ -11,7 +11,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 40) as $i) {
+        foreach (range(1, 150) as $i) {
             factory(App\Product::class)->create();
         }
     }
