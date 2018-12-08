@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Brand;
 use App\Traits\Price;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,6 +20,11 @@ class Product extends Model
     public function getHashedIdAttribute()
     {
         return Hashids::encode($this->id);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     public static function getPriceRanges($ids)

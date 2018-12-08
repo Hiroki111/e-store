@@ -14,7 +14,7 @@ class AddVolumeToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->decimal('volume', 8, 2)->nullable()->after('price');
+            $table->integer('volume')->nullable()->after('price');
         });
     }
 

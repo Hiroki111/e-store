@@ -154,3 +154,9 @@ body > .container {
 .product-type-link-active:hover:before {
 	visibility: visible;
 }
+
+#product-name-heading {
+	font-family: Arial, Helvetica, sans-serif; 
+	font-weight: bold; 
+	color: red;
+}

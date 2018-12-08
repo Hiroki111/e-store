@@ -53,7 +53,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'alcohol'            => $products[$i]['alcohol'],
         'volume'             => $products[$i]['volume'],
         'packaging'          => $packaging,
-        'description'        => $faker->paragraph(mt_rand(2, 5)),
+        'description'        => $faker->paragraph(mt_rand(4, 6)),
         'limit_per_checkout' => [0, 6, 10][mt_rand(0, 2)],
         'discount_qty'       => [0, 4, 6][mt_rand(0, 2)],
         'discount_price'     => $products[$i]['discount_price'],
