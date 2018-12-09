@@ -67,10 +67,7 @@ class HomeController extends Controller
         return view('www.product', [
             'productType'      => ProductType::find($product->product_type_id),
             'product'          => $product,
-            'relevantProducts' => Product::where('product_type_id', $product->product_type_id)
-                ->where('country_id', $product->country_id)
-                ->take(6)
-                ->get(),
+            'relevantProducts' => Product::getRelevantItems($product->id),
         ]);
     }
 }

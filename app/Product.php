@@ -33,6 +33,17 @@ class Product extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public static function getRelevantItems($id)
+    {
+        $product = self::find($id);
+
+        return self::where('product_type_id', $product->product_type_id)
+            ->where('country_id', $product->country_id)
+            ->where('id', '!=', $product->id)
+            ->take(6)
+            ->get();
+    }
+
     public static function getPriceRanges($ids)
     {
         return self::whereIn('id', $ids)
