@@ -36,13 +36,13 @@
               <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
                 <span class="currency" style="font-size: 12px;">$</span>
                 {{$product->dollars}}
-                <span class="cents" style="font-size: 12px;">.{{$product->sents}}</span>
+                <span class="cents" style="font-size: 12px;">.{{$product->cents}}</span>
               </span>
             </div>
             <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
           </div>
           @if($product->discount_qty > 0)
-          <h5>For each {{$product->discount_qty}}, you'll get <span style="font-weight: bold; color: red;">${{$product->discount_price}} discount</span></h5>
+          <h5>Buy {{$product->discount_qty}} {{$product->packaging}}s, and you'll get <span style="font-weight: bold; color: red;">${{$product->discount_price}} discount</span></h5>
           @endif
           @if($product->limit_per_checkout > 0)
           <h5>Limit of {{$product->limit_per_checkout}} Per Cart</h5>
@@ -97,7 +97,7 @@
           <ul id="relevant-products-carousel" >
             @foreach($relevantProducts as $i => $product)
             <li  class="col-md-3">
-              <div  style="height: 100%; background-color: white;">
+              <div  style="height: 100%; background-color: whitc;">
                 <div class="card mb-3 shadow-sm">
                   <a href="/product/{{$product->hashed_id}}">
                     <div class="card-img-frame">
@@ -112,7 +112,7 @@
                           <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
                             <span class="currency" style="font-size: 12px;">$</span>
                             {{$product->dollars}}
-                            <span class="cents" style="font-size: 12px;">.{{$product->sents}}</span>
+                            <span class="cents" style="font-size: 12px;">.{{$product->cents}}</span>
                           </span>
                         </div>
                         <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>

@@ -68,7 +68,7 @@
                 <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
                   <span class="currency" style="font-size: 12px;">$</span>
                   {{$bundle->dollars}}
-                  <span class="cents" style="font-size: 12px;">.{{$bundle->sents}}</span>
+                  <span class="cents" style="font-size: 12px;">.{{$bundle->cents}}</span>
                 </span>
               </div>
               <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
@@ -113,7 +113,7 @@
                 <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
                   <span class="currency" style="font-size: 12px;">$</span>
                   {{$product->dollars}}
-                  <span class="cents" style="font-size: 12px;">.{{$product->sents}}</span>
+                  <span class="cents" style="font-size: 12px;">.{{$product->cents}}</span>
                 </span>
               </div>
               <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>

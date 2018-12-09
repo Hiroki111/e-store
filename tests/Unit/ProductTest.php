@@ -21,7 +21,7 @@ class ProductTest extends TestCase
     }
 
     /** @test */
-    public function canGetSents()
+    public function canGetcents()
     {
         $product = factory(Product::class)->create([
             'price' => 66.90,
@@ -33,9 +33,9 @@ class ProductTest extends TestCase
             'price' => 1.11,
         ]);
 
-        $this->assertEquals($product->sents, 90);
-        $this->assertEquals($product2->sents, 10);
-        $this->assertEquals($product3->sents, 11);
+        $this->assertEquals($product->cents, 90);
+        $this->assertEquals($product2->cents, 10);
+        $this->assertEquals($product3->cents, 11);
     }
 
     /** @test */

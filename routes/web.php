@@ -21,5 +21,3 @@ Auth::routes();
 //They don't need to be in api.php
 Route::resource('cart', 'CartController');
 Route::post('cart/add', 'CartController@add');
-
-Route::resource('product', 'ProductController');

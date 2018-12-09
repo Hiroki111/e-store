@@ -9,7 +9,7 @@ trait Price
         return (int) $this->price;
     }
 
-    public function getSentsAttribute()
+    public function getCentsAttribute()
     {
         return bcsub($this->price, $this->dollars, 2) * 100;
     }
