@@ -51,8 +51,8 @@
     </div>
   </div>
 
-  <hr class="featurette-divider">
-  <h1>Popular Bundles in this month</h1>
+  <hr class="" style="margin: 30px 0;">
+  <h1 style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Special Bundles</h1>
   <div class="row">
     @foreach($recommendedBundles as $bundle)
     <div class="col-md-3">
@@ -94,8 +94,8 @@
     @endforeach
   </div>
 
-  <hr class="featurette-divider">
-  <h1>Products of This Month</h1>
+  <hr class="" style="margin: 30px 0;">
+  <h1 style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Top Picks</h1>
   <div class="row">
     @foreach($recommendedProducts as $product)
     <div class="col-md-3">

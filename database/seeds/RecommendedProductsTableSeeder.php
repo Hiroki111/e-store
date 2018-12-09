@@ -11,7 +11,7 @@ class RecommendedProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 4) as $i) {
+        foreach (range(1, 8) as $i) {
             factory(App\RecommendedProduct::class)->create([
                 'product_id' => $i,
             ]);
