@@ -4,24 +4,20 @@ namespace App;
 
 use App\Brand;
 use App\Country;
+use App\Traits\HashedId;
 use App\Traits\Price;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Vinkla\Hashids\Facades\Hashids;
 
 class Product extends Model
 {
     use SoftDeletes;
     use Price;
+    use HashedId;
 
     protected $guarded = [];
     protected $dates   = ['date'];
     protected $appends = ['hashed_id'];
-
-    public function getHashedIdAttribute()
-    {
-        return Hashids::encode($this->id);
-    }
 
     public function brand()
     {
@@ -62,13 +58,4 @@ class Product extends Model
             });
 
     }
-
-    public static function getByHashedId($hashedId)
-    {
-        if (empty(Hashids::decode($hashedId))) {
-            return null;
-        }
-        return self::find(Hashids::decode($hashedId)[0]);
-    }
-
 }

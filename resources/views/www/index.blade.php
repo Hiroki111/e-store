@@ -55,42 +55,7 @@
   <h1 style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Special Bundles</h1>
   <div class="row">
     @foreach($recommendedBundles as $bundle)
-    <div class="col-md-3">
-      <div class="card mb-3 shadow-sm">
-        <div class="card-img-frame" style="height: 200px;">
-          <img class="card-img-top" src="{{$bundle->src}}">
-        </div>
-        <div class="card-body text-center">
-          <h5 class="card-text" style="font-weight: bold;">{{$bundle->name}}</h5>
-          <div class="flex-wrapper flex-wrapper-first">
-            <div class="product-tile-price-big" style="color: #D2232A; display: flex;">
-              <div class="price-bundle-new">
-                <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
-                  <span class="currency" style="font-size: 12px;">$</span>
-                  {{$bundle->dollars}}
-                  <span class="cents" style="font-size: 12px;">.{{$bundle->cents}}</span>
-                </span>
-              </div>
-              <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="-1" data-item-type="bundle" data-item-id="{{$bundle->id}}">-</button>
-              </div>
-              <input type="number" id="bundle-{{$bundle->id}}" min="1" max="50" value="1" style="text-align: center;" class="form-control">
-              <div class="input-group-append">
-                <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="1" data-item-type="bundle" data-item-id="{{$bundle->id}}" >+</button>
-              </div>
-            </div>
-          </div>
-          <div class="input-group">
-            <button data-item-type="bundle" data-item-id="{{$bundle->id}}" data-item-src="{{$bundle->src}}" type="button" class="btn add-item add-to-cart-button" >Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    @include('www.util.productpanel', ['item' => $bundle, 'type' => 'bundle'])
     @endforeach
   </div>
 
@@ -98,44 +63,7 @@
   <h1 style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Top Picks</h1>
   <div class="row">
     @foreach($recommendedProducts as $product)
-    <div class="col-md-3">
-      <div class="card mb-3 shadow-sm">
-        <a href="/product/{{$product->hashed_id}}">
-          <div class="card-img-frame">
-            <img class="card-img-top" src="{{$product->src}}">
-          </div>
-        </a>
-        <div class="card-body text-center">
-          <h5 class="card-text" style="font-weight: bold;">{{$product->name}}</h5>
-          <div class=" flex-wrapper flex-wrapper-first">
-            <div class="product-tile-price-big" style="color: #D2232A; display: flex;">
-              <div class="price-bundle-new">
-                <span class="price" style="font-size: 22px; font-weight: 900; vertical-align: top;">
-                  <span class="currency" style="font-size: 12px;">$</span>
-                  {{$product->dollars}}
-                  <span class="cents" style="font-size: 12px;">.{{$product->cents}}</span>
-                </span>
-              </div>
-              <div class="price-des" style="font-size: 12px; margin-left: 5px; margin-top: 7px;">Each</div>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="-1" data-item-type="product" data-item-id="{{$product->hashed_id}}">-</button>
-              </div>
-              <input type="number" id="product-{{$product->hashed_id}}" min="1" max="50" value="1" style="text-align: center;" class="form-control">
-              <div class="input-group-append">
-                <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="1" data-item-type="product" data-item-id="{{$product->hashed_id}}" >+</button>
-              </div>
-            </div>
-          </div>
-          <div class="input-group">
-            <button data-item-type="product" data-item-id="{{$product->hashed_id}}" data-item-src="{{$product->src}}" type="button" class="btn add-item add-to-cart-button" >Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    @include('www.util.productpanel', ['item' => $product, 'type' => 'product'])
     @endforeach
   </div>
 
