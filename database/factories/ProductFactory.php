@@ -44,7 +44,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
 
     $i              = rand(1, 4);
     $imageSubFolder = str_replace(" ", "_", strtolower($products[$i]['name']));
-    $imageId        = mt_rand(1, 6);
+    $imageId        = mt_rand(1, 8);
     $packaging      = ($products[$i]['name'] === 'Beer' && in_array($imageId, [3, 4])) ? 'can' : 'bottle';
 
     return [

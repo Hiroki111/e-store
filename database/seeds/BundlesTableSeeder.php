@@ -1,5 +1,7 @@
 <?php
 
+use App\Bundle;
+use App\Product;
 use Illuminate\Database\Seeder;
 
 class BundlesTableSeeder extends Seeder
@@ -11,22 +13,34 @@ class BundlesTableSeeder extends Seeder
      */
     public function run()
     {
-        $products = App\Product::all();
-        foreach (range(1, 4) as $i) {
-            $bundle = factory(App\Bundle::class)->create([
-                'src' => "/images/bundles/" . $i . ".jpeg",
+        $aussieWines = Product::whereIn('product_type_id', [2, 3])
+            ->where('country_id', 1)
+            ->get();
+        $latinAmericanWines = Product::whereIn('product_type_id', [2, 3])
+            ->whereIn('country_id', [2, 4])
+            ->get();
+        $europeanWines = Product::whereIn('product_type_id', [2, 3])
+            ->whereIn('country_id', [6, 9, 11])
+            ->get();
+        $bears = Product::where('product_type_id', 1)
+            ->get();
+
+        collect([$aussieWines, $latinAmericanWines, $europeanWines, $bears])->each(function ($products, $i) {
+            $bundle = factory(Bundle::class)->create([
+                'src'       => "/images/bundles/" . ($i + 1) . ".jpeg",
+                'src_large' => "/images/bundles/large/" . ($i + 1) . ".jpg",
             ]);
 
-            $sizeOfBundle    = rand(4, 12);
             $bundledProducts = $products->shuffle()
-                ->filter(function ($product, $i) use ($sizeOfBundle) {
-                    return $i <= $sizeOfBundle;
-                })
+                ->take(rand(4, 6))
                 ->map(function ($product) {
                     return $product->id;
                 })
                 ->toArray();
-            $bundle->products()->sync($bundledProducts);
-        }
+
+            foreach (array_merge($bundledProducts, $bundledProducts) as $key => $id) {
+                $bundle->products()->attach($id);
+            }
+        });
     }
 }
