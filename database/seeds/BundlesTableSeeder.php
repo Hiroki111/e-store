@@ -32,7 +32,7 @@ class BundlesTableSeeder extends Seeder
             ]);
 
             $bundledProducts = $products->shuffle()
-                ->take(rand(4, 6))
+                ->take(rand(8, 10))
                 ->map(function ($product) {
                     return $product->id;
                 })
