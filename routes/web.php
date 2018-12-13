@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@index');
 Route::get('/product-type/{id}', 'HomeController@productType');
 Route::get('/product/{hashedId}', 'HomeController@product');
+Route::get('/bundle/{hashedId}', 'HomeController@bundle');
 
 Auth::routes();
 

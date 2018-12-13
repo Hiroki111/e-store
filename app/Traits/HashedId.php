@@ -10,12 +10,4 @@ trait HashedId
     {
         return Hashids::encode($this->id);
     }
-
-    public static function getByHashedId($hashedId)
-    {
-        if (empty(Hashids::decode($hashedId))) {
-            return null;
-        }
-        return self::find(Hashids::decode($hashedId)[0]);
-    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use App\Bundle;
 use App\Country;
 use App\Product;
 use App\ProductType;
@@ -62,12 +63,19 @@ class HomeController extends Controller
 
     public function product($hashedId)
     {
-        $product = Product::getByHashedId($hashedId);
+        $product = Product::find(decode_hash($hashedId));
 
         return view('www.product', [
             'productType'      => ProductType::find($product->product_type_id),
             'product'          => $product,
             'relevantProducts' => Product::getRelevantItems($product->id),
+        ]);
+    }
+
+    public function bundle($hashedId)
+    {
+        return view('www.bundle', [
+            'bundle' => Bundle::with('products')->find(decode_hash($hashedId)),
         ]);
     }
 }

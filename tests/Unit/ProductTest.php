@@ -90,13 +90,4 @@ class ProductTest extends TestCase
 
         $this->assertTrue(strlen($product->hashedId) >= 6);
     }
-
-    /** @test */
-    public function canDecodeHashedId()
-    {
-        $product  = factory(Product::class)->create();
-        $hashedId = $product->hashedId;
-
-        $this->assertEquals(Product::getByHashedId($hashedId)->id, $product->id);
-    }
 }
