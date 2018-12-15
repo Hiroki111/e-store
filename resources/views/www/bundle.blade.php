@@ -66,7 +66,7 @@
   <div class="row">
     <div class="col-sm-12">
       <h4 style="font-weight: bold; color: red;">What's included</h4>
-      @foreach($bundle->products as $product)
+      @foreach($bundle->getProductList() as $product)
       <div class="row">
         <div class="col-sm-2" style="display: flex;">
           <img style="max-width: 125px; max-height: 125px; margin: auto;" src="{{$product->src}}">
@@ -74,12 +74,13 @@
         <div class="col-sm-10">
           <div class="row">
             <div class="col-sm-12">
+              <p class="font-weight-bold">{{$product->qty}} {{$product->packaging}} of {{$product->name}} {{$product->volume}}ml</p>
               <p>{{$product->description}}</p>
             </div>
             <div class="col-sm-6">
               <ul class="product-details-ul">
                 <li>Alcohol Content <span>{{$product->alcohol}}%</span></li>
-                <li>Packaging <span>{{$product->packaging}}</span></li>
+                <li>Packaging <span>{{ucfirst($product->packaging)}}</span></li>
               </ul>
             </div>
             <div class="col-sm-6">

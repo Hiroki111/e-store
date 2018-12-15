@@ -24,7 +24,7 @@ class ViewBundleTest extends TestCase
     }
 
     /** @test */
-    public function canShowWhichItemsAreIncluded()
+    public function canShowItemsThatAreIncluded()
     {
         //products which will be included
         $country1 = factory(Country::class)->create(['name' => 'Country A']);
@@ -46,8 +46,11 @@ class ViewBundleTest extends TestCase
         $p11      = $this->createProduct('$p11', 11.11, $country2->id, $brand2->id);
         $p12      = $this->createProduct('$p12', 12.12, $country2->id, $brand2->id);
 
-        $bundle = factory(Bundle::class)->create();
-        $bundle->products()->attach(collect([$p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8])->map(function ($p) {
+        $bundle = factory(Bundle::class)->create([
+            'name'        => 'Bundle',
+            'description' => 'Description',
+        ]);
+        $bundle->products()->attach(collect([$p1, $p1, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8])->map(function ($p) {
             return $p->id;
         })->all());
 
@@ -57,19 +60,26 @@ class ViewBundleTest extends TestCase
         $res->assertSee(".$bundle->cents");
         $res->assertSee($bundle->description);
 
-        collect([$p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8])->each(function ($p) use ($res) {
+        collect([$p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8])->each(function ($p) use ($res, $p1) {
             $res->assertSee($p->name);
-            $res->assertSeeText($p->dollars);
-            $res->assertSee(".$p->cents");
-            $res->assertSee($p->brand->name);
             $res->assertSee("$p->alcohol%");
-            $res->assertSee($p->packaging);
             $res->assertSee($p->description);
-            $res->assertSee($p->country->name);
+            $res->assertSee($p->volume . "ml");
+
+            if ($p->id === $p1->id) {
+                $res->assertSee("3 $p->packaging" . "s of $p->name");
+            } else {
+                $res->assertSee("1 $p->packaging of $p->name");
+            }
         });
 
         collect([$p9, $p10, $p11, $p12])->each(function ($p) use ($res) {
             $res->assertDontSee($p->name);
         });
+
+        $res->assertSee($brand1->name);
+        $res->assertSee($country1->name);
+        $res->assertDontSee($brand2->name);
+        $res->assertDontSee($country2->name);
     }
 }

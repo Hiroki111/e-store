@@ -21,4 +21,25 @@ class Bundle extends Model
     {
         return $this->belongsToMany(Product::class, 'product_bundle', 'bundle_id', 'product_id');
     }
+
+    public function getProductList()
+    {
+        return $this->products->groupBy('id')
+            ->values()
+            ->map(function ($products) {
+                $qty       = $products->count();
+                $packaging = $products->first()->packaging;
+                return (object) [
+                    'qty'         => $qty,
+                    'packaging'   => ($qty > 1) ? $packaging . 's' : $packaging,
+                    'src'         => $products->first()->src,
+                    'name'        => $products->first()->name,
+                    'description' => $products->first()->description,
+                    'alcohol'     => $products->first()->alcohol,
+                    'volume'      => $products->first()->volume,
+                    'brand'       => $products->first()->brand,
+                    'country'     => $products->first()->country,
+                ];
+            });
+    }
 }
