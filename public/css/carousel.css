@@ -142,8 +142,8 @@
   .carousel-item.active {
     max-height: 550px;
   }
-}
-
   .carousel-item.active img{
-    /*max-height: 450px;*/
+    left: 50%;
+    transform: translateX(-50%);
   }
+}
