@@ -41,16 +41,16 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="input-group">
             <div class="input-group-prepend">
-              <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="-1" data-item-type="product" data-item-id="{{$bundle->hashed_id}}">-</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="-1" data-item-type="bundle" data-item-id="{{$bundle->hashed_id}}">-</button>
             </div>
-            <input type="number" id="product-{{$bundle->hashed_id}}" min="1" max="50" value="1" style="text-align: center;" class="form-control">
+            <input type="number" id="bundle-{{$bundle->hashed_id}}" min="1" max="50" value="1" style="text-align: center;" class="form-control">
             <div class="input-group-append">
-              <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="1" data-item-type="product" data-item-id="{{$bundle->hashed_id}}">+</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary update-qty-btn" data-update-qty="1" data-item-type="bundle" data-item-id="{{$bundle->hashed_id}}">+</button>
             </div>
           </div>
         </div>
         <div class="input-group">
-          <button data-item-type="product" data-item-id="{{$bundle->hashed_id}}" data-item-src="{{$bundle->src}}" type="button" class="btn add-item add-to-cart-button">Add to Cart</button>
+          <button data-item-type="bundle" data-item-id="{{$bundle->hashed_id}}" data-item-src="{{$bundle->src}}" type="button" class="btn add-item add-to-cart-button">Add to Cart</button>
         </div>
       </div>
     </div>
