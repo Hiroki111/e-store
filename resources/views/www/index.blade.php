@@ -17,7 +17,7 @@
         <div class="carousel-caption text-left">
           <h1 class="outlined-text">{{$slide->title}}</h1>
           <p class="outlined-text">{{$slide->description}}</p>
-          <p><a class="btn btn-lg btn-primary" href="#" role="button">MORE</a></p>
+          <p><a class="btn btn-lg btn-primary" href="/product-type/{{$slide->product_id}}" role="button">MORE</a></p>
         </div>
       </div>
     </div>

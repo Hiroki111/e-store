@@ -54,7 +54,6 @@ $(document).ready(function() {
 	}
 
 	function showCartUpdate(src, qty) {
-		console.log('showCartUpdate', src, qty);
 		var text = (qty < 2) ? qty + " item" : qty + " items";
 		text = text + " added to cart";
 		$('#added-item-text').text(text);
