@@ -1,5 +1,5 @@
 <header>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="min-height: 120px; padding: 0 16px 0 16px;">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="min-height: 120px; padding: 0 16px 0 16px;">
     <div class="container d-flex justify-content-between">
       <div class="row" style="width: 100%;">
         <div class="col-3">
@@ -29,7 +29,7 @@
               <span id="cart-counter" style="margin-left: 15px; font-weight: bold;"></span>
             </div>
             <div style="padding: 10px 10px; border-radius: 0 0 5px 5px; background-color: red; height: 40px; color: white; font-weight: bold;">
-              CHECKOUT
+              <a href="/checkout" style="color: white; text-decoration: none;">CHECKOUT</a>
             </div>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
