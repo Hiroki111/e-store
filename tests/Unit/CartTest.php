@@ -141,12 +141,12 @@ class CartTest extends TestCase
         $bundle->products()->attach([$product2->id, $product3->id, $product4->id]);
 
         $this->post('/cart/add', [
-            'type'   => 'products',
+            'type'   => 'product',
             'itemId' => $product1->hashed_id,
             'qty'    => 2,
         ]);
         $this->post('/cart/add', [
-            'type'   => 'bundles',
+            'type'   => 'bundle',
             'itemId' => $bundle->hashed_id,
             'qty'    => 1,
         ]);

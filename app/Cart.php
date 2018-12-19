@@ -31,7 +31,7 @@ class Cart implements IteratorAggregate
     {
         return collect($this->items)->map(function ($items, $type) {
             return collect($items)->map(function ($qty, $hashedId) use ($type) {
-                $class = ($type === 'products') ? Product::class : Bundle::class;
+                $class = ($type === 'product') ? Product::class : Bundle::class;
                 $item  = $class::find(decode_hash($hashedId));
                 return (object) [
                     'src'         => $item->src,
