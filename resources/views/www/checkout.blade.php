@@ -7,18 +7,18 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-			<h2 class="font-weight-bold">View Cart ({{$cart->count}}@if($cart->count > 1) items @else item @endif)</h2>
+			<h3 class="font-weight-bold font-arial" style="margin: 30px 0;">View Cart ({{$cart->count}}@if($cart->count > 1) items @else item @endif)</h3>
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Your Items</th>
-						<th>Quantity</th>
-						<th>Price</th>
+						<th style="border: none; font-size: 20px;">Your Items</th>
+						<th style="border: none; font-size: 20px;">Quantity</th>
+						<th style="border: none; font-size: 20px;">Price</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($cart as $item)
-					<tr>
+					@foreach($cart as $i => $item)
+					<tr @if($i===0) style="border-top: 2px solid black;" @endif>
 						<td>
 							<img src="{{$item->src}}" style="max-height: 50px;">
 							<h5>{{$item->name}}</h5>

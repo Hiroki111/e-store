@@ -15,6 +15,10 @@ main {
 	margin-top: 120px;
 }
 
+.font-arial{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 .card-img-frame {
 	height: 250px;
 	display: flex;
