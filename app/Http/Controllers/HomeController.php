@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Brand;
 use App\Bundle;
+use App\Cart;
 use App\Country;
 use App\Product;
 use App\ProductType;
@@ -76,6 +77,13 @@ class HomeController extends Controller
     {
         return view('www.bundle', [
             'bundle' => Bundle::with('products')->find(decode_hash($hashedId)),
+        ]);
+    }
+
+    public function checkout()
+    {
+        return view('www.checkout', [
+            'cart' => new Cart(session('cart')),
         ]);
     }
 }
