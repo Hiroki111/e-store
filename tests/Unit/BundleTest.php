@@ -69,4 +69,12 @@ class BundleTest extends TestCase
         $this->assertEquals($list[2]->brand->name, $brandB->name);
         $this->assertEquals($list[2]->country->name, $countryB->name);
     }
+
+    /** @test */
+    public function canGetUrl()
+    {
+        $bundle = factory(Bundle::class)->create();
+
+        $this->assertEquals($bundle->url, '/bundle/' . $bundle->hashedId);
+    }
 }

@@ -16,10 +16,16 @@ class Bundle extends Model
 
     protected $guarded = [];
     protected $dates   = ['date'];
+    protected $appends = ['hashed_id', 'url'];
 
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_bundle', 'bundle_id', 'product_id');
+    }
+
+    public function getUrlAttribute()
+    {
+        return '/bundle/' . $this->hashedId;
     }
 
     public function getProductList()

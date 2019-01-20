@@ -17,7 +17,7 @@ class Product extends Model
 
     protected $guarded = [];
     protected $dates   = ['date'];
-    protected $appends = ['hashed_id'];
+    protected $appends = ['hashed_id', 'url'];
 
     public function brand()
     {
@@ -27,6 +27,11 @@ class Product extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function getUrlAttribute()
+    {
+        return '/product/' . $this->hashedId;
     }
 
     public static function getRelevantItems($id)

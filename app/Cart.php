@@ -37,6 +37,7 @@ class Cart implements IteratorAggregate
                     'src'         => $item->src,
                     'name'        => $item->name,
                     'price'       => $item->price,
+                    'url'         => $item->url,
                     'qty'         => $qty,
                     'total_price' => number_format((double) $item->price * $qty, 2),
                 ];

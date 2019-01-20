@@ -90,4 +90,12 @@ class ProductTest extends TestCase
 
         $this->assertTrue(strlen($product->hashedId) >= 10);
     }
+
+    /** @test */
+    public function canGetUrl()
+    {
+        $product = factory(Product::class)->create();
+
+        $this->assertEquals($product->url, '/product/' . $product->hashedId);
+    }
 }
