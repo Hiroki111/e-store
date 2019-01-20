@@ -22,11 +22,11 @@
 					@foreach($cart as $i => $item)
 					<tr>
 						<td style="width: 10%">
-							<img src="{{$item->src}}" style="max-height: 100px; display: block; margin: 0 auto;">
+							<a href="{{$item->url}}"><img src="{{$item->src}}" style="max-height: 100px; display: block; margin: 0 auto;"></a>
 						</td>
 						<td>
 							<div>
-								<h5 class="font-weight-bold font-arial" style="color: red;">{{$item->name}}</h5>
+								<h5 class="font-weight-bold font-arial"><a href="{{$item->url}}" style="color: red;">{{$item->name}}</a></h5>
 								<p style="margin: 0;">Each ${{$item->price}}</p>
 							</div>
 						</td>
