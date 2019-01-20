@@ -88,6 +88,6 @@ class ProductTest extends TestCase
     {
         $product = factory(Product::class)->create();
 
-        $this->assertTrue(strlen($product->hashedId) >= 6);
+        $this->assertTrue(strlen($product->hashedId) >= 10);
     }
 }

@@ -1,10 +1,17 @@
 <?php
 
-use Vinkla\Hashids\Facades\Hashids;
+use App\PseudoCrypt;
 
 if (!function_exists('decode_hash')) {
     function decode_hash($hash)
     {
-        return Hashids::decode($hash)[0];
+        return (int) PseudoCrypt::unhash($hash);
+    }
+}
+
+if (!function_exists('encode_hash')) {
+    function encode_hash($value)
+    {
+        return PseudoCrypt::hash($value);
     }
 }

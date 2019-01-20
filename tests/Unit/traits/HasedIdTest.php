@@ -4,9 +4,9 @@ namespace Tests;
 
 use App\Bundle;
 use App\Product;
+use App\PseudoCrypt;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Vinkla\Hashids\Facades\Hashids;
 
 class HashedIdTest extends TestCase
 {
@@ -18,7 +18,7 @@ class HashedIdTest extends TestCase
         $product1 = factory(Product::class)->create();
         $product2 = factory(Product::class)->create();
 
-        $retreived = Product::find(Hashids::decode($product1->hashed_id)[0]);
+        $retreived = Product::find(PseudoCrypt::unhash($product1->hashed_id)[0]);
 
         $this->assertEquals($retreived->id, $product1->id);
         $this->assertTrue($retreived->id !== $product2->id);
@@ -35,7 +35,7 @@ class HashedIdTest extends TestCase
         $bundle = factory(Bundle::class)->create();
         $bundle->products()->attach([$product1->id, $product2->id, $product3->id]);
 
-        $retreived = Bundle::with('products')->find(Hashids::decode($bundle->hashed_id)[0]);
+        $retreived = Bundle::with('products')->find(PseudoCrypt::unhash($bundle->hashed_id)[0]);
 
         $this->assertEquals($retreived->id, $bundle->id);
         $this->assertEquals($retreived->products[0]->id, $product1->id);
