@@ -31,7 +31,11 @@
 							</div>
 						</td>
 						<td>
-							<div><p class="font-weight-bold">{{$item->qty}}</p></div>
+							<div>
+								<div>
+									<input type="number" id="" min="1" max="50" value="{{$item->qty}}" style="text-align: center; width: 70px;">
+								</div>
+							</div>
 						</td>
 						<td style="width: 10%; padding-right: 0;">
 							<div><p class="font-weight-bold pull-right">${{$item->total_price}}</p></div>
