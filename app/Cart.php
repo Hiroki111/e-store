@@ -34,10 +34,12 @@ class Cart implements IteratorAggregate
                 $class = ($type === 'product') ? Product::class : Bundle::class;
                 $item  = $class::find(decode_hash($hashedId));
                 return (object) [
+                    'id'          => $hashedId,
                     'src'         => $item->src,
                     'name'        => $item->name,
                     'price'       => $item->price,
                     'url'         => $item->url,
+                    'type'        => $type,
                     'qty'         => $qty,
                     'total_price' => number_format((double) $item->price * $qty, 2),
                 ];
