@@ -17,12 +17,7 @@ class CartTest extends TestCase
     {
         $this->assertEquals(session('cart'), null);
 
-        $this->post('/cart/add', [
-            'type'   => 'products',
-            'itemId' => 1,
-            'qty'    => 1,
-        ]);
-
+        $this->post('/cart/add', ['type' => 'products', 'itemId' => 1, 'qty' => 1]);
         $expected = [
             'products' => [
                 1 => 1,
@@ -30,22 +25,9 @@ class CartTest extends TestCase
         ];
         $this->assertEquals(session('cart'), $expected);
 
-        $this->post('/cart/add', [
-            'type'   => 'products',
-            'itemId' => 2,
-            'qty'    => 1,
-        ]);
-        $this->post('/cart/add', [
-            'type'   => 'products',
-            'itemId' => 1,
-            'qty'    => 2,
-        ]);
-        $this->post('/cart/add', [
-            'type'   => 'bundles',
-            'itemId' => 10,
-            'qty'    => 3,
-        ]);
-
+        $this->post('/cart/add', ['type' => 'products', 'itemId' => 2, 'qty' => 1]);
+        $this->post('/cart/add', ['type' => 'products', 'itemId' => 1, 'qty' => 2]);
+        $this->post('/cart/add', ['type' => 'bundles', 'itemId' => 10, 'qty' => 3]);
         $expected = [
             'products' => [
                 1 => 3,
@@ -63,37 +45,13 @@ class CartTest extends TestCase
     {
         $this->assertEquals(session('cart'), null);
 
-        $this->post('/cart', [
-            'type'   => 'products',
-            'itemId' => 1,
-            'qty'    => 3,
-        ]);
-        $this->post('/cart', [
-            'type'   => 'products',
-            'itemId' => 2,
-            'qty'    => 1,
-        ]);
-        $this->post('/cart', [
-            'type'   => 'products',
-            'itemId' => 1,
-            'qty'    => 0,
-        ]);
+        $this->post('/cart', ['type' => 'products', 'itemId' => 1, 'qty' => 3]);
+        $this->post('/cart', ['type' => 'products', 'itemId' => 2, 'qty' => 1]);
+        $this->post('/cart', ['type' => 'products', 'itemId' => 1, 'qty' => 0]);
 
-        $this->post('/cart', [
-            'type'   => 'bundles',
-            'itemId' => 1,
-            'qty'    => 3,
-        ]);
-        $this->post('/cart', [
-            'type'   => 'bundles',
-            'itemId' => 2,
-            'qty'    => 1,
-        ]);
-        $this->post('/cart', [
-            'type'   => 'bundles',
-            'itemId' => 1,
-            'qty'    => 0,
-        ]);
+        $this->post('/cart', ['type' => 'bundles', 'itemId' => 1, 'qty' => 3]);
+        $this->post('/cart', ['type' => 'bundles', 'itemId' => 2, 'qty' => 1]);
+        $this->post('/cart', ['type' => 'bundles', 'itemId' => 1, 'qty' => 0]);
 
         $expected = [
             'products' => [
@@ -113,17 +71,11 @@ class CartTest extends TestCase
     {
         $this->assertEquals(session('cart'), null);
 
-        $response = $this->json('post', '/cart', [
-            'itemId' => 1,
-            'qty'    => 3,
-        ]);
+        $response = $this->json('post', '/cart', ['itemId' => 1, 'qty' => 3]);
         $response->assertStatus(422);
         $this->assertEquals(session('cart'), null);
 
-        $response = $this->json('post', '/cart', [
-            'type'   => 'products',
-            'itemId' => 1,
-        ]);
+        $response = $this->json('post', '/cart', ['type' => 'products', 'itemId' => 1]);
         $response->assertStatus(422);
         $this->assertEquals(session('cart'), null);
     }
@@ -140,16 +92,8 @@ class CartTest extends TestCase
         $bundle   = factory(Bundle::class)->create();
         $bundle->products()->attach([$product2->id, $product3->id, $product4->id]);
 
-        $this->post('/cart/add', [
-            'type'   => 'product',
-            'itemId' => $product1->hashed_id,
-            'qty'    => 2,
-        ]);
-        $this->post('/cart/add', [
-            'type'   => 'bundle',
-            'itemId' => $bundle->hashed_id,
-            'qty'    => 1,
-        ]);
+        $this->post('/cart/add', ['type' => 'product', 'itemId' => $product1->hashed_id, 'qty' => 2]);
+        $this->post('/cart/add', ['type' => 'bundle', 'itemId' => $bundle->hashed_id, 'qty' => 1]);
 
         $cart = new Cart(session('cart'));
 
@@ -167,5 +111,55 @@ class CartTest extends TestCase
         $this->assertEquals(sizeof($cartItems), 2);
 
         $this->assertEquals($cart->getTotalPrice(), number_format($product1->price * 2 + $bundle->price, 2));
+    }
+
+    /** @test */
+    public function canDeleteItem()
+    {
+        $this->assertEquals(session('cart'), null);
+
+        $this->post('/cart/add', ['type' => 'products', 'itemId' => 1, 'qty' => 1]);
+        $this->post('/cart/add', ['type' => 'products', 'itemId' => 2, 'qty' => 1]);
+        $this->post('/cart/add', ['type' => 'products', 'itemId' => 1, 'qty' => 2]);
+        $this->post('/cart/add', ['type' => 'bundles', 'itemId' => 10, 'qty' => 3]);
+        $expected = [
+            'products' => [
+                1 => 3,
+                2 => 1,
+            ],
+            'bundles'  => [
+                10 => 3,
+            ],
+        ];
+        $this->assertEquals(session('cart'), $expected);
+
+        $this->delete('/cart/delete', ['type' => 'products', 'itemId' => 2]);
+        $expected = [
+            'products' => [
+                1 => 3,
+            ],
+            'bundles'  => [
+                10 => 3,
+            ],
+        ];
+        $this->assertEquals(session('cart'), $expected);
+
+        $this->delete('/cart/delete', ['type' => 'bundles', 'itemId' => 10]);
+        $expected = [
+            'products' => [
+                1 => 3,
+            ],
+            'bundles'  => [],
+        ];
+        $this->assertEquals(session('cart'), $expected);
+
+        $this->delete('/cart/delete', ['type' => 'bundles', 'itemId' => 99999]);
+        $expected = [
+            'products' => [
+                1 => 3,
+            ],
+            'bundles'  => [],
+        ];
+        $this->assertEquals(session('cart'), $expected);
     }
 }

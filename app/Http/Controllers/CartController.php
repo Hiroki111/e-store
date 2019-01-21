@@ -47,4 +47,21 @@ class CartController extends Controller
 
         return response()->json($cart, 201);
     }
+
+    public function destroy(Request $request)
+    {
+        $this->validate(request(), [
+            'type'   => ['required'],
+            'itemId' => ['required'],
+        ]);
+
+        $cart   = session('cart');
+        $type   = request('type');
+        $itemId = request('itemId');
+
+        unset($cart[$type][$itemId]);
+        session(['cart' => $cart]);
+
+        return response()->json($cart, 201);
+    }
 }
