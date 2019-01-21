@@ -36,6 +36,7 @@
 								<div>
 									<input type="number" id="" class="item-qty-input" data-type="{{$item->type}}" data-id="{{$item->id}}" data-price="{{$item->price}}" min="0" max="50" value="{{$item->qty}}" style="text-align: center; width: 70px;">
 								</div>
+									<button class="remove-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: red; padding: 0;">Remove</button>
 							</div>
 						</td>
 						<td style="width: 10%; padding-right: 0;">

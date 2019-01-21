@@ -5,7 +5,7 @@ $(document).ready(function() {
         var id = $(this).attr('data-id');
         var price = $(this).attr('data-price');
 
-        $("[data-total-price=" + type + id + "]").text("$" + pad(qty * price));
+        $("[data-total-price=" + type + id + "]").text("$" + (qty * price).toFixed(2));
 
         var groundTotal = $.map($(".item-qty-input"), function(element) {
             var price = $(element).attr('data-price') * $(element).val();
@@ -13,7 +13,7 @@ $(document).ready(function() {
         }).reduce(function(total, num) {
             return total + num;
         });
-        $("#ground-total").text("$" + pad(groundTotal));
+        $("#ground-total").text("$" + (groundTotal).toFixed(2));
 
         var totalQty = $.map($(".item-qty-input"), function(element) {
             return $(element).val();
@@ -24,9 +24,19 @@ $(document).ready(function() {
         $("#total-qty").text(totalQty);
     });
 
-    function pad(val) {
-        if (val % 1 === 0) return val + ".00";
+    $(".remove-item-btn").click(function() {
+        var type = $(this).attr('data-type');
+        var id = $(this).attr('data-id');
 
-        return val.toFixed(2);
-    }
+        axios.delete('/cart/delete', {
+            data: {
+                type: type,
+                itemId: id,
+            }
+        }).then(function(result) {
+            location.reload();
+        }).catch(function(error) {
+            alert("Due to an internal error, it failed to update the cart. Sorry for the inconvenience.");
+        });
+    });
 });

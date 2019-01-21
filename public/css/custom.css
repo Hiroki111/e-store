@@ -200,3 +200,7 @@ body>.container {
     margin: auto;
     padding: 4% 0;
 }
+
+.remove-item-p:hover {
+    text-decoration: underline;
+}
