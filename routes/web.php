@@ -16,6 +16,7 @@ Route::get('/product-type/{id}', 'HomeController@productType');
 Route::get('/product/{hashedId}', 'HomeController@product');
 Route::get('/bundle/{hashedId}', 'HomeController@bundle');
 Route::get('/viewcart', 'HomeController@viewcart');
+Route::get('/checkout-option', 'HomeController@checkoutOption');
 
 Auth::routes();
 

@@ -86,4 +86,9 @@ class HomeController extends Controller
             'cart' => new Cart(session('cart')),
         ]);
     }
+
+    public function checkoutOption()
+    {
+        return view('www.checkoutoption');
+    }
 }
