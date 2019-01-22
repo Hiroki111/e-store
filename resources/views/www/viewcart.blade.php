@@ -1,6 +1,6 @@
 @extends('www.layout.master')
 
-@section('title', 'Checkout')
+@section('title', 'Checkout - View Cart')
 
 @section('content')
 

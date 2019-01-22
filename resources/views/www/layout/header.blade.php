@@ -29,7 +29,7 @@
               <span id="cart-counter" style="margin-left: 15px; font-weight: bold;"></span>
             </div>
             <div style="padding: 10px 10px; border-radius: 0 0 5px 5px; background-color: red; height: 40px; color: white; font-weight: bold;">
-              <a href="/checkout" style="color: white; text-decoration: none;">CHECKOUT</a>
+              <a href="/viewcart" style="color: white; text-decoration: none;">CHECKOUT</a>
             </div>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

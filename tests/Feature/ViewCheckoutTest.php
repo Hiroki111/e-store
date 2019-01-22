@@ -33,7 +33,7 @@ class ViewCheckoutTest extends TestCase
             'itemId' => $bundle->hashed_id,
             'qty'    => 1,
         ]);
-        $res = $this->get("/checkout");
+        $res = $this->get("/viewcart");
 
         //assert
         $res->assertSee('product1');

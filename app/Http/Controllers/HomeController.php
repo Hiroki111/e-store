@@ -80,9 +80,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function checkout()
+    public function viewcart()
     {
-        return view('www.checkout', [
+        return view('www.viewcart', [
             'cart' => new Cart(session('cart')),
         ]);
     }
