@@ -48,13 +48,13 @@
 			</table>
 		</div>
 		<hr>
-		<div class="col-3 offset-8">
+		<div class="col-11">
 			<h3 id="ground-total" class="font-weight-bold font-arial pull-right">Total ${{$cart->getTotalPrice()}}</h3>
 		</div>
-		<div class="col-3 offset-8">
+		<div class="col-11">
 			<h5 id="total-qty" class="font-weight-bold pull-right">{{ $cart->count }} @if($cart->count > 1) items @else item @endif</h5>
 		</div>
-		<div class="col-3 offset-8" style="padding-bottom: 10px;">
+		<div class="col-11" style="padding-bottom: 10px;">
 			<span class="pull-right"><a href="/">Continue Shopping</a> OR <button class="btn font-weight-bold" style="background-color: red;"><a href="/checkout-option" style="color: white;">Checkout</a></button></span>
 		</div>
 	</div>

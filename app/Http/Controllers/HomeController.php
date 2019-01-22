@@ -91,4 +91,11 @@ class HomeController extends Controller
     {
         return view('www.checkoutoption');
     }
+
+    public function payment()
+    {
+        return view('www.payment', [
+            'cart' => new Cart(session('cart')),
+        ]);
+    }
 }
