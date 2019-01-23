@@ -19,13 +19,10 @@ $(document).ready(function() {
         });
         $("#ground-total").text("$" + (groundTotal).toFixed(2));
 
-        var totalQty = $.map($(".item-qty-input"), function(element) {
-            return $(element).val();
-        }).reduce(function(total, num) {
-            return Number(total) + Number(num);
-        });
+        var totalQty = getTotalQty();
         totalQty += (totalQty > 1) ? " items" : " item";
         $("#total-qty").text(totalQty);
+
 
         $(".update-item-btn[data-type=" + type + "][data-id=" + id + "]").show();
 
@@ -52,6 +49,7 @@ $(document).ready(function() {
 
             $(".update-item-btn[data-type=" + type + "][data-id=" + id + "]").hide();
             delete state.updatedItems[type][id];
+            $("#cart-counter").text(getTotalQty());
         }).catch(function(error) {
             alert("Due to an internal error, it failed to update the cart. Sorry for the inconvenience.");
         });
@@ -82,4 +80,12 @@ $(document).ready(function() {
 
         return true;
     });
+
+    function getTotalQty() {
+        return $.map($(".item-qty-input"), function(element) {
+            return $(element).val();
+        }).reduce(function(total, num) {
+            return Number(total) + Number(num);
+        });
+    }
 });

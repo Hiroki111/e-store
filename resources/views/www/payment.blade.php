@@ -10,7 +10,7 @@
 		<div class="col-md-6">
 			<h3 class="font-weight-bold font-arial">Order Summary</h3>
 			<table class="table" style="width: 100%">
-				<thead class="thead-dark">
+				<thead style="background-color: #252d6c;color: white;">
 					<tr>
 						<th>Item</th>
 						<th></th>
@@ -19,12 +19,17 @@
 				</thead>
 				<tbody>
 					@foreach($cart as $item)
-					<tr >
+					<tr>
 						<td style="width: 60%">{{$item->name}}</td>
-						<td style="width: 10%">× {{$item->qty}}</td>
-						<td style="width: 30%"><span class="pull-right font-weight-bold"> ${{$item->total_price}}</span></td>
+						<td style="width: 10%; padding: 0.75rem 0;">× {{$item->qty}}</td>
+						<td style="width: 30%"><span class="pull-right font-weight-bold">${{$item->total_price}}</span></td>
 					</tr>
 					@endforeach
+					<tr>
+						<td style="width: 60%">Delivery Fee</td>
+						<td style="width: 10%; padding: 0.75rem 0;"></td>
+						<td style="width: 30%"><span class="pull-right font-weight-bold">$0</span></td>
+					</tr>
 					<tr>
 						<td colspan="3"><span class="font-weight-bold pull-right" style="font-size: 20px;">Total: ${{$cart->getTotalPrice()}}</span></td>
 					</tr>
@@ -83,7 +88,7 @@
 					<div class="form-row">
 						<div class="form-group col">
 							<label for="billing-address-1" class="font-weight-bold">Address Line 1</label>
-							<input id="billing-address-1" class="form-control" type="text" name="billing-address-1" required>
+							<input id="billing-address-1" class="form-control" type="text" name="billing-address-1">
 						</div>
 					</div>
 					<div class="form-row">
@@ -95,15 +100,15 @@
 					<div class="form-row">
 						<div class="form-group col">
 							<label for="billing-suburb" class="font-weight-bold">Suburb</label>
-							<input id="billing-suburb" class="form-control" type="text" name="billing-suburb" required>
+							<input id="billing-suburb" class="form-control" type="text" name="billing-suburb">
 						</div>
 						<div class="form-group col">
 							<label for="billing-state" class="font-weight-bold">State</label>
-							<input id="billing-state" class="form-control" type="text" name="billing-state" required>
+							<input id="billing-state" class="form-control" type="text" name="billing-state">
 						</div>
 						<div class="form-group col">
 							<label for="billing-postcode" class="font-weight-bold">Postcode</label>
-							<input id="billing-postcode" class="form-control" type="text" name="billing-postcode" required>
+							<input id="billing-postcode" class="form-control" type="text" name="billing-postcode">
 						</div>
 					</div>
 				</div>
