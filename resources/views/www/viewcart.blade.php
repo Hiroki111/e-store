@@ -41,10 +41,10 @@
 						</td>
 						<td>
 							<div>
-								<button class="remove-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: red; padding: 0;">Remove</button>
+								<button class="remove-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: red; padding: 0;"><i class="fa fa-times" aria-hidden="true" style="padding-right: 5px;"></i>Remove</button>
 							</div>
 							<div>
-								<button class="update-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: blue; padding: 20px 0 0 0; display: none;">Update</button>
+								<button class="update-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: blue; padding: 0; margin: 10px 0 0 0; display: none;"><i class="fa fa-cart-plus" aria-hidden="true" style="padding-right: 5px;"></i>Update</button>
 							</div>
 						</td>
 						<td style="width: 10%; padding-right: 0;">
@@ -63,7 +63,7 @@
 			<h5 id="total-qty" class="font-weight-bold pull-right">{{ $cart->count }} @if($cart->count > 1) items @else item @endif</h5>
 		</div>
 		<div class="col-11" style="padding-bottom: 10px;">
-			<span class="pull-right"><a href="/">Continue Shopping</a> OR <button class="btn font-weight-bold" style="background-color: red;"><a href="/checkout-option" style="color: white;">Checkout</a></button></span>
+			<span class="pull-right"><a href="/" class="viewcart-link">Continue Shopping</a> OR <button class="btn font-weight-bold" style="background-color: red;"><a href="/checkout-option" class="viewcart-link" style="color: white;">Checkout</a></button></span>
 		</div>
 	</div>
 </div>

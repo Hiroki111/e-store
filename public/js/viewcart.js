@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    var state = {
+        updatedItems: {}
+    };
+
     $(".item-qty-input").click(function() {
         var qty = $(this).val();
         var type = $(this).attr('data-type');
@@ -24,6 +28,10 @@ $(document).ready(function() {
         $("#total-qty").text(totalQty);
 
         $(".update-item-btn[data-type=" + type + "][data-id=" + id + "]").show();
+
+        if (!state.updatedItems[type]) state.updatedItems[type] = {};
+
+        state.updatedItems[type][id] = true;
     });
 
     $(".update-item-btn").click(function() {
@@ -31,15 +39,19 @@ $(document).ready(function() {
         var id = $(this).attr('data-id');
         var qty = $(".item-qty-input[data-type=" + type + "][data-id=" + id + "]").val();
 
+        if (Number(qty) < 1) {
+            alert('The quantity must be at least 1.');
+            $(".item-qty-input[data-type=" + type + "][data-id=" + id + "]").val(1);
+            return;
+        }
+
         axios.put('/cart/' + type + '/' + id, {
             qty: qty
         }).then(function(result) {
             alert("Successfully updated the quantity.");
-            console.log('#' + type + '-' + id + '-tr');
-            console.log('Number(qty)', Number(qty));
-            if (Number(qty) < 1) {
-                $('#' + type + '-' + id + '-tr').hide();
-            }
+
+            $(".update-item-btn[data-type=" + type + "][data-id=" + id + "]").hide();
+            delete state.updatedItems[type][id];
         }).catch(function(error) {
             alert("Due to an internal error, it failed to update the cart. Sorry for the inconvenience.");
         });
@@ -59,5 +71,15 @@ $(document).ready(function() {
         }).catch(function(error) {
             alert("Due to an internal error, it failed to update the cart. Sorry for the inconvenience.");
         });
+    });
+
+    $('.viewcart-link').click(function() {
+        for (var itemType in state.updatedItems) {
+            if (_.size(state.updatedItems[itemType]) > 0) {
+                return confirm('Updating item(s) has not been completed yet. Would you like to move to another page?');
+            }
+        }
+
+        return true;
     });
 });
