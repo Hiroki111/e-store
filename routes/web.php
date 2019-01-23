@@ -18,6 +18,7 @@ Route::get('/bundle/{hashedId}', 'HomeController@bundle');
 Route::get('/viewcart', 'HomeController@viewcart');
 Route::get('/checkout-option', 'HomeController@checkoutOption');
 Route::get('/payment', 'HomeController@payment');
+Route::get('/privacy', 'HomeController@privacy');
 
 Auth::routes();
 

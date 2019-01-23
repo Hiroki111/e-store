@@ -204,3 +204,8 @@ body>.container {
 .remove-item-p:hover {
     text-decoration: underline;
 }
+
+.privacy-container h1,
+.privacy-container h3 {
+    font-weight: bold;
+}

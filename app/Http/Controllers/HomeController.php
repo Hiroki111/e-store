@@ -98,4 +98,9 @@ class HomeController extends Controller
             'cart' => new Cart(session('cart')),
         ]);
     }
+
+    public function privacy()
+    {
+        return view('www.privacy');
+    }
 }
