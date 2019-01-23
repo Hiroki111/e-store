@@ -32,6 +32,30 @@ class CartController extends Controller
         return response()->json($cart, 201);
     }
 
+    public function update($type, $hashedId)
+    {
+        $this->validate(request(), [
+            'qty' => ['required', 'integer', 'min:0'],
+        ]);
+
+        $qty  = request('qty');
+        $cart = session('cart');
+
+        if (empty($cart[$type][$hashedId])) {
+            return response()->json(['The item ID is not found in cart'], 422);
+        }
+
+        if ((int) $qty < 1) {
+            unset($cart[$type][$hashedId]);
+        } else {
+            $cart[$type][$hashedId] = (int) request('qty');
+        }
+
+        session(['cart' => $cart]);
+
+        return response()->json($cart, 201);
+    }
+
     public function store(Request $request)
     {
         $this->validate(request(), [

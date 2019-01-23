@@ -4,7 +4,7 @@
 
 @section('content')
 
-<script type="text/javascript" src="/js/checkout.js"></script>
+<script type="text/javascript" src="/js/viewcart.js"></script>
 <div class="container">
 	<div class="row">
 		<div class="col-10 offset-md-1">
@@ -15,13 +15,14 @@
 						<th class="font-arial">Your Items</th>
 						<th class="font-arial"></th>
 						<th class="font-arial">Quantity</th>
+						<th class="font-arial"></th>
 						<th class="font-arial" style="padding-right: 0;
 						float: right;">Price</th>
 					</tr>
 				</thead>
 				<tbody style="border-bottom: 1px solid #dee2e6;">
 					@foreach($cart as $item)
-					<tr>
+					<tr id="{{$item->type}}-{{$item->id}}-tr">
 						<td style="width: 10%">
 							<a href="{{$item->url}}"><img src="{{$item->src}}" style="max-height: 100px; display: block; margin: 0 auto;"></a>
 						</td>
@@ -34,9 +35,16 @@
 						<td>
 							<div>
 								<div>
-									<input type="number" id="" class="item-qty-input" data-type="{{$item->type}}" data-id="{{$item->id}}" data-price="{{$item->price}}" min="0" max="50" value="{{$item->qty}}" style="text-align: center; width: 70px;">
+									<input type="number" class="item-qty-input" name="{{$item->type}}-{{$item->id}}" data-type="{{$item->type}}" data-id="{{$item->id}}" data-price="{{$item->price}}" min="1" max="50" value="{{$item->qty}}" style="text-align: center; max-width: 70px;">
 								</div>
-									<button class="remove-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: red; padding: 0;">Remove</button>
+							</div>
+						</td>
+						<td>
+							<div>
+								<button class="remove-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: red; padding: 0;">Remove</button>
+							</div>
+							<div>
+								<button class="update-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: blue; padding: 20px 0 0 0; display: none;">Update</button>
 							</div>
 						</td>
 						<td style="width: 10%; padding-right: 0;">

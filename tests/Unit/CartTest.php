@@ -114,6 +114,45 @@ class CartTest extends TestCase
     }
 
     /** @test */
+    public function canUpdateCartItemWithIdAndType()
+    {
+        $this->assertEquals(session('cart'), null);
+
+        $this->post('/cart', ['type' => 'products', 'itemId' => 1, 'qty' => 3]);
+        $this->post('/cart', ['type' => 'products', 'itemId' => 2, 'qty' => 1]);
+        $this->post('/cart', ['type' => 'bundles', 'itemId' => 1, 'qty' => 3]);
+        $this->post('/cart', ['type' => 'bundles', 'itemId' => 2, 'qty' => 1]);
+
+        $expected = [
+            'products' => [
+                1 => 3,
+                2 => 1,
+            ],
+            'bundles'  => [
+                1 => 3,
+                2 => 1,
+            ],
+        ];
+        $this->assertEquals(session('cart'), $expected);
+
+        $this->put('/cart/products/1', ['qty' => 2]);
+        $this->put('/cart/products/2', ['qty' => 2]);
+        $this->put('/cart/bundles/1', ['qty' => 5]);
+        $this->put('/cart/bundles/2', ['qty' => 0]);
+
+        $expected = [
+            'products' => [
+                1 => 2,
+                2 => 2,
+            ],
+            'bundles'  => [
+                1 => 5,
+            ],
+        ];
+        $this->assertEquals(session('cart'), $expected);
+    }
+
+    /** @test */
     public function canDeleteItem()
     {
         $this->assertEquals(session('cart'), null);

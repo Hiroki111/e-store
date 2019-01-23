@@ -7,7 +7,7 @@ use App\Product;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class ViewCheckoutTest extends TestCase
+class ViewViewcartTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -51,5 +51,29 @@ class ViewCheckoutTest extends TestCase
         $res->assertDontSee('$3.00');
         $res->assertDontSee('product4');
         $res->assertDontSee('$4.00');
+    }
+
+    public function canUpdateCart()
+    {
+        $this->assertEquals(session('cart'), null);
+
+        $product1 = factory(Product::class)->create(['price' => 1.11, 'name' => 'product1']);
+        $product2 = factory(Product::class)->create(['price' => 2.00, 'name' => 'product2']);
+        $product3 = factory(Product::class)->create(['price' => 3.00, 'name' => 'product3']);
+        $product4 = factory(Product::class)->create(['price' => 4.00, 'name' => 'product4']);
+        $bundle   = factory(Bundle::class)->create(['price' => 10.55, 'name' => 'bundle']);
+        $bundle->products()->attach([$product2->id, $product3->id, $product4->id]);
+
+        $this->post('/cart/add', [
+            'type'   => 'product',
+            'itemId' => $product1->hashed_id,
+            'qty'    => 2,
+        ]);
+        $this->post('/cart/add', [
+            'type'   => 'bundle',
+            'itemId' => $bundle->hashed_id,
+            'qty'    => 1,
+        ]);
+        $res = $this->get("/viewcart");
     }
 }
