@@ -6,40 +6,20 @@
 
 <script type="text/javascript" src="/js/payment.js"></script>
 <div class="container">
-	<div class="row" style="padding-top: 40px;">
-		<div class="col-md-6">
-			<h3 class="font-weight-bold font-arial">Order Summary</h3>
-			<table class="table" style="width: 100%">
-				<thead style="background-color: #252d6c;color: white;">
-					<tr>
-						<th>Item</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($cart as $item)
-					<tr>
-						<td style="width: 60%">{{$item->name}}</td>
-						<td style="width: 10%; padding: 0.75rem 0;">× {{$item->qty}}</td>
-						<td style="width: 30%"><span class="pull-right font-weight-bold">${{$item->total_price}}</span></td>
-					</tr>
-					@endforeach
-					<tr>
-						<td style="width: 60%">Delivery Fee</td>
-						<td style="width: 10%; padding: 0.75rem 0;"></td>
-						<td style="width: 30%"><span class="pull-right font-weight-bold">$0</span></td>
-					</tr>
-					<tr>
-						<td colspan="3"><span class="font-weight-bold pull-right" style="font-size: 20px;">Total: ${{$cart->getTotalPrice()}}</span></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="col-md-6" style="overflow-y: scroll; height: 70vh;">
-			<div >
-				<h4 class="font-arial">Delivery Details</h4>
-				<form>
+	<form action="/payment" method="post">
+		<div class="row" style="padding-top: 40px;">
+			<div class="col-md-8">
+				@if ($errors->any())
+				<div class="alert alert-danger">
+					<ul class="list-unstyled" style="padding: 0; margin: 0;">
+						@foreach ($errors->all() as $error)
+						<li>Please specify your billing address.</li>
+						@endforeach
+					</ul>
+				</div>
+				@endif
+				<div>
+					<h4 class="font-arial font-weight-bold">Delivery Details</h4>
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="first-name" class="font-weight-bold">First Name</label>
@@ -51,12 +31,22 @@
 						</div>
 					</div>
 					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="phone" class="font-weight-bold">Phone Number (numerals only)</label>
+							<input id="phone" class="form-control" type="tel" name="phone" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="email" class="font-weight-bold">Email</label>
+							<input id="email" class="form-control" type="email" name="email" required>
+						</div>
+					</div>
+					<div class="form-row">
 						<div class="form-group col">
 							<label for="delivery-address-1" class="font-weight-bold">Address Line 1</label>
 							<input id="delivery-address-1" class="form-control" type="text" name="delivery-address-1" required>
 						</div>
 						<div class="form-group col">
-							<label for="delivery-address-2" class="font-weight-bold">Address Line 2</label>
+							<label for="delivery-address-2" class="font-weight-bold">Address Line 2 (Optional)</label>
 							<input id="delivery-address-2" class="form-control" type="text" name="delivery-address-2">
 						</div>
 					</div>
@@ -75,7 +65,7 @@
 						</div>
 					</div>
 					<hr>
-					<h4 class="font-arial">Billing Address</h4>
+					<h4 class="font-arial font-weight-bold">Billing Address</h4>
 					<div class="form-check" style="padding: 0 0 15px 20px;">
 						<input id="use-delivery-address" class="form-check-input" type="checkbox" name="use-delivery-address" checked>
 						<label class="form-check-label" for="use-delivery-address">Use the same address as the delivery address</label>
@@ -87,7 +77,7 @@
 								<input id="billing-address-1" class="form-control" type="text" name="billing-address-1">
 							</div>
 							<div class="form-group col">
-								<label for="billing-address-2" class="font-weight-bold">Address Line 2</label>
+								<label for="billing-address-2" class="font-weight-bold">Address Line 2 (Optional)</label>
 								<input id="billing-address-2" class="form-control" type="text" name="billing-address-2">
 							</div>
 						</div>
@@ -107,7 +97,7 @@
 						</div>
 					</div>
 					<hr>
-					<h4 class="font-arial">Credit Card Details</h4>
+					<h4 class="font-arial font-weight-bold">Credit Card Details</h4>
 					<div class="form-row">
 						<div class="form-group col">
 							<label for="cc-name" class="font-weight-bold">Name on Credit Card</label>
@@ -120,8 +110,8 @@
 					</div>
 					<div class="row">
 						<div class="col-3">
-							<label for="expiration-mm" class="font-weight-bold">Month</label>
-							<select id="expiration-mm" class="form-control" type="tel" name="expiration-mm">
+							<label for="cc-expiration-mm" class="font-weight-bold">Month</label>
+							<select id="cc-expiration-mm" class="form-control" type="tel" name="cc-expiration-mm">
 								<option value="01">01</option>
 								<option value="02">02</option>
 								<option value="03">03</option>
@@ -137,16 +127,16 @@
 							</select>
 						</div>
 						<div class="col-3">
-							<label for="expiration-yy" class="font-weight-bold">Year</label>
-							<select id="expiration-yy" class="form-control" type="tel" name="expiration-yy">
+							<label for="cc-expiration-yy" class="font-weight-bold">Year</label>
+							<select id="cc-expiration-yy" class="form-control" type="tel" name="cc-expiration-yy">
 								@foreach($years as $year)
-								<option value="{{$year}}">{{$year}}</option>
+								<option value="{{substr($year, 2)}}">{{$year}}</option>
 								@endforeach
 							</select>
 						</div>
 						<div class="col-3">
-							<label for="csv" class="font-weight-bold">CSV</label>
-							<input id="csv" maxlength="3" class="form-control" type="text" name="csv" required>
+							<label for="cc-cvv" class="font-weight-bold">CVV</label>
+							<input id="cc-cvv" maxlength="3" class="form-control" type="text" name="cc-cvv" required>
 						</div>
 					</div>
 					<hr>
@@ -154,15 +144,47 @@
 						<input id="read-policy" class="form-check-input" type="checkbox" name="read-policy">
 						<label class="form-check-label" for="read-policy">I have read and agreead with <span><a href="/privacy" id="privacy-policy-link" target="_blank">the Privacy and Security Policy</a></span></label>
 					</div>
-					<div>
-						<a class="btn btn-danger font-weight-bold" style="text-transform: uppercase;" href="/viewcart">Return to Cart</a>
-						<input class="btn font-weight-bold pull-right" type="submit" style="background-color: #0068a1; color: white; text-transform: uppercase;" name="order" value="Order"/>
-					</div>
-				</form>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h4 class="font-weight-bold font-arial">Order Summary</h4>
+				<table class="table" style="width: 100%">
+					<thead style="background-color: #252d6c;color: white;">
+						<tr>
+							<th>Item</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($cart as $item)
+						<tr>
+							<td style="width: 60%">{{$item->name}}</td>
+							<td style="width: 10%; padding: 0.75rem 0;">× {{$item->qty}}</td>
+							<td style="width: 30%"><span class="pull-right font-weight-bold">${{$item->total_price}}</span></td>
+						</tr>
+						@endforeach
+						<tr>
+							<td style="width: 60%">Delivery Fee</td>
+							<td style="width: 10%; padding: 0.75rem 0;"></td>
+							<td style="width: 30%"><span class="pull-right font-weight-bold">$0</span></td>
+						</tr>
+						<tr>
+							<td colspan="3"><span class="font-weight-bold pull-right" style="font-size: 20px;">Total: ${{$cart->getTotalPrice()}}</span></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
-
-	</div>
+		<div class="row">
+			<div class="col-md-8">
+				<div>
+					<a class="btn btn-danger font-weight-bold" style="text-transform: uppercase;" href="/viewcart">Return to Cart</a>
+					<input class="btn font-weight-bold pull-right" type="submit" style="background-color: #0068a1; color: white; text-transform: uppercase; width: 145px;" name="order" value="Order"/>
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
 
 @endsection
