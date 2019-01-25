@@ -25,9 +25,7 @@
 		<div class="col-md-6">
 			<h3>Checkout as a guest</h3>
 			<p>You don't need an account to checkout. You'll have a chance to create an account during the process.</p>
-			<button class="btn font-weight-bold" style="background-color: #0068a1;">
-				<a href="/payment" style="color: white; text-transform: uppercase;">Checkout as a guest</a>
-			</button>
+			<a href="/payment"><button class="btn font-weight-bold" style="background-color: #0068a1; color: white; text-transform: uppercase;">Checkout as a guest</button></a>
 		</div>
 	</div>
 </div>
