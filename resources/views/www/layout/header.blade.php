@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="min-height: 120px; padding: 0 16px 0 16px;">
+  <nav class="navbar navbar-expand-md navbar-dark" style="min-height: 120px; padding: 0 16px 0 16px;">
     <div class="container d-flex justify-content-between">
       <div class="row" style="width: 100%;">
         <div class="col-3">
