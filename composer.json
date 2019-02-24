@@ -11,6 +11,7 @@
         "hashids/hashids": "^3.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "stripe/stripe-php": "^6.30",
         "vinkla/hashids": "^5.1"
     },
     "require-dev": {
