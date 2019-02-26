@@ -13,21 +13,22 @@ class ViewPaymetTest extends TestCase
     private function validParams($overrides = [])
     {
         return array_merge([
-            'first-name'           => "John",
-            'last-name'            => "Doe",
+            'first_name'           => "John",
+            'last_name'            => "Doe",
             'phone'                => 0411222333,
             'email'                => 'example@gmail.com',
-            'delivery-address-1'   => "George St 123",
-            'delivery-suburb'      => "Brisbane",
-            'delivery-state'       => "QLQ",
-            'delivery-postcode'    => "4000",
-            'read-policy'          => true,
-            'use-delivery-address' => true,
-            'cc-name'              => "JOHN DOE",
-            'cc-number'            => "4242424242424242",
-            'cc-expiration-mm'     => "01",
-            'cc-expiration-yy'     => "25",
-            'cc-cvv'               => "123",
+            'delivery_address_1'   => "George St 123",
+            'delivery_address_2'   => null,
+            'delivery_suburb'      => "Brisbane",
+            'delivery_state'       => "QLQ",
+            'delivery_postcode'    => "4000",
+            'read_policy'          => true,
+            'use_delivery_address' => true,
+            'cc_name'              => "JOHN DOE",
+            'cc_number'            => "4242424242424242",
+            'cc_expiration-mm'     => "01",
+            'cc_expiration-yy'     => "25",
+            'cc_cvv'               => "123",
         ], $overrides);
     }
 
@@ -47,8 +48,10 @@ class ViewPaymetTest extends TestCase
         $response = $this->from('/payment')->post('/payment', $this->validParams());
 
         $response->assertRedirect('/confirmation');
-        $order = Order::find(1);
-        $this->assertEquals($order->total_price, 2 * $product->price);
+        $order     = Order::find(1);
+        $orderItem = $order->orderItems[0];
+
+        $this->assertEquals($order->total_price, 2 * $product1->price);
         $this->assertEquals($order->first_name, 'John');
         $this->assertEquals($order->last_name, 'Doe');
         $this->assertEquals($order->phone, 0411222333);
@@ -61,6 +64,12 @@ class ViewPaymetTest extends TestCase
         $this->assertEquals($order->billing_suburb, "Brisbane");
         $this->assertEquals($order->billing_state, "QLQ");
         $this->assertEquals($order->billing_postcode, "4000");
+        $this->assertEquals($order->orderItems->count(), 2);
+
+        $this->assertEquals($orderItem->name, $product1->name);
+        $this->assertEquals($orderItem->type, 'products');
+        $this->assertEquals($orderItem->price, $product1->price);
+        $this->assertEquals($orderItem->itemId, $product1->id);
 
         $this->assertEquals(session('cart'), []);
     }
