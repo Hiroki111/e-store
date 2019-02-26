@@ -27,11 +27,6 @@ class StripePaymentGateway implements PaymentGateway
         ], ['api_key' => $this->apiKey])->id;
     }
 
-    public function totalCharges()
-    {
-
-    }
-
     public function charge($amount, $token)
     {
         try {

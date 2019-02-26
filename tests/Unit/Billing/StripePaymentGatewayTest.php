@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Billing\PaymentFailedException;
 use App\Billing\StripePaymentGateway;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -22,4 +23,22 @@ class StripePaymentGatewayTest extends TestCase
 
         $this->assertEquals(2500, $charge['amount']);
     }
+
+    /**
+     * @test
+     * @doesNotPerformAssertions
+     */
+    public function cannotChargeWithAnInvalidPaymentToken()
+    {
+        $paymentGateway = new StripePaymentGateway(config('services.stripe.secret'));
+
+        try {
+            $paymentGateway->charge(2500, 'invalid');
+        } catch (PaymentFailedException $e) {
+            return;
+        }
+
+        $this->fail("Charging with an invalid token didn't throw PaymentFailedException");
+    }
+
 }
