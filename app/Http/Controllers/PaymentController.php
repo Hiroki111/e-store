@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Billing\PaymentGateway;
 use App\Http\Requests\SubmitPayment;
-use App\Paymet;
-
-//use Illuminate\Support\Facades\Mail;
+use App\Payment;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
-    private $payment;
     private $paymentGateway;
 
-    public function __construct(Paymet $paymet, PaymentGateway $paymentGateway)
+    public function __construct(PaymentGateway $paymentGateway, Payment $payment)
     {
-        $this->payment        = $payment;
         $this->paymentGateway = $paymentGateway;
+        $this->payment        = $payment;
     }
 
     public function store(SubmitPayment $request)
@@ -24,10 +22,11 @@ class PaymentController extends Controller
         $validated = $request->validated();
 
         try {
-            $payment = $this->payment->setCart(session('cart'))->setRequestInput(request());
-            $order   = $payment->pay($this->paymentGateway, request('payment_token'));
+            $payment = $this->payment->setCart(session('cart'));
+            $order   = $payment->pay($this->paymentGateway, request('payment_token'), request());
+            $order->setRequestInput();
 
-            //Mail::to($order->email)->send(new OrderConfirmationEmail($order));
+            Mail::to($order->email)->send(new OrderConfirmationEmail($order));
 
             return redirect('/confirmation')->with(['order' => $order]);
         } catch (Exception $e) {

@@ -59,4 +59,12 @@ class Cart implements IteratorAggregate
         });
         return number_format($total, 2);
     }
+
+    public function getTotalPriceInCents()
+    {
+        $total = array_reduce($this->getItems(), function ($total, $item) {
+            return $total + (double) $item->total_price;
+        });
+        return $total * 100;
+    }
 }

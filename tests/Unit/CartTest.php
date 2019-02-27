@@ -201,4 +201,19 @@ class CartTest extends TestCase
         ];
         $this->assertEquals(session('cart'), $expected);
     }
+
+    /** @test */
+    public function canGetTotalPriceInCents()
+    {
+        $this->assertEquals(session('cart'), null);
+
+        $product = factory(Product::class)->create(['price' => 6.00]);
+        $bundle  = factory(Bundle::class)->create(['price' => 70.51]);
+
+        $this->post('/cart/add', ['type' => 'product', 'itemId' => $product->hashed_id, 'qty' => 2]);
+        $this->post('/cart/add', ['type' => 'bundle', 'itemId' => $bundle->hashed_id, 'qty' => 1]);
+        $cart = new Cart(session('cart'));
+
+        $this->assertEquals($cart->getTotalPriceInCents(), 8251);
+    }
 }

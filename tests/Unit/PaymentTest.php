@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Billing\StripePaymentGateway;
 use App\Bundle;
+use App\Cart;
 use App\Payment;
 use App\Product;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -43,10 +44,10 @@ class PaymentTest extends TestCase
             'cc_cvv'               => "123",
         ];
 
-        $payment = (new Payment())->setCart(session('cart'))->setRequestInput($input);
-        $order   = $payment->pay($paymentGateway, $paymentGateway->getValidTestToken());
+        $payment = (new Payment())->setCart(new Cart(session('cart')));
+        $order   = $payment->pay($paymentGateway, $paymentGateway->getValidTestToken(), $input);
 
-        $this->assertEquals($order->total_price, 22.50);
+        $this->assertEquals($order->total_price, 25.50);
         $this->assertEquals($order->first_name, 'John');
         $this->assertEquals($order->last_name, 'Doe');
         $this->assertEquals($order->phone, 0411222333);
@@ -57,9 +58,11 @@ class PaymentTest extends TestCase
         $this->assertEquals($order->delivery_state, "QLQ");
         $this->assertEquals($order->delivery_postcode, "4000");
         $this->assertEquals($order->billing_address_1, "George St 123");
+        $this->assertEquals($order->billing_address_2, "");
         $this->assertEquals($order->billing_suburb, "Brisbane");
         $this->assertEquals($order->billing_state, "QLQ");
         $this->assertEquals($order->billing_postcode, "4000");
-        $this->assertEquals($order->orderItems->count(), 5);
+
+        $this->assertEquals($order->orderItems->count(), 3);
     }
 }
