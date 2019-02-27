@@ -100,6 +100,11 @@ class HomeController extends Controller
         ]);
     }
 
+    public function confirmation()
+    {
+
+    }
+
     public function privacy()
     {
         return view('www.privacy');

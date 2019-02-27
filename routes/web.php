@@ -19,6 +19,7 @@ Route::get('/viewcart', 'HomeController@viewcart');
 Route::get('/checkout-option', 'HomeController@checkoutOption');
 Route::get('/payment', 'HomeController@payment');
 Route::post('/payment', 'PaymentController@store');
+Route::get('/confirmation', 'HomeController@confirmation');
 
 Route::get('/privacy', 'HomeController@privacy');
 
