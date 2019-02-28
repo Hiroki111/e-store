@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Bundle;
 use App\Cart;
+use App\OrderItem;
 use App\Product;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -215,5 +216,42 @@ class CartTest extends TestCase
         $cart = new Cart(session('cart'));
 
         $this->assertEquals($cart->getTotalPriceInCents(), 8251);
+    }
+
+    /** @test */
+    public function canConvertToOrderItems()
+    {
+        $this->assertEquals(session('cart'), null);
+
+        $product1 = factory(Product::class)->create(['price' => 6.00]);
+        $product2 = factory(Product::class)->create(['price' => 3.50]);
+        $bundle   = factory(Bundle::class)->create(['price' => 70.51]);
+
+        $this->post('/cart/add', ['type' => 'product', 'itemId' => $product1->hashed_id, 'qty' => 2]);
+        $this->post('/cart/add', ['type' => 'product', 'itemId' => $product2->hashed_id, 'qty' => 1]);
+        $this->post('/cart/add', ['type' => 'bundle', 'itemId' => $bundle->hashed_id, 'qty' => 1]);
+
+        $cart = new Cart(session('cart'));
+
+        $this->assertTrue($cart->toOrderItems()[0] instanceof OrderItem);
+        $this->assertEquals($cart->toOrderItems()[0]->stock_id, $product1->id);
+        $this->assertEquals($cart->toOrderItems()[0]->name, $product1->name);
+        $this->assertEquals($cart->toOrderItems()[0]->price, $product1->price);
+        $this->assertEquals($cart->toOrderItems()[0]->type, 'product');
+        $this->assertTrue($cart->toOrderItems()[1] instanceof OrderItem);
+        $this->assertEquals($cart->toOrderItems()[1]->stock_id, $product1->id);
+        $this->assertEquals($cart->toOrderItems()[1]->name, $product1->name);
+        $this->assertEquals($cart->toOrderItems()[1]->price, $product1->price);
+        $this->assertEquals($cart->toOrderItems()[1]->type, 'product');
+        $this->assertTrue($cart->toOrderItems()[2] instanceof OrderItem);
+        $this->assertEquals($cart->toOrderItems()[2]->stock_id, $product2->id);
+        $this->assertEquals($cart->toOrderItems()[2]->name, $product2->name);
+        $this->assertEquals($cart->toOrderItems()[2]->price, $product2->price);
+        $this->assertEquals($cart->toOrderItems()[2]->type, 'product');
+        $this->assertTrue($cart->toOrderItems()[3] instanceof OrderItem);
+        $this->assertEquals($cart->toOrderItems()[3]->stock_id, $bundle->id);
+        $this->assertEquals($cart->toOrderItems()[3]->name, $bundle->name);
+        $this->assertEquals($cart->toOrderItems()[3]->price, $bundle->price);
+        $this->assertEquals($cart->toOrderItems()[3]->type, 'bundle');
     }
 }
