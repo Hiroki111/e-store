@@ -12,7 +12,7 @@
  */
 
 Route::get('/', 'HomeController@index');
-Route::get('/product-type/{id}', 'HomeController@productType');
+Route::get('/product-type/{id}', 'ProductTypeController@index');
 Route::get('/product/{hashedId}', 'HomeController@product');
 Route::get('/bundle/{hashedId}', 'HomeController@bundle');
 Route::get('/viewcart', 'HomeController@viewcart');
