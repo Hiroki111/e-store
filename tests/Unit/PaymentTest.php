@@ -10,6 +10,9 @@ use App\Product;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
+/**
+ * @group online
+ */
 class PaymentTest extends TestCase
 {
     use DatabaseMigrations;

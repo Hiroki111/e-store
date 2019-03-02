@@ -4,30 +4,33 @@
 
 @section('content')
 
+<script src="https://js.stripe.com/v3/"></script>
 <script type="text/javascript" src="/js/payment.js"></script>
 <div class="container">
-	<form action="/payment" method="post">
+	<form action="/payment" method="post" id="payment-form">
+		@csrf
 		<div class="row" style="padding-top: 40px;">
 			<div class="col-md-8">
 				@if ($errors->any())
 				<div class="alert alert-danger">
 					<ul class="list-unstyled" style="padding: 0; margin: 0;">
 						@foreach ($errors->all() as $error)
-						<li>Please specify your billing address.</li>
+						<li>{{$error}}</li>
 						@endforeach
 					</ul>
 				</div>
 				@endif
+
 				<div>
 					<h4 class="font-arial font-weight-bold">Delivery Details</h4>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="first-name" class="font-weight-bold">First Name</label>
-							<input id="first-name" class="form-control" type="text" name="first-name" required>
+							<label for="first_name" class="font-weight-bold">First Name</label>
+							<input id="first_name" class="form-control" type="text" name="first_name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="last-name" class="font-weight-bold">Last Name</label>
-							<input id="last-name" class="form-control" type="text" name="last-name" required>
+							<label for="last_name" class="font-weight-bold">Last Name</label>
+							<input id="last_name" class="form-control" type="text" name="last_name" required>
 						</div>
 					</div>
 					<div class="form-row">
@@ -42,107 +45,73 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col">
-							<label for="delivery-address-1" class="font-weight-bold">Address Line 1</label>
-							<input id="delivery-address-1" class="form-control" type="text" name="delivery-address-1" required>
+							<label for="delivery_address_1" class="font-weight-bold">Address Line 1</label>
+							<input id="delivery_address_1" class="form-control" type="text" name="delivery_address_1" required>
 						</div>
 						<div class="form-group col">
-							<label for="delivery-address-2" class="font-weight-bold">Address Line 2 (Optional)</label>
-							<input id="delivery-address-2" class="form-control" type="text" name="delivery-address-2">
+							<label for="delivery_address_2" class="font-weight-bold">Address Line 2 (Optional)</label>
+							<input id="delivery_address_2" class="form-control" type="text" name="delivery_address_2">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col">
-							<label for="delivery-suburb" class="font-weight-bold">Suburb</label>
-							<input id="delivery-suburb" class="form-control" type="text" name="delivery-suburb" required>
+							<label for="delivery_suburb" class="font-weight-bold">Suburb</label>
+							<input id="delivery_suburb" class="form-control" type="text" name="delivery_suburb" required>
 						</div>
 						<div class="form-group col">
-							<label for="delivery-state" class="font-weight-bold">State</label>
-							<input id="delivery-state" class="form-control" type="text" name="delivery-state" required>
+							<label for="delivery_state" class="font-weight-bold">State</label>
+							<input id="delivery_state" class="form-control" type="text" name="delivery_state" required>
 						</div>
 						<div class="form-group col">
-							<label for="delivery-postcode" class="font-weight-bold">Postcode</label>
-							<input id="delivery-postcode" class="form-control" type="text" name="delivery-postcode" required>
+							<label for="delivery_postcode" class="font-weight-bold">Postcode</label>
+							<input id="delivery_postcode" class="form-control" type="text" name="delivery_postcode" required>
 						</div>
 					</div>
 					<hr>
 					<h4 class="font-arial font-weight-bold">Billing Address</h4>
 					<div class="form-check" style="padding: 0 0 15px 20px;">
-						<input id="use-delivery-address" class="form-check-input" type="checkbox" name="use-delivery-address" checked>
-						<label class="form-check-label" for="use-delivery-address">Use the same address as the delivery address</label>
+						<input id="use_delivery_address" class="form-check-input" type="checkbox" name="use_delivery_address" checked>
+						<label class="form-check-label" for="use_delivery_address">Use the same address as the delivery address</label>
 					</div>
 					<div id="billing-address-inputboxes" style="display: none;">
 						<div class="form-row">
 							<div class="form-group col">
-								<label for="billing-address-1" class="font-weight-bold">Address Line 1</label>
-								<input id="billing-address-1" class="form-control" type="text" name="billing-address-1">
+								<label for="billing_address_1" class="font-weight-bold">Address Line 1</label>
+								<input id="billing_address_1" class="form-control" type="text" name="billing_address_1">
 							</div>
 							<div class="form-group col">
-								<label for="billing-address-2" class="font-weight-bold">Address Line 2 (Optional)</label>
-								<input id="billing-address-2" class="form-control" type="text" name="billing-address-2">
+								<label for="billing_address_2" class="font-weight-bold">Address Line 2 (Optional)</label>
+								<input id="billing_address_2" class="form-control" type="text" name="billing_address_2">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<label for="billing-suburb" class="font-weight-bold">Suburb</label>
-								<input id="billing-suburb" class="form-control" type="text" name="billing-suburb">
+								<label for="billing_suburb" class="font-weight-bold">Suburb</label>
+								<input id="billing_suburb" class="form-control" type="text" name="billing_suburb">
 							</div>
 							<div class="form-group col">
-								<label for="billing-state" class="font-weight-bold">State</label>
-								<input id="billing-state" class="form-control" type="text" name="billing-state">
+								<label for="billing_state" class="font-weight-bold">State</label>
+								<input id="billing_state" class="form-control" type="text" name="billing_state">
 							</div>
 							<div class="form-group col">
-								<label for="billing-postcode" class="font-weight-bold">Postcode</label>
-								<input id="billing-postcode" class="form-control" type="text" name="billing-postcode">
+								<label for="billing_postcode" class="font-weight-bold">Postcode</label>
+								<input id="billing_postcode" class="form-control" type="text" name="billing_postcode">
 							</div>
 						</div>
 					</div>
 					<hr>
-					<h4 class="font-arial font-weight-bold">Credit Card Details</h4>
-					<div class="form-row">
-						<div class="form-group col">
-							<label for="cc-name" class="font-weight-bold">Name on Credit Card</label>
-							<input id="cc-name" class="form-control" type="text" name="cc-name" required>
-						</div>
-						<div class="form-group col">
-							<label for="cc-number" class="font-weight-bold">Credit Card Number</label>
-							<input id="cc-number" class="form-control" maxlength="19" type="tel" name="cc-number" required>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-3">
-							<label for="cc-expiration-mm" class="font-weight-bold">Month</label>
-							<select id="cc-expiration-mm" class="form-control" type="tel" name="cc-expiration-mm">
-								<option value="01">01</option>
-								<option value="02">02</option>
-								<option value="03">03</option>
-								<option value="04">04</option>
-								<option value="05">05</option>
-								<option value="06">06</option>
-								<option value="07">07</option>
-								<option value="08">08</option>
-								<option value="09">09</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-							</select>
-						</div>
-						<div class="col-3">
-							<label for="cc-expiration-yy" class="font-weight-bold">Year</label>
-							<select id="cc-expiration-yy" class="form-control" type="tel" name="cc-expiration-yy">
-								@foreach($years as $year)
-								<option value="{{substr($year, 2)}}">{{$year}}</option>
-								@endforeach
-							</select>
-						</div>
-						<div class="col-3">
-							<label for="cc-cvv" class="font-weight-bold">CVV</label>
-							<input id="cc-cvv" maxlength="3" class="form-control" type="text" name="cc-cvv" required>
-						</div>
-					</div>
+					<h4 class="font-arial font-weight-bold">Credit/Debit Card Details</h4>
+					<div class="form-row" style="display: inherit !important; ">
+    					<div id="card-element">
+      					<!-- A Stripe Element will be inserted here. -->
+    					</div>
+    					<!-- Used to display form errors. -->
+    					<div id="card-errors" role="alert"></div>
+  					</div>
 					<hr>
 					<div class="form-check" style="padding: 0 0 15px 20px;">
-						<input id="read-policy" class="form-check-input" type="checkbox" name="read-policy">
-						<label class="form-check-label" for="read-policy">I have read and agreead with <span><a href="/privacy" id="privacy-policy-link" target="_blank">the Privacy and Security Policy</a></span></label>
+						<input id="read_policy" class="form-check-input" type="checkbox" name="read_policy">
+						<label class="form-check-label" for="read_policy">I have read and agreead with <span><a href="/privacy" id="privacy-policy-link" target="_blank">the Privacy and Security Policy</a></span></label>
 					</div>
 				</div>
 			</div>
@@ -180,7 +149,7 @@
 			<div class="col-md-8">
 				<div>
 					<a class="btn btn-danger font-weight-bold" style="text-transform: uppercase;" href="/viewcart">Return to Cart</a>
-					<input class="btn font-weight-bold pull-right" type="submit" style="background-color: #0068a1; color: white; text-transform: uppercase; width: 145px;" name="order" value="Order"/>
+					<input id="submit-btn" class="btn font-weight-bold pull-right" type="submit" style="background-color: #0068a1; color: white; text-transform: uppercase; width: 145px;" name="order" value="Order"/>
 				</div>
 			</div>
 		</div>

@@ -2,10 +2,15 @@
 
 namespace Tests;
 
+use App\Billing\StripePaymentGateway;
+use App\Order;
 use App\Product;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
+/**
+ * @group online
+ */
 class ViewPaymetTest extends TestCase
 {
     use DatabaseMigrations;
@@ -24,32 +29,31 @@ class ViewPaymetTest extends TestCase
             'delivery_postcode'    => "4000",
             'read_policy'          => true,
             'use_delivery_address' => true,
-            'cc_name'              => "JOHN DOE",
-            'cc_number'            => "4242424242424242",
-            'cc_expiration-mm'     => "01",
-            'cc_expiration-yy'     => "25",
-            'cc_cvv'               => "123",
+            'payment_token'        => (new StripePaymentGateway(config('services.stripe.secret')))->getValidTestToken(),
         ], $overrides);
+    }
+
+    private function addItemToCart($type, $hashedId, $qty)
+    {
+        $this->post('/cart/add', [
+            'type'   => $type,
+            'itemId' => $hashedId,
+            'qty'    => $qty,
+        ]);
     }
 
     /** @test */
     public function canSubmit()
     {
+        $this->withoutExceptionHandling();
         $product1 = factory(Product::class)->create();
-
-        $this->post('/cart/add', [
-            'type'   => 'products',
-            'itemId' => $product1->hashed_id,
-            'qty'    => 2,
-        ]);
-        $expected = ['products' => [$product1->hashed_id => 2]];
-        $this->assertEquals(session('cart'), $expected);
+        $this->addItemToCart('product', $product1->hashed_id, 2);
 
         $response = $this->from('/payment')->post('/payment', $this->validParams());
+        $response->assertStatus(302);
 
-        $response->assertRedirect('/confirmation');
         $order     = Order::find(1);
-        $orderItem = $order->orderItems[0];
+        $orderItem = $order->orderItems()->first();
 
         $this->assertEquals($order->total_price, 2 * $product1->price);
         $this->assertEquals($order->first_name, 'John');
@@ -67,31 +71,25 @@ class ViewPaymetTest extends TestCase
         $this->assertEquals($order->orderItems->count(), 2);
 
         $this->assertEquals($orderItem->name, $product1->name);
-        $this->assertEquals($orderItem->type, 'products');
+        $this->assertEquals($orderItem->type, 'product');
         $this->assertEquals($orderItem->price, $product1->price);
-        $this->assertEquals($orderItem->itemId, $product1->id);
+        $this->assertEquals($orderItem->order_id, $product1->id);
 
-        $this->assertEquals(session('cart'), []);
+        $this->assertEquals(session('cart'), null);
     }
 
     /** @test */
     public function UseDeliveryOrBillingAddressIsRequired()
     {
         $product1 = factory(Product::class)->create();
-        $this->post('/cart/add', [
-            'type'   => 'products',
-            'itemId' => $product1->hashed_id,
-            'qty'    => 2,
-        ]);
-        $expected = ['products' => [$product1->hashed_id => 2]];
-        $this->assertEquals(session('cart'), $expected);
+        $this->addItemToCart('product', $product1->hashed_id, 2);
 
         $response = $this->from('/payment')->post('/payment', $this->validParams([
-            'use-delivery-address' => null,
+            'use_delivery_address' => null,
         ]));
 
         $response->assertRedirect('/payment');
-        $this->assertEquals(session('cart'), $expected);
+        $this->assertEquals(session('cart'), ['product' => [$product1->hashed_id => 2]]);
     }
 
 }

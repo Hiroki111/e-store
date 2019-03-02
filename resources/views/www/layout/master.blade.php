@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="/css/carousel.css">
   <link rel="stylesheet" type="text/css" href="/vendor/lightslider-master/css/lightslider.css" />
   <link rel="stylesheet" type="text/css" href="/css/custom.css">
+  <link rel="stylesheet" type="text/css" href="/css/stripe.css">
   <script type="text/javascript" src="/js/app.js"></script>
   <script type="text/javascript" src="/js/cart.js"></script>
   <script type="text/javascript" src="/vendor/lightslider-master/js/lightslider.js"></script>
