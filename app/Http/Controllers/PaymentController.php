@@ -20,6 +20,14 @@ class PaymentController extends Controller
         $this->payment        = $payment;
     }
 
+    public function index()
+    {
+        return view('www.payment', [
+            'cart'  => new Cart(session('cart')),
+            'years' => range((int) date("Y"), (int) date("Y") + 10),
+        ]);
+    }
+
     public function store(SubmitPayment $request)
     {
         $validated = $request->validated();

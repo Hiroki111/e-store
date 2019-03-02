@@ -12,18 +12,23 @@
  */
 
 Route::get('/', 'HomeController@index');
-Route::get('/product-type/{id}', 'ProductTypeController@index');
-Route::get('/product/{hashedId}', 'HomeController@product');
-Route::get('/bundle/{hashedId}', 'HomeController@bundle');
-Route::get('/viewcart', 'HomeController@viewcart');
-Route::get('/checkout-option', 'HomeController@checkoutOption');
-Route::get('/payment', 'HomeController@payment');
 
+Route::get('/product-type/{id}', 'ProductTypeController@index');
+
+Route::get('/product/{hashedId}', 'ProductController@index');
+
+Route::get('/bundle/{hashedId}', 'BundleController@index');
+
+Route::get('/viewcart', 'ViewCartController@index');
+
+Route::get('/checkout-option', 'CheckoutOptionController@index');
+
+Route::get('/payment', 'PaymentController@index');
 Route::post('/payment', 'PaymentController@store');
 
-Route::get('/confirmation', 'HomeController@confirmation');
+Route::get('/confirmation', 'OrderConfirmationController@index');
 
-Route::get('/privacy', 'HomeController@privacy');
+Route::get('/privacy', 'PrivacyController@index');
 
 Auth::routes();
 
