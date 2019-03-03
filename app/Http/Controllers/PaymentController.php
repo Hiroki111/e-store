@@ -13,17 +13,20 @@ use Illuminate\Http\Request;
 class PaymentController extends Controller
 {
     private $paymentGateway;
+    private $payment;
+    private $cart;
 
     public function __construct(PaymentGateway $paymentGateway, Payment $payment)
     {
         $this->paymentGateway = $paymentGateway;
         $this->payment        = $payment;
+        $this->cart           = new Cart(session('cart'));
     }
 
     public function index()
     {
         return view('www.payment', [
-            'cart'  => new Cart(session('cart')),
+            'cart'  => $this->cart,
             'years' => range((int) date("Y"), (int) date("Y") + 10),
         ]);
     }
