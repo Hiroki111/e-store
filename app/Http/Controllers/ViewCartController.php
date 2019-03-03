@@ -8,9 +8,9 @@ class ViewCartController extends Controller
 {
     private $cart;
 
-    public function __construct()
+    public function __construct(Cart $cart)
     {
-        $this->cart = new Cart(session('cart'));
+        $this->cart = $cart;
     }
 
     public function index()

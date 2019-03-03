@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Billing\PaymentGateway;
 use App\Billing\StripePaymentGateway;
+use App\Cart;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,7 +35,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(StripePaymentGateway::class, function () {
             return new StripePaymentGateway(config('services.stripe.secret'));
         });
-
         $this->app->bind(PaymentGateway::class, StripePaymentGateway::class);
+
+        $this->app->bind(Cart::class, function () {
+            return new Cart(session('cart'));
+        });
     }
 }

@@ -16,11 +16,11 @@ class PaymentController extends Controller
     private $payment;
     private $cart;
 
-    public function __construct(PaymentGateway $paymentGateway, Payment $payment)
+    public function __construct(PaymentGateway $paymentGateway, Payment $payment, Cart $cart)
     {
         $this->paymentGateway = $paymentGateway;
         $this->payment        = $payment;
-        $this->cart           = new Cart(session('cart'));
+        $this->cart           = $cart;
     }
 
     public function index()
