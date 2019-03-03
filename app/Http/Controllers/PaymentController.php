@@ -36,7 +36,7 @@ class PaymentController extends Controller
         $validated = $request->validated();
 
         try {
-            $payment = $this->payment->setCart(new Cart(session('cart')));
+            $payment = $this->payment->setCart($this->cart);
             $order   = $payment->pay($this->paymentGateway, request('payment_token'), request());
             session(['cart' => null]);
             //Mail::to($order->email)->send(new OrderConfirmationEmail($order));
