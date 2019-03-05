@@ -11,8 +11,7 @@
   </ol>
   <div class="carousel-inner">
     @foreach($slides as $i => $slide)
-    <div class="carousel-item @if($i === 0) active @endif">
-      <img src="{{$slide->src}}" alt="{{$slide->title}}">
+    <div class="carousel-item @if($i === 0) active @endif" style="background-image: url({{$slide->src}});">
       <div class="container">
         <div class="carousel-caption text-left">
           <h1 class="outlined-text">{{$slide->title}}</h1>
