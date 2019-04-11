@@ -96,7 +96,7 @@ class CartTest extends TestCase
         $this->post('/cart/add', ['type' => 'product', 'itemId' => $product1->hashed_id, 'qty' => 2]);
         $this->post('/cart/add', ['type' => 'bundle', 'itemId' => $bundle->hashed_id, 'qty' => 1]);
 
-        $cart = new Cart(session('cart'));
+        $cart = (new Cart())->setItems(session('cart'));
 
         $cartItems = $cart->getItems();
         collect($cartItems)->zip([[$product1, $product1], [$bundle]])->each(function ($set) {
@@ -213,7 +213,7 @@ class CartTest extends TestCase
 
         $this->post('/cart/add', ['type' => 'product', 'itemId' => $product->hashed_id, 'qty' => 2]);
         $this->post('/cart/add', ['type' => 'bundle', 'itemId' => $bundle->hashed_id, 'qty' => 1]);
-        $cart = new Cart(session('cart'));
+        $cart = (new Cart())->setItems(session('cart'));
 
         $this->assertEquals($cart->getTotalPriceInCents(), 8251);
     }
@@ -231,7 +231,7 @@ class CartTest extends TestCase
         $this->post('/cart/add', ['type' => 'product', 'itemId' => $product2->hashed_id, 'qty' => 1]);
         $this->post('/cart/add', ['type' => 'bundle', 'itemId' => $bundle->hashed_id, 'qty' => 1]);
 
-        $cart = new Cart(session('cart'));
+        $cart = (new Cart())->setItems(session('cart'));
 
         $this->assertTrue($cart->toOrderItems()[0] instanceof OrderItem);
         $this->assertEquals($cart->toOrderItems()[0]->stock_id, $product1->id);

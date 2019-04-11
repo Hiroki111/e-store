@@ -13,7 +13,12 @@ class Cart implements IteratorAggregate
     private $count;
     private $items;
 
-    public function __construct($items)
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+
+    public function setItems($items)
     {
         $this->items = $items;
         $this->count = collect($this->items)->map(function ($items) {
@@ -21,11 +26,7 @@ class Cart implements IteratorAggregate
         })->reduce(function ($total, $qty) {
             return $total + $qty;
         });
-    }
-
-    public function __get($name)
-    {
-        return $this->$name;
+        return $this;
     }
 
     public function getItems()

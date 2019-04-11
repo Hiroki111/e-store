@@ -47,7 +47,8 @@ class PaymentTest extends TestCase
             'cc_cvv'               => "123",
         ];
 
-        $payment = (new Payment())->setCart(new Cart(session('cart')));
+        $cart    = (new Cart())->setItems(session('cart'));
+        $payment = (new Payment())->setCart($cart);
         $order   = $payment->pay($paymentGateway, $paymentGateway->getValidTestToken(), $input);
 
         $this->assertEquals($order->total_price, 25.50);

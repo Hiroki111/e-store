@@ -26,7 +26,7 @@ class PaymentController extends Controller
     public function index()
     {
         return view('www.payment', [
-            'cart'  => $this->cart,
+            'cart'  => $this->cart->setItems(session('cart')),
             'years' => range((int) date("Y"), (int) date("Y") + 10),
         ]);
     }
@@ -36,7 +36,7 @@ class PaymentController extends Controller
         $validated = $request->validated();
 
         try {
-            $payment = $this->payment->setCart($this->cart);
+            $payment = $this->payment->setCart($this->cart->setItems(session('cart')));
             $order   = $payment->pay($this->paymentGateway, request('payment_token'), request());
             session(['cart' => null]);
             //Mail::to($order->email)->send(new OrderConfirmationEmail($order));

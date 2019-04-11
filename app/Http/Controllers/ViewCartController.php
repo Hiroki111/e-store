@@ -16,7 +16,7 @@ class ViewCartController extends Controller
     public function index()
     {
         return view('www.viewcart', [
-            'cart' => $this->cart,
+            'cart' => $this->cart->setItems(session('cart')),
         ]);
     }
 }
