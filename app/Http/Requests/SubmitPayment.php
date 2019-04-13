@@ -41,4 +41,16 @@ class SubmitPayment extends FormRequest
             'read_policy'          => 'required',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'read_policy.required' => 'It is mandatory to read and agree with the Privacy and Security Policy',
+        ];
+    }
 }
