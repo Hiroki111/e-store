@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#use-delivery-address').click(function() {
+	$('#use_delivery_address').click(function() {
 		$('#billing-address-inputboxes').toggle();
 	});
 
