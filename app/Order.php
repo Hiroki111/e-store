@@ -34,4 +34,9 @@ class Order extends Model
                 ];
             })->values()->all();
     }
+
+    public function getTotalPrice()
+    {
+        return collect($this->orderItems)->sum('price');
+    }
 }
