@@ -4,7 +4,7 @@ namespace App;
 
 class OrderConfirmationNumberGenerator
 {
-    public function generate()
+    public static function generate()
     {
         $pool = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
