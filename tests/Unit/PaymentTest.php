@@ -18,7 +18,7 @@ class PaymentTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function canPayAndReturnOrder()
+    public function completingAPaymentCreatesAnOrder()
     {
         $product = factory(Product::class)->create(['price' => 5.50]);
         $bundle  = factory(Bundle::class)->create(['price' => 10.00]);
@@ -66,6 +66,7 @@ class PaymentTest extends TestCase
         $this->assertEquals($order->billing_suburb, "Brisbane");
         $this->assertEquals($order->billing_state, "QLQ");
         $this->assertEquals($order->billing_postcode, "4000");
+        $this->assertEquals(strlen($order->confirmation_number), 24);
 
         $this->assertEquals($order->orderItems->count(), 3);
     }
