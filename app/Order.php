@@ -3,6 +3,7 @@
 namespace App;
 
 use App\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,6 +17,11 @@ class Order extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function getDeliveryDueAttribute()
+    {
+        return (new Carbon($this->created_at))->addDays(5)->format('jS M Y');
     }
 
     public function getOrderSummary()
@@ -38,5 +44,30 @@ class Order extends Model
     public function getTotalPrice()
     {
         return collect($this->orderItems)->sum('price');
+    }
+
+    public function getBillingAddress1()
+    {
+        return ($this->use_delivery_address) ? $this->delivery_address_1 : $this->billing_address_1;
+    }
+
+    public function getBillingAddress2()
+    {
+        return ($this->use_delivery_address) ? $this->delivery_address_2 : $this->billing_address_2;
+    }
+
+    public function getBillingSuburb()
+    {
+        return ($this->use_delivery_address) ? $this->delivery_suburb : $this->billing_suburb;
+    }
+
+    public function getBillingState()
+    {
+        return ($this->use_delivery_address) ? $this->delivery_state : $this->billing_state;
+    }
+
+    public function getBillingPostcode()
+    {
+        return ($this->use_delivery_address) ? $this->delivery_postcode : $this->billing_postcode;
     }
 }

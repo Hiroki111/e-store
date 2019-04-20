@@ -4,6 +4,7 @@ namespace App;
 
 use App\Cart;
 use App\Order;
+use App\OrderConfirmationNumberGenerator;
 
 class Payment
 {
@@ -46,6 +47,7 @@ class Payment
             'read_policy'          => (array_get($input, 'read_policy')) ? 1 : 0,
             'use_delivery_address' => (array_get($input, 'use_delivery_address')) ? 1 : 0,
             'payment_id'           => $charge['id'],
+            'confirmation_number'  => OrderConfirmationNumberGenerator::generate(),
             'total_price'          => $amount,
         ]);
         $order->orderItems()->saveMany($this->cart->toOrderItems());
