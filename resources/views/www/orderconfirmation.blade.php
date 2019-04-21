@@ -2,10 +2,10 @@
 @section('title', 'Order Confirmation')
 @section('content')
 <div class="container">
-    <div class="row" style="padding: 40px 0;">
+    <div class="row" style="padding-top: 40px;">
         <div class="col-md-8">
             <div style="margin-bottom: 1rem;">
-                <a href="" style="float: right;">Print receipt</a>
+                <a href="/confirmation/{{$order->hashedId}}/pdf" target="_blank" style="float: right;">Print invoice</a>
                 <h2 class="font-weight-bold">Thank you for shopping with us!</h2>
                 <h2 class="font-weight-bold">Your order has been placed.</h2>
             </div>
@@ -49,7 +49,12 @@
             </div>
         </div>
         <div class="col-md-4">
-            @include('www.util.ordersummary', ['items' => $order->getOrderSummary(), 'totalPrice' => $order->getTotalPrice()])
+            @include('www.util.ordersummary', ['items' => $order->getOrderSummary(), 'totalPrice' => $order->total_price])
+        </div>
+        <div class="col-md-12">
+            <hr />
+            <p>You will receive an order confirmation email with the invoice shortly.</p>
+            <p>You can safely close this window, or go back to <a href="/">the top page</a></p>
         </div>
     </div>
 </div>

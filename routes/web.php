@@ -26,7 +26,8 @@ Route::get('/checkout-option', 'CheckoutOptionController@index');
 Route::get('/payment', 'PaymentController@index');
 Route::post('/payment', 'PaymentController@store');
 
-Route::get('/confirmation', 'OrderConfirmationController@index');
+Route::get('/confirmation/{hashedId}', 'OrderConfirmationController@show');
+Route::get('/confirmation/{hashedId}/pdf', 'OrderConfirmationController@printPdf');
 
 Route::get('/privacy', 'PrivacyController@index');
 

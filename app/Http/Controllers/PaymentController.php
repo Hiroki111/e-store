@@ -38,10 +38,13 @@ class PaymentController extends Controller
         try {
             $payment = $this->payment->setCart($this->cart->setItems(session('cart')));
             $order   = $payment->pay($this->paymentGateway, request('payment_token'), request());
-            session(['cart' => null]);
+            session([
+                'cart'               => null,
+                'justCompletedOrder' => true,
+            ]);
             //Mail::to($order->email)->send(new OrderConfirmationEmail($order));
 
-            return redirect('/confirmation')->with(['order' => $order]);
+            return redirect("/confirmation/$order->hashedId");
         } catch (Exception $e) {
             return response()->json([], 422);
         }
