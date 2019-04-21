@@ -19,9 +19,14 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function getOrderedDateAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('jS M Y');
+    }
+
     public function getDeliveryDueAttribute()
     {
-        return (new Carbon($this->created_at))->addDays(5)->format('jS M Y');
+        return Carbon::parse($this->created_at)->addDays(5)->format('jS M Y');
     }
 
     public function getOrderSummary()
