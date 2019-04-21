@@ -86,7 +86,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="text-align-right"><strong>Total :&nbsp;${{$order->getTotalPrice()}}</strong></td>
+                        <td class="text-align-right"><strong>Total :&nbsp;${{$order->formatted_total_price}}</strong></td>
                     </tr>
                 </table>
             </td>
@@ -101,15 +101,15 @@
                 <table cellpadding="5" cellspacing="0">
                     <tr>
                         <td width="120">SUBTOTAL</td>
-                        <td width="80" class="text-align-right">${{$order->getTotalPrice()}}</td>
+                        <td width="80" class="text-align-right">${{$order->formatted_total_price}}</td>
                     </tr>
                     <tr>
                         <td>Delivery Fee</td>
-                        <td class="text-align-right">$ 0</td>
+                        <td class="text-align-right">$ 0.00</td>
                     </tr>
                     <tr class="note-ground-total">
                         <td><strong>TOTAL</strong></td>
-                        <td class="text-align-right"><strong>${{$order->getTotalPrice()}}</strong></td>
+                        <td class="text-align-right"><strong>${{$order->formatted_total_price}}</strong></td>
                     </tr>
                 </table>
             </td>

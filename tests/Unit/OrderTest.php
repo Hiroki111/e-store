@@ -36,7 +36,7 @@ class OrderTest extends TestCase
     }
 
     /** @test */
-    public function canGetTotalPrice()
+    public function canGetTotalItemPrice()
     {
         $orderItemA1 = factory(OrderItem::class)->create(['price' => 5.50, 'stock_id' => 1, 'type' => 'product']);
         $orderItemA2 = factory(OrderItem::class)->create(['price' => 5.50, 'stock_id' => 1, 'type' => 'product']);
@@ -46,6 +46,6 @@ class OrderTest extends TestCase
         $order->orderItems()->saveMany([$orderItemA1, $orderItemA2, $orderItemB, $orderItemC]);
 
         $expected = $orderItemA1->price + $orderItemA2->price + $orderItemB->price + $orderItemC->price;
-        $this->assertEquals($order->getTotalPrice(), $expected);
+        $this->assertEquals($order->getTotalItemPrice(), $expected);
     }
 }

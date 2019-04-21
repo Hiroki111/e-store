@@ -3,6 +3,7 @@
 namespace App;
 
 use App\OrderItem;
+use App\Traits\HashedId;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Order extends Model
 {
     use SoftDeletes;
+    use HashedId;
 
     protected $guarded = [];
     protected $dates   = ['date'];
@@ -46,9 +48,14 @@ class Order extends Model
             })->values()->all();
     }
 
-    public function getTotalPrice()
+    public function getTotalItemPrice()
     {
         return collect($this->orderItems)->sum('price');
+    }
+
+    public function getFormattedTotalPriceAttribute()
+    {
+        return number_format((double) $this->total_price, 2);
     }
 
     public function getBillingAddress1()
