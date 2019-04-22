@@ -59,7 +59,6 @@ class ViewOrderConfirmationTest extends TestCase
 
         $res = $this->get("/confirmation/$order->hashed_id");
 
-        $res->assertStatus(200);
         $res->assertSee("$order->confirmation_number");
         $res->assertSee("$product->name");
         $res->assertSee("$" . $product->price);

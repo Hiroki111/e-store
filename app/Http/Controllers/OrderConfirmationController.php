@@ -11,7 +11,7 @@ class OrderConfirmationController extends Controller
     public function show($hashedId)
     {
         if (empty(session('justCompletedOrder'))) {
-            return redirect()->route('/');
+            return redirect("/");
         }
 
         session(['justCompletedOrder' => null]);

@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            @include('www.util.ordersummary', ['items' => $order->getOrderSummary(), 'totalPrice' => $order->total_price])
+            @include('www.util.ordersummary', ['items' => $order->getOrderSummary(), 'totalPrice' => $order->formatted_total_price])
         </div>
         <div class="col-md-12">
             <hr />
