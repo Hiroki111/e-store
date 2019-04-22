@@ -34,18 +34,23 @@ class Order extends Model
     public function getOrderSummary()
     {
         return collect($this->orderItems)
-            ->groupBy('stock_id')
-            ->map(function ($orderItems, $stockId) {
-                $item = $orderItems->first();
-                $qty  = $orderItems->count();
+            ->groupBy('type')
+            ->map(function ($orderItems, $type) {
+                return $orderItems
+                    ->groupBy('stock_id')
+                    ->map(function ($orderItems, $stockId) use ($type) {
+                        $item = $orderItems->first();
+                        $qty  = $orderItems->count();
 
-                return (object) [
-                    'name'        => $item->name,
-                    'price'       => $item->price,
-                    'qty'         => $qty,
-                    'total_price' => number_format((double) $item->price * $qty, 2),
-                ];
-            })->values()->all();
+                        return (object) [
+                            'name'        => $item->name,
+                            'price'       => $item->price,
+                            'qty'         => $qty,
+                            'type'        => $type,
+                            'total_price' => number_format((double) $item->price * $qty, 2),
+                        ];
+                    });
+            })->flatten()->values()->all();
     }
 
     public function getTotalItemPrice()
