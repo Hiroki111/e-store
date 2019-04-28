@@ -66,7 +66,7 @@ class PaymentTest extends TestCase
         $this->assertEquals($order->billing_suburb, "Brisbane");
         $this->assertEquals($order->billing_state, "QLQ");
         $this->assertEquals($order->billing_postcode, "4000");
-        $this->assertEquals(strlen($order->confirmation_number), 24);
+        $this->assertEquals($order->confirmation_number, "00000001");
 
         $this->assertEquals($order->orderItems->count(), 3);
     }

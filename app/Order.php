@@ -31,6 +31,17 @@ class Order extends Model
         return Carbon::parse($this->created_at)->addDays(5)->format('jS M Y');
     }
 
+    public function getConfirmationNumberAttribute()
+    {
+        $numberOfPadding = 8 - strlen($this->id);
+
+        if ($numberOfPadding < 0) {
+            return (string) $this->id;
+        }
+
+        return str_repeat("0", $numberOfPadding) . (string) $this->id;
+    }
+
     public function getOrderSummary()
     {
         return collect($this->orderItems)
