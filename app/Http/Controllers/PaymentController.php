@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Billing\PaymentGateway;
 use App\Cart;
 use App\Http\Requests\SubmitPayment;
+use App\Jobs\SendOrderConfirmationEmail;
 use App\Payment;
 use Illuminate\Http\Request;
-
-//use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -42,7 +41,7 @@ class PaymentController extends Controller
                 'cart'               => null,
                 'justCompletedOrder' => true,
             ]);
-            //Mail::to($order->email)->send(new OrderConfirmationEmail($order));
+            SendOrderConfirmationEmail::dispatch($order);
 
             return redirect("/confirmation/$order->hashedId");
         } catch (Exception $e) {

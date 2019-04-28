@@ -3,9 +3,11 @@
 namespace Tests;
 
 use App\Billing\StripePaymentGateway;
+use App\Jobs\SendOrderConfirmationEmail;
 use App\Order;
 use App\Product;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 /**
@@ -46,6 +48,8 @@ class ViewPaymetTest extends TestCase
     public function canSubmit()
     {
         $this->withoutExceptionHandling();
+        Queue::fake();
+
         $product1 = factory(Product::class)->create();
         $product2 = factory(Product::class)->create();
         $this->addItemToCart('product', $product1->hashed_id, 2);
@@ -86,6 +90,10 @@ class ViewPaymetTest extends TestCase
         $this->assertEquals($orderItemB->stock_id, $product2->id);
 
         $this->assertEquals(session('cart'), null);
+
+        Queue::assertPushed(SendOrderConfirmationEmail::class, function ($job) use ($order) {
+            return $job->getOrder()->id === $order->id;
+        });
     }
 
     /** @test */

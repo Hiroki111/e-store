@@ -70,7 +70,7 @@
                 <table cellpadding="5" cellspacing="0">
                     <tr class="order-summary-header">
                         <th width="170">Item</th>
-                        <th width="100" class="text-align-right">Unit Price</th>
+                        <th width="100" class="text-align-right">Item Price</th>
                         <th width="100" class="text-align-right">Quantity</th>
                         <th width="130" class="text-align-right">Line Total</th>
                     </tr>
