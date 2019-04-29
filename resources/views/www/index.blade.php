@@ -33,20 +33,28 @@
 </div>
 <div class="container marketing">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
+      <h2><i class="fa fa-beer" aria-hidden="true"></i></i> Click & Collect</h2>
+      <div style="min-height: 60px">
+        <p style="margin: 0;">Order online and pick up in store in as little as 60 minutes.</p>
+        <p style="margin: 0;"></p>
+      </div>
+      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#">VIEW DETAILS &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
       <h2><i class="fa fa-truck" aria-hidden="true"></i> Delivery Info</h2>
       <div style="min-height: 60px">
         <p style="margin: 0;">FREE domestic delivery on all wine</p>
         <p style="margin: 0;">FREE international delivery on any order over $150</p>
       </div>
-      <p><a class="btn btn-secondary" href="#" role="button">View Details &raquo;</a></p>
+      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#">VIEW DETAILS &raquo;</a></p>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-4">
       <h2><i class="fa fa-shopping-cart" aria-hidden="true"></i> Order &amp; Payment</h2>
       <div style="min-height: 60px">
         <p style="margin: 0;">Online, Phone, In Store</p>
       </div>
-      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#">VIEW DETAILS &raquo;</a></p>
     </div>
   </div>
 
