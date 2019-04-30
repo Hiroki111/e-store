@@ -39,7 +39,7 @@
         <p style="margin: 0;">Order online and pick up in store in as little as 60 minutes.</p>
         <p style="margin: 0;"></p>
       </div>
-      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#">VIEW DETAILS &raquo;</a></p>
+      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#" data-toggle="modal" data-target="#modalBingUpdated">VIEW DETAILS &raquo;</a></p>
     </div>
     <div class="col-lg-4">
       <h2><i class="fa fa-truck" aria-hidden="true"></i> Delivery Info</h2>
@@ -47,14 +47,14 @@
         <p style="margin: 0;">FREE domestic delivery on all wine</p>
         <p style="margin: 0;">FREE international delivery on any order over $150</p>
       </div>
-      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#">VIEW DETAILS &raquo;</a></p>
+      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#" data-toggle="modal" data-target="#modalBingUpdated">VIEW DETAILS &raquo;</a></p>
     </div>
     <div class="col-lg-4">
       <h2><i class="fa fa-shopping-cart" aria-hidden="true"></i> Order &amp; Payment</h2>
       <div style="min-height: 60px">
         <p style="margin: 0;">Online, Phone, In Store</p>
       </div>
-      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#">VIEW DETAILS &raquo;</a></p>
+      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#" data-toggle="modal" data-target="#modalBingUpdated">VIEW DETAILS &raquo;</a></p>
     </div>
   </div>
 
@@ -76,4 +76,19 @@
 
   @include('www.layout.addeditem')
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalBingUpdated" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Sorry, this page is currently unavailable.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
