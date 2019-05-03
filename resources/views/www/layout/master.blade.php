@@ -9,6 +9,7 @@
   <title>@yield('title') | Hiroki's Liquor Store</title>
 
   <link rel="stylesheet" type="text/css" href="/css/app.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
   <link rel="stylesheet" type="text/css" href="/css/carousel.css">
   <link rel="stylesheet" type="text/css" href="/vendor/lightslider-master/css/lightslider.css" />
   <link rel="stylesheet" type="text/css" href="/css/custom.css">

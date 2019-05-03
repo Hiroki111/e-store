@@ -31,6 +31,8 @@ Route::get('/confirmation/{hashedId}/pdf', 'OrderConfirmationController@printPdf
 
 Route::get('/privacy', 'PrivacyController@index');
 
+Route::get('/click-and-collect', 'ClickAndCollectController@index');
+
 Auth::routes();
 
 //Internal APIs - ones which are not used by external applications

@@ -39,7 +39,7 @@
         <p style="margin: 0;">Order online and pick up in store in as little as 60 minutes.</p>
         <p style="margin: 0;"></p>
       </div>
-      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#" data-toggle="modal" data-target="#modalBingUpdated">VIEW DETAILS &raquo;</a></p>
+      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="/click-and-collect">VIEW DETAILS &raquo;</a></p>
     </div>
     <div class="col-lg-4">
       <h2><i class="fa fa-truck" aria-hidden="true"></i> Delivery Info</h2>
@@ -84,7 +84,7 @@
       <div class="modal-body">
         <p>Sorry, this page is currently unavailable.</p>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="border-top: 0;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
