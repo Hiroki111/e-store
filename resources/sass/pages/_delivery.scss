@@ -1,0 +1,51 @@
+.delivery {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: auto;
+    margin-left: auto;
+    width: 83.3%;
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: #444;
+
+    &__header {
+        //display: flex;
+        //justify-content: center;
+        font-size: 6vw;
+        padding: 25px 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #003a74;
+        text-align: center;
+
+        p {
+            margin-bottom: 0;
+        }
+
+        i {
+            color: #f12e18;
+        }
+
+        .fa-glass,
+        .fa-beer,
+        .fa-gift {
+            animation-duration: 5s;
+            animation-timing-function: linear;
+        }
+
+        @for $i from 1 through 9 {
+            i:nth-child(#{$i}) {
+                animation-name: iconShown#{$i};
+            }
+        }       
+
+        .fa-truck {
+            transform: rotateY(180deg);
+
+            animation-name: truckMoveIn;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+        }
+    }
+
+}

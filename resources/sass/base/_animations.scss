@@ -1,0 +1,27 @@
+@keyframes truckMoveIn {
+    0% {
+        transform: translateX(-1000%) rotateY(180deg);
+    }
+
+    100% {
+        transform: translate(0) rotateY(180deg);
+    }
+}
+
+@for $i from 1 through 9 {
+    @keyframes iconShown#{$i} {
+        0% {
+            opacity: 0;
+        }
+
+        #{($i - 1) * 10 + 9}% {
+            opacity: 0;
+        }
+
+        #{$i * 10}% {
+            opacity: 1;
+        }
+    }
+}
+
+
