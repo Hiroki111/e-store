@@ -42,12 +42,12 @@
       <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="/click-and-collect">VIEW DETAILS &raquo;</a></p>
     </div>
     <div class="col-lg-4">
-      <h2><i class="fa fa-truck" aria-hidden="true"></i> Delivery Info</h2>
+      <h2><i class="fa fa-truck fa-flip-horizontal" aria-hidden="true"></i> Delivery Info</h2>
       <div style="min-height: 60px">
         <p style="margin: 0;">FREE domestic delivery on all wine</p>
         <p style="margin: 0;">FREE international delivery on any order over $150</p>
       </div>
-      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="#" data-toggle="modal" data-target="#modalBingUpdated">VIEW DETAILS &raquo;</a></p>
+      <p><a style="font-weight: bold; color: red; font-family: 'Arial',Helvetica,sans-serif;" href="/delivery">VIEW DETAILS &raquo;</a></p>
     </div>
     <div class="col-lg-4">
       <h2><i class="fa fa-shopping-cart" aria-hidden="true"></i> Order &amp; Payment</h2>

@@ -1,6 +1,6 @@
 @keyframes truckMoveIn {
     0% {
-        transform: translateX(-1000%) rotateY(180deg);
+        transform: translateX(-500%) rotateY(180deg);
     }
 
     100% {
@@ -12,14 +12,17 @@
     @keyframes iconShown#{$i} {
         0% {
             opacity: 0;
+            transform: rotate(15deg);
         }
 
-        #{($i - 1) * 10 + 9}% {
+        #{($i - 1) * 10 + 5}% {
             opacity: 0;
+            transform: rotate(15deg);
         }
 
         #{$i * 10}% {
             opacity: 1;
+            transform: rotate(0deg);
         }
     }
 }

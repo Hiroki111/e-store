@@ -9,37 +9,63 @@
     color: #444;
 
     &__header {
-        //display: flex;
-        //justify-content: center;
-        font-size: 6vw;
         padding: 25px 10px;
         font-weight: bold;
         text-transform: uppercase;
         color: #003a74;
         text-align: center;
+        max-width: 900px;
+        margin: auto;
 
-        p {
-            margin-bottom: 0;
+        h2 {
+            @media (max-width: 670px) {
+                font-size: 30px;
+            }
+
+            @media (min-width: 670px) and (max-width: 750px) {
+                font-size: 40px;
+            }
+
+            @media (min-width: 750px) and (max-width: 800px) {
+                font-size: 45px;
+            }
+
+            @media (min-width: 800px) and (max-width: 930px) {
+                font-size: 50px;
+            }
+
+            @media (min-width: 930px) {
+                font-size: 60px;
+            }
+
+            padding: 10px;
+            margin: 0;
+            font-weight: bold;
         }
+    }
+
+    &_icons {
+        max-width: 900px;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: baseline;
 
         i {
             color: #f12e18;
         }
 
-        .fa-glass,
-        .fa-beer,
-        .fa-gift {
-            animation-duration: 5s;
-            animation-timing-function: linear;
-        }
-
         @for $i from 1 through 9 {
             i:nth-child(#{$i}) {
+                font-size: 5vw;
                 animation-name: iconShown#{$i};
+                animation-timing-function: linear;
+                animation-duration: 5.5s;
             }
-        }       
+        }
 
         .fa-truck {
+            font-size: 12vw;
             transform: rotateY(180deg);
 
             animation-name: truckMoveIn;
@@ -48,4 +74,20 @@
         }
     }
 
+    &__table {
+        &-header {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .delivery-options {
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        tr {
+            border-bottom: 1px solid #dee2e6;
+        }
+    }
 }
