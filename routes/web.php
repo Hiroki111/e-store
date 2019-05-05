@@ -35,6 +35,8 @@ Route::get('/click-and-collect', 'ClickAndCollectController@index');
 
 Route::get('/delivery', 'DeliveryController@index');
 
+Route::get('/orderandpayment', 'OrderAndPaymentController@index');
+
 Auth::routes();
 
 //Internal APIs - ones which are not used by external applications
