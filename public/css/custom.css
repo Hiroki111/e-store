@@ -7,10 +7,6 @@ body {
     margin-bottom: 60px;
 }
 
-nav {
-    border-top: 11px #d2232a solid;
-    background: #252d6c;
-}
 
 main {
     padding-bottom: 40px;
@@ -111,53 +107,6 @@ body>.container {
 .product-type-pagination .active span {
     background-color: #252d6c !important;
     border-color: #252d6c !important;
-}
-
-.product-type-link {
-    position: relative;
-    text-decoration: none;
-}
-
-.product-type-link:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: white;
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transition: all 0.3s ease-in-out 0s;
-    transition: all 0.3s ease-in-out 0s;
-}
-
-.product-type-link:hover:before {
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-}
-
-.product-type-link-active {
-    position: relative;
-    text-decoration: none;
-}
-
-.product-type-link-active {
-    position: relative;
-}
-
-.product-type-link-active:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: white;
-}
-
-.product-type-link-active:hover:before {
-    visibility: visible;
 }
 
 #product-name-heading {
