@@ -19,6 +19,8 @@ Route::get('/product/{hashedId}', 'ProductController@index');
 
 Route::get('/bundle/{hashedId}', 'BundleController@index');
 
+Route::get('/search-item', 'SearchItemController@index');
+
 Route::get('/viewcart', 'ViewCartController@index');
 
 Route::get('/checkout-option', 'CheckoutOptionController@index');

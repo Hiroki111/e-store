@@ -68,6 +68,7 @@ $(document).ready(function() {
 		var brandNames = $('.brand-checkbox:checked').map(function() {
 			return $(this).attr('data-brand-name');
 		}).toArray().join(",");
+		var query = (new URL(location.href)).searchParams.get("query");
 
 		var parameters = [
 			{ key: "sort_by", value: sortBy },
@@ -75,7 +76,8 @@ $(document).ready(function() {
 			{ key: "price_min", value: priceMin },
 			{ key: "price_max", value: priceMax },
 			{ key: "country_names", value: countryNames },
-			{ key: "brand_names", value: brandNames }
+			{ key: "brand_names", value: brandNames },
+			{ key: "query", value: query }
 		].filter(function(item) {
 			return item.value;
 		}).reduce(function(total, item, index) {
