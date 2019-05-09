@@ -809,6 +809,88 @@
   border-bottom: 1px solid #dee2e6;
 }
 
+.container.marketing hr {
+  margin: 30px 0;
+}
+
+.container.marketing h1 {
+  font-weight: bold;
+}
+
+.container.marketing .delivery-order-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 -15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.container.marketing .delivery-order-info-item {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .container.marketing .delivery-order-info-item {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.33333333%;
+            flex: 0 0 33.33333333%;
+    max-width: 33.33333333%;
+  }
+}
+
+.container.marketing .delivery-order-info-item a {
+  font-weight: bold;
+  color: red;
+}
+
+.container.marketing .delivery-order-info-description {
+  min-height: 60px;
+}
+
+.container.marketing .delivery-order-info-description p {
+  margin: 0;
+}
+
+.container.marketing .bundle-container,
+.container.marketing .product-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.container.marketing .bundle-container .card-wrapper,
+.container.marketing .product-container .card-wrapper {
+  padding: 0 15px;
+}
+
+@media (min-width: 1000px) {
+  .container.marketing .bundle-container .card-wrapper,
+  .container.marketing .product-container .card-wrapper {
+    width: 25%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .container.marketing .bundle-container .card-wrapper,
+  .container.marketing .product-container .card-wrapper {
+    width: 50%;
+  }
+}
+
+.card-text {
+  font-weight: bold;
+  height: 34px;
+}
+
 .order-and-payment {
   font-family: Arial, Helvetica, sans-serif;
   margin-right: auto;

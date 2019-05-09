@@ -1,0 +1,68 @@
+.container.marketing {
+	
+    hr {
+        margin: 30px 0;
+    }
+
+    h1 {
+        font-weight: bold;
+    }
+
+    .delivery-order-info {
+        display: flex;
+        margin: 0 -15px;
+        flex-wrap: wrap;
+
+        &-item {
+            @media (min-width: 992px) {
+                flex: 0 0 33.33333333%;
+                max-width: 33.33333333%;
+            }
+
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+
+            a {
+                font-weight: bold;
+                color: red;
+            }
+        }
+
+        &-description {
+            min-height: 60px;
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+
+    .bundle-container,
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px;
+
+
+        .card-wrapper {
+            padding: 0 15px;
+
+            @media (min-width: 1000px) {
+                width: 25%;
+            }
+
+            @media (max-width: 1000px) {
+                width: 50%;
+            }
+        }
+    }
+}
+
+.card-text {
+    font-weight: bold;
+    height: 34px;
+}
