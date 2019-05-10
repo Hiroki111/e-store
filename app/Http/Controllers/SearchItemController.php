@@ -11,7 +11,7 @@ class SearchItemController extends Controller
 {
     public function index()
     {
-        $query       = request()->input('query');
+        $query       = request('query');
         $sortColumn  = request('sort_by', 'name');
         $sortOrder   = request('order_by', 'asc');
         $priceMin    = explode(',', request('price_min', 0));
