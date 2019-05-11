@@ -165,4 +165,18 @@ class ViewSearchItemTest extends TestCase
             return $products->count() === 9;
         });
     }
+
+    /** @test */
+    public function searchingOnlyOneItemLeadsToProductPage()
+    {
+        $p1 = factory(Product::class)->create(['name' => "ABC"]);
+        $p2 = factory(Product::class)->create(['name' => "DEF"]);
+        $p3 = factory(Product::class)->create(['name' => "GHI"]);
+        $p4 = factory(Product::class)->create(['name' => "JKL"]);
+        $p5 = factory(Product::class)->create(['name' => "MNO"]);
+
+        $res = $this->get("/search-item?query=$p3->name");
+
+        $res->assertRedirect("/product/$p3->hashedId");
+    }
 }

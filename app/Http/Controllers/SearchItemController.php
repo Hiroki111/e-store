@@ -38,6 +38,11 @@ class SearchItemController extends Controller
                 });
             });
 
+        if ($products->count() === 1) {
+            $product = $products->first();
+            return redirect("/product/$product->hashedId");
+        }
+
         return view('www.producttype', [
             'productType'    => (object) ['name' => "Search for '$query'"],
             'selectedFilter' => new SelectedFilter(request()->input()),

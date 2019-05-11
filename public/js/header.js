@@ -28,13 +28,17 @@ $(document).ready(function() {
 				minLength: 1
 			}, {
 				name: 'itemNames',
-				source: substringMatcher(itemNames)
+				source: substringMatcher(itemNames),
 			});
 
 		}).catch(function(error) {
 			alert("Due to an internal error, it failed to get the cart information. Sorry for the inconvenience.");
 		});
 	}
+
+	$('#search-item-keyword').on('typeahead:selected', function(e, datum) {
+		location = "/search-item?query=" + datum;
+	});
 
 	$('#search-item').submit(function(event) {
 		if (!$('#search-item-keyword').val()) {
