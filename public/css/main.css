@@ -1,7 +1,7 @@
 @-webkit-keyframes truckMoveIn {
   0% {
-    -webkit-transform: translateX(-500%) rotateY(180deg);
-            transform: translateX(-500%) rotateY(180deg);
+    -webkit-transform: translateX(-400%) rotateY(180deg);
+            transform: translateX(-400%) rotateY(180deg);
   }
 
   100% {
@@ -12,8 +12,8 @@
 
 @keyframes truckMoveIn {
   0% {
-    -webkit-transform: translateX(-500%) rotateY(180deg);
-            transform: translateX(-500%) rotateY(180deg);
+    -webkit-transform: translateX(-400%) rotateY(180deg);
+            transform: translateX(-400%) rotateY(180deg);
   }
 
   100% {
@@ -336,46 +336,6 @@
   }
 
   80% {
-    opacity: 1;
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-}
-
-@-webkit-keyframes iconShown9 {
-  0% {
-    opacity: 0;
-    -webkit-transform: rotate(15deg);
-            transform: rotate(15deg);
-  }
-
-  85% {
-    opacity: 0;
-    -webkit-transform: rotate(15deg);
-            transform: rotate(15deg);
-  }
-
-  90% {
-    opacity: 1;
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-}
-
-@keyframes iconShown9 {
-  0% {
-    opacity: 0;
-    -webkit-transform: rotate(15deg);
-            transform: rotate(15deg);
-  }
-
-  85% {
-    opacity: 0;
-    -webkit-transform: rotate(15deg);
-            transform: rotate(15deg);
-  }
-
-  90% {
     opacity: 1;
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -717,9 +677,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
@@ -727,6 +687,7 @@
 
 .delivery_icons i {
   color: #f12e18;
+  padding: 0 1vw;
 }
 
 .delivery_icons i:nth-child(1) {
@@ -803,16 +764,6 @@
   font-size: 5vw;
   -webkit-animation-name: iconShown8;
           animation-name: iconShown8;
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
-  -webkit-animation-duration: 5.5s;
-          animation-duration: 5.5s;
-}
-
-.delivery_icons i:nth-child(9) {
-  font-size: 5vw;
-  -webkit-animation-name: iconShown9;
-          animation-name: iconShown9;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
   -webkit-animation-duration: 5.5s;

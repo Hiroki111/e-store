@@ -48,14 +48,15 @@
         max-width: 900px;
         margin: auto;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: baseline;
 
         i {
             color: #f12e18;
+            padding: 0 1vw;
         }
 
-        @for $i from 1 through 9 {
+        @for $i from 1 through 8 {
             i:nth-child(#{$i}) {
                 font-size: 5vw;
                 animation-name: iconShown#{$i};

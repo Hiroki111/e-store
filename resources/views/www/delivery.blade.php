@@ -12,7 +12,6 @@
             <i class="fa fa-gift" aria-hidden="true"></i>
             <i class="fa fa-glass" aria-hidden="true"></i>
             <i class="fa fa-beer" aria-hidden="true"></i>
-            <i class="fa fa-gift" aria-hidden="true"></i>
             <i class="fa fa-truck" aria-hidden="true"></i>
         </div>
         <h2>delivery to suit you</h2>
