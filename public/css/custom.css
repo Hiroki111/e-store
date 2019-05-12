@@ -21,7 +21,6 @@ main {
     display: flex;
 }
 
-
 .card-img-top {
     max-height: 250px;
     max-width: 245px;
@@ -86,10 +85,6 @@ footer>.container {
 
 body>.container {
     padding: 60px 15px 0;
-}
-
-#product-filter ul {
-    list-style: none;
 }
 
 .product-type-pagination a {

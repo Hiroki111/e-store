@@ -797,6 +797,203 @@
   border-bottom: 1px solid #dee2e6;
 }
 
+.product-type {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.product-type-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.product-type-wrapper .filter-column {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 990px) {
+  .product-type-wrapper .filter-column {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+.product-type-wrapper .filter-column .selected-filter {
+  padding: 10px 0 10px 0;
+  border-radius: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: #ebebeb;
+}
+
+.product-type-wrapper .filter-column .selected-filter h6 {
+  margin: 0 0 0 20px;
+}
+
+.product-type-wrapper .filter-column .selected-filter h6 i {
+  background-color: white;
+  padding: 3px;
+}
+
+.product-type-wrapper .filter-column .selected-filter ul {
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.product-type-wrapper .filter-column .selected-filter ul li {
+  margin: 3px 0 3px 0;
+}
+
+.product-type-wrapper .filter-column .filter-items {
+  border: 1px solid #c9c9c9;
+  border-radius: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.product-type-wrapper .filter-column .filter-items .product-filter ul {
+  list-style: none;
+}
+
+.product-type-wrapper .filter-column .filter-items .product-filter .filter-header {
+  margin-top: 16px;
+}
+
+.product-type-wrapper .filter-column .filter-items .product-filter .filter-header div {
+  margin-top: 10px;
+}
+
+.product-type-wrapper .filter-column .filter-items .product-filter hr {
+  margin-top: 5px;
+}
+
+.product-type-wrapper .filter-column .filter-items .product-filter .filter-body .price-range-heading-wrapper {
+  margin-bottom: 20px;
+}
+
+.product-type-wrapper .filter-column .filter-items .product-filter .filter-body .country-heading-wrapper {
+  margin-bottom: 20px;
+}
+
+.product-type-wrapper .filter-column .filter-items .product-filter .filter-body .country #country-ul {
+  display: none;
+}
+
+.product-type-wrapper .filter-column .filter-items .product-filter .filter-body .brand #brand-ul {
+  display: none;
+}
+
+.product-type-wrapper .item-column {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 990px) {
+  .product-type-wrapper .item-column {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 75%;
+            flex: 0 0 75%;
+    max-width: 75%;
+  }
+}
+
+.product-type-wrapper .item-column .sort-items-wrapper {
+  margin: 10px 0 15px 0;
+}
+
+.product-type-wrapper .item-column .sort-items-wrapper .sort-by {
+  padding: 0.375rem 0 0.375rem 0;
+}
+
+.product-type-wrapper .item-column .products-found {
+  margin-bottom: 15px;
+}
+
+.product-type-wrapper .item-column .item {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+  .product-type-wrapper .item-column .item {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.33333333%;
+            flex: 0 0 33.33333333%;
+    max-width: 33.33333333%;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-type-wrapper .item-column .item {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+.product-type-wrapper .item-column .item .product-tile-price-big {
+  color: #D2232A;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.product-type-wrapper .item-column .item .product-tile-price-big .price {
+  font-size: 22px;
+  font-weight: 900;
+  vertical-align: top;
+}
+
+.product-type-wrapper .item-column .item .product-tile-price-big .price .currency {
+  font-size: 12px;
+}
+
+.product-type-wrapper .item-column .item .product-tile-price-big .price .cents {
+  font-size: 12px;
+}
+
+.product-type-wrapper .item-column .item .product-tile-price-big .price-des {
+  font-size: 12px;
+  margin-left: 5px;
+  margin-top: 7px;
+}
+
+.product-type-wrapper .item-column .item .add-item-counter {
+  text-align: center;
+}
+
+.order-and-payment {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: auto;
+  margin-left: auto;
+  width: 83.3%;
+  position: relative;
+  margin: auto;
+  padding-top: 50px;
+}
+
+.order-and-payment h1 {
+  font-weight: bold;
+}
+
 .container.marketing hr {
   margin: 30px 0;
 }
@@ -877,20 +1074,6 @@
 .card-text {
   font-weight: bold;
   height: 34px;
-}
-
-.order-and-payment {
-  font-family: Arial, Helvetica, sans-serif;
-  margin-right: auto;
-  margin-left: auto;
-  width: 83.3%;
-  position: relative;
-  margin: auto;
-  padding-top: 50px;
-}
-
-.order-and-payment h1 {
-  font-weight: bold;
 }
 
 header {
