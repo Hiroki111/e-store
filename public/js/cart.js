@@ -50,7 +50,7 @@ $(document).ready(function() {
 				return totalValue + value;
 			}, 0);
 
-		$('#cart-counter').text(groundTotal);
+		$('.cart-counter').text(groundTotal);
 	}
 
 	function showCartUpdate(src, qty) {

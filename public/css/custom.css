@@ -39,14 +39,6 @@ main {
         1px 1px 0 #000;
 }
 
-#added-item {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 2;
-    display: none;
-}
-
 .add-to-cart-button {
     width: 100%;
     font-weight: bold;

@@ -15,7 +15,7 @@
                 <div
                  class="white-space">
                     <i class="fa fa-2x fa-shopping-cart"></i>
-                    <span id="cart-counter"></span>
+                    <span class="cart-counter"></span>
                 </div>
                 <div class="red-space">
                     <a class="checkout-link" href="/viewcart">CHECKOUT</a>

@@ -1,0 +1,28 @@
+#added-item {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 2;
+    max-width: 50%;
+    flex: 0 0 25%;
+
+    // #add-item is hidden when the page is loaded
+    display: none;
+
+    .card {
+        border: 5px red solid;
+        margin-bottom: 1rem !important;
+
+        &-img-top {
+            height: 250px;
+            max-width: 245px;
+            height: auto;
+            margin: auto;
+            display: block;
+        }
+    }
+
+    &-text {
+        font-weight: bold;
+    }
+}

@@ -68,5 +68,6 @@
         @endforeach
     </div>
     @include('www.layout.addeditem')
+    @include('www.layout.cartbutton')
 </div>
 @endsection
