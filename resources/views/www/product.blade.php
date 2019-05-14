@@ -19,14 +19,14 @@
   </ul>
 </div>
 
-<div class="container">
+<div class="product">
   <div class="row">
-    <div class="col-sm-4">
-      <div style="max-width: 100%;">
-        <img style="width: 100%;" src="{{$product->src}}">
+    <div class="image-column">
+      <div>
+        <img src="{{$product->src}}">
       </div>
     </div>
-    <div class="col-sm-8">
+    <div class="description-column">
       <div class="row">
         <div class="col-sm-8">
           <h1 id="product-name-heading">{{$product->name}}</h1>
@@ -89,14 +89,14 @@
     </div>
   </div>
   <hr>
-  <div class="row">
+  <div class="row recommendation-slider">
     <div class="col-sm-12">
       <h3>You might also like...</h3>
       <div >
         <div class="row">
           <ul id="relevant-products-carousel" >
             @foreach($relevantProducts as $i => $product)
-            <li  class="col-md-3">
+            <li class="recommended-item">
               <div  style="height: 100%; background-color: whitc;">
                 <div class="card mb-3 shadow-sm">
                   <a href="/product/{{$product->hashed_id}}">
@@ -143,6 +143,7 @@
     </div>
   </div>
   @include('www.layout.addeditem')
+  @include('www.layout.cartbutton')
 </div>
 
 @endsection
