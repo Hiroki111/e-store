@@ -1067,6 +1067,24 @@
   font-weight: bold;
 }
 
+.empty-cart .row .message-area h3 {
+  margin-top: 20px;
+}
+
+.empty-cart .row .message-area p {
+  margin-top: 20px;
+}
+
+.empty-cart .row .button-area {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+}
+
 .container.marketing hr {
   margin: 30px 0;
 }

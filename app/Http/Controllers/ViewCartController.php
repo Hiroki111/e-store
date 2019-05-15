@@ -15,8 +15,14 @@ class ViewCartController extends Controller
 
     public function index()
     {
+        $cart = $this->cart->setItems(session('cart'));
+
+        if ($cart->isEmpty()) {
+            return redirect("/empty-cart");
+        }
+
         return view('www.viewcart', [
-            'cart' => $this->cart->setItems(session('cart')),
+            'cart' => $cart,
         ]);
     }
 }

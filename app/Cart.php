@@ -18,6 +18,15 @@ class Cart implements IteratorAggregate
         return $this->$name;
     }
 
+    public function isEmpty()
+    {
+        if (empty($this->items)) {
+            return true;
+        }
+
+        return $this->count < 1;
+    }
+
     public function setItems($items)
     {
         $this->items = $items;

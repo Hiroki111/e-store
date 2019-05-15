@@ -1,0 +1,19 @@
+.empty-cart {
+    .row {
+        .message-area {
+            h3 {
+                margin-top: 20px;
+            }
+
+            p {
+                margin-top: 20px;
+            }
+        }
+
+        .button-area {
+            justify-content: center;
+            display: flex;
+            margin-top: 20px;
+        }
+    }
+}

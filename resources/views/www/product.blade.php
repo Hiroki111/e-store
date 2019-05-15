@@ -97,7 +97,7 @@
           <ul id="relevant-products-carousel" >
             @foreach($relevantProducts as $i => $product)
             <li class="recommended-item">
-              <div  style="height: 100%; background-color: whitc;">
+              <div  style="height: 100%; background-color: white;">
                 <div class="card mb-3 shadow-sm">
                   <a href="/product/{{$product->hashed_id}}">
                     <div class="card-img-frame">

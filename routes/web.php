@@ -23,6 +23,8 @@ Route::get('/search-item', 'SearchItemController@index');
 
 Route::get('/viewcart', 'ViewCartController@index');
 
+Route::get('/empty-cart', 'EmptyCartController@index');
+
 Route::get('/checkout-option', 'CheckoutOptionController@index');
 
 Route::get('/payment', 'PaymentController@index');

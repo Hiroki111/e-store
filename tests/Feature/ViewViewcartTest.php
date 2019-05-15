@@ -12,6 +12,16 @@ class ViewViewcartTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
+    public function redirectToNoItemIfCartIsEmpty()
+    {
+        $this->assertEquals(session('cart'), null);
+
+        $res = $this->get("/viewcart");
+
+        $res->assertRedirect("/empty-cart");
+    }
+
+    /** @test */
     public function canShowTheItemDetails()
     {
         $this->assertEquals(session('cart'), null);

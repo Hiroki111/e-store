@@ -254,4 +254,20 @@ class CartTest extends TestCase
         $this->assertEquals($cart->toOrderItems()[3]->price, $bundle->price);
         $this->assertEquals($cart->toOrderItems()[3]->type, 'bundle');
     }
+
+    /** @test */
+    public function canSeeIfItsEmpty()
+    {
+        $this->assertEquals(session('cart'), null);
+        $cart = (new Cart())->setItems(session('cart'));
+        $this->assertTrue($cart->isEmpty());
+
+        $this->post('/cart/add', ['type' => 'products', 'itemId' => 1, 'qty' => 1]);
+        $cart = (new Cart())->setItems(session('cart'));
+        $this->assertFalse($cart->isEmpty());
+
+        $this->delete('/cart/delete', ['type' => 'products', 'itemId' => 1]);
+        $cart = (new Cart())->setItems(session('cart'));
+        $this->assertTrue($cart->isEmpty());
+    }
 }
