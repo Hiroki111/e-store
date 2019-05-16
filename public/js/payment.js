@@ -47,6 +47,8 @@ $(document).ready(function() {
 	var form = document.getElementById('payment-form');
 	form.addEventListener('submit', function(event) {
 		event.preventDefault();
+		$("#submit-btn").prop("disabled", true);
+		$('#order-spinner').show();
 
 		stripe.createToken(card).then(function(result) {
 			console.log('result', result);

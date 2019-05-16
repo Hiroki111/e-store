@@ -6,7 +6,7 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script type="text/javascript" src="/js/payment.js"></script>
-<div class="container">
+<div class="container payment">
 	<form action="/payment" method="post" id="payment-form">
 		@csrf
 		<div class="row" style="padding-top: 40px;">
@@ -145,13 +145,12 @@
 				</table>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-8">
-				<div>
-					<a class="btn btn-danger font-weight-bold" style="text-transform: uppercase;" href="/viewcart">Return to Cart</a>
-					<input id="submit-btn" class="btn font-weight-bold pull-right" type="submit" style="background-color: #0068a1; color: white; text-transform: uppercase; width: 145px;" name="order" value="Order"/>
-				</div>
+		<div class="row buttons">
+			<a class="btn btn-danger font-weight-bold" style="text-transform: uppercase;" href="/viewcart">Return to Cart</a>
+			<div id="order-spinner" class="spinner-border text-primary" role="status">
+				<span class="sr-only">Loading...</span>
 			</div>
+			<input id="submit-btn" class="btn font-weight-bold pull-right" type="submit" style="background-color: #0068a1; color: white; text-transform: uppercase; width: 145px;" name="order" value="Order"/>
 		</div>
 	</form>
 </div>
