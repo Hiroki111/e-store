@@ -48,4 +48,4 @@ Auth::routes();
 Route::resource('cart', 'CartController');
 Route::post('cart/add', 'CartController@add');
 Route::put('cart/{type}/{hashedId}', 'CartController@update');
-Route::get('/item-names', 'ItemNamesController@index');
+Route::get('item-names', 'ItemNamesController@index');

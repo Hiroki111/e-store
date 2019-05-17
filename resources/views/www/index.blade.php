@@ -67,6 +67,31 @@
         @include('www.util.productpanel', ['item' => $product, 'type' => 'product'])
         @endforeach
     </div>
+    <!-- Pop up for notifying that this is an imaginary shopping site-->
+    <div id="popup" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content" style='font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;'>
+                <div class="modal-header">
+                    <h5 class="modal-title" style="font-weight: bold;">About this site</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="font-wight-bold">Dear visitor</p>
+                    <p>This is an imaginary shopping web site which was developed as a hobby project. You can play around with this web site, but the order won't be actually delivered (and of course you won't be charged).</p>
+                    <p>The developer's information can be found from <a href="https://github.com/Hiroki111" target="_blank">here</a>.</p>
+                    <br />
+                    <p>当サイトは趣味のプロジェクトとして開発されたものです。当サイトから発注された品物は、実際に指定された住所へ発送されることはありません。（料金の請求もされません。）</p>
+                    <p>開発者の情報は<a href="https://github.com/Hiroki111" target="_blank">こちら</a>から。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @include('www.layout.addeditem')
     @include('www.layout.cartbutton')
 </div>
