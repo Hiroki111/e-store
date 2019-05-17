@@ -94,7 +94,7 @@
             <h1 id="selected-product-type" class="font-weight-bold text-uppercase">{{$productType->name}}</h1>
             <div class="row no-gutters sort-items-wrapper">
                 <div class="col-2 sort-by">Sort By</div>
-                <div class="col-4">
+                <div class="col-5">
                     <select id="sort-items" class="custom-select">
                         <option data-column="name" data-order="asc">Name (A - Z)</option>
                         <option data-column="name" data-order="desc">Name (Z - A)</option>

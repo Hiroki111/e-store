@@ -1243,6 +1243,12 @@ header nav .header-top .basket {
   width: 20%;
 }
 
+@media (max-width: 530px) {
+  header nav .header-top .basket {
+    width: 28%;
+  }
+}
+
 header nav .header-top .basket div {
   max-width: 100px;
 }
@@ -1297,6 +1303,18 @@ header nav .header-bottom .navbar-nav .nav-item {
 header nav .header-bottom .navbar-nav .nav-item a {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 530px) {
+  header nav .header-bottom .navbar-nav .nav-item a {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 390px) {
+  header nav .header-bottom .navbar-nav .nav-item a {
+    font-size: 0.8rem;
+  }
 }
 
 header nav .product-type-link {
