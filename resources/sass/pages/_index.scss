@@ -64,6 +64,12 @@
                     font-size: 1rem;
                 }
             }
+
+            @media (max-width: 374px) {
+                .card-text {
+                    font-size: 0.9rem;
+                }
+            }
         }
     }
 }

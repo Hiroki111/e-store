@@ -1493,6 +1493,13 @@
   }
 }
 
+@media (max-width: 374px) {
+  .container.marketing .bundle-container .card-wrapper .card-text,
+  .container.marketing .product-container .card-wrapper .card-text {
+    font-size: 0.9rem;
+  }
+}
+
 .card-text {
   font-weight: bold;
   height: 34px;
