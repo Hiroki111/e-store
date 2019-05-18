@@ -83,7 +83,7 @@
                     <p>This is an imaginary shopping web site which was developed as a hobby project. You can play around with this web site, but the order won't be actually delivered (and of course you won't be charged).</p>
                     <p>The developer's information can be found from <a href="https://github.com/Hiroki111" target="_blank">here</a>.</p>
                     <br />
-                    <p>当サイトは趣味のプロジェクトとして開発されたものです。当サイトから発注された品物は、実際に指定された住所へ発送されることはありません。（料金の請求もされません。）</p>
+                    <p>当サイトは趣味のプロジェクトとして開発されたものです。当サイトから注文された品物は、実際に指定された住所へ発送されることはありません。（料金の請求もされません。）</p>
                     <p>開発者の情報は<a href="https://github.com/Hiroki111" target="_blank">こちら</a>から。</p>
                 </div>
                 <div class="modal-footer">

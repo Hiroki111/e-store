@@ -153,6 +153,24 @@
 			<input id="submit-btn" class="btn font-weight-bold pull-right" type="submit" style="" name="order" value="Order"/>
 		</div>
 	</form>
+	<div id="popup" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content" style='font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size: 14px;'>
+                <div class="modal-body">
+                    <p class="font-wight-bold">Dear visitor</p>
+                    <p>Just in case, let me remind you that this is an imaginary shopping web site, so the order won't be actually delivered (and of course you won't be charged).</p>
+                    <p>In order to test payment, <strong>please use "4242 4242 4242 4242" as your credit card number</strong>. (You can use any valid expiration date in the future and any random CVC/ZIP number.)</p>
+                    <br />
+                    <p>【再度お知らせ】当サイトは趣味のプロジェクトとして開発されたものです。当サイトから注文された品物は、実際に指定された住所へ発送されることはありません。（料金の請求もされません。）</p>
+                    <p><strong>"4242 4242 4242 4242"</strong>をクレジットカードの番号として入力してください。</p>
+                    <p>カードの期限は現時点以降ならいつでも構いません。CVCとZIPはどんな番号でも結構です。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

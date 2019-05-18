@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	setTimeout(function() {
+		$('#popup').modal('show');
+	}, 2000);
+
 	$('#use_delivery_address').click(function() {
 		$('#billing-address-inputboxes').toggle();
 	});
