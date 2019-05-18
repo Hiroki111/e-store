@@ -6,17 +6,37 @@
                 max-width: 66.66666667%;
             }
 
+            margin: 0;
             position: relative;
             width: 100%;
-            padding-right: 15px;
-            padding-left: 15px;
             display: flex;
             justify-content: space-between;
 
+            #return-button {
+                @media (max-width: 450px) {
+                    font-size: 0.7rem;
+                    width: 110px;
+                }
+
+                text-transform: uppercase;
+            }
+
             #order-spinner {
-            	// The spinner is hidden until the order is submitted
-            	display: none;
+                // The spinner is hidden until the order is submitted
+                display: none;
                 margin-right: 10px;
+            }
+
+            #submit-btn {
+                background-color: #0068a1;
+                color: white;
+                text-transform: uppercase;
+                width: 145px;
+
+                @media (max-width: 450px) {
+                    font-size: 0.7rem;
+                    width: 110px;
+                }
             }
         }
     }

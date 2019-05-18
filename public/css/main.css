@@ -1184,10 +1184,9 @@
 }
 
 .payment form .buttons {
+  margin: 0;
   position: relative;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1205,9 +1204,34 @@
   }
 }
 
+.payment form .buttons #return-button {
+  text-transform: uppercase;
+}
+
+@media (max-width: 450px) {
+  .payment form .buttons #return-button {
+    font-size: 0.7rem;
+    width: 110px;
+  }
+}
+
 .payment form .buttons #order-spinner {
   display: none;
   margin-right: 10px;
+}
+
+.payment form .buttons #submit-btn {
+  background-color: #0068a1;
+  color: white;
+  text-transform: uppercase;
+  width: 145px;
+}
+
+@media (max-width: 450px) {
+  .payment form .buttons #submit-btn {
+    font-size: 0.7rem;
+    width: 110px;
+  }
 }
 
 .viewcart {
@@ -1271,8 +1295,8 @@
 
 @media (max-width: 450px) {
   .viewcart .item-wrapper .item-info-wrap img {
-    max-height: 140px;
-    max-width: 140px;
+    max-height: 130px;
+    max-width: 130px;
   }
 }
 

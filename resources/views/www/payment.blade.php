@@ -146,11 +146,11 @@
 			</div>
 		</div>
 		<div class="row buttons">
-			<a class="btn btn-danger font-weight-bold" style="text-transform: uppercase;" href="/viewcart">Return to Cart</a>
+			<a id="return-button" class="btn btn-danger font-weight-bold" href="/viewcart">Return to Cart</a>
 			<div id="order-spinner" class="spinner-border text-primary" role="status">
 				<span class="sr-only">Loading...</span>
 			</div>
-			<input id="submit-btn" class="btn font-weight-bold pull-right" type="submit" style="background-color: #0068a1; color: white; text-transform: uppercase; width: 145px;" name="order" value="Order"/>
+			<input id="submit-btn" class="btn font-weight-bold pull-right" type="submit" style="" name="order" value="Order"/>
 		</div>
 	</form>
 </div>
