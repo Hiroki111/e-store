@@ -50,7 +50,7 @@
             <h5 id="total-qty" class="font-weight-bold">{{ $cart->count }} @if($cart->count > 1) items @else item @endif</h5>
         </div>
         <div class="botton-heading">
-            <span class="continue-shopping-span"><a href="/" class="viewcart-link">Continue Shopping</a> OR <button class="checkout-btn btn font-weight-bold"><a href="/checkout-option" class="viewcart-link">Checkout</a></button></span>
+            <span class="continue-shopping-span"><a href="/" class="viewcart-link">Continue Shopping</a> OR <a href="/checkout-option" class="viewcart-link"><button class="checkout-btn btn font-weight-bold">Checkout</button></a></span>
         </div>
     </div>
 </div>

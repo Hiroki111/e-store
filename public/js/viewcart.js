@@ -23,7 +23,6 @@ $(document).ready(function() {
         totalQty += (totalQty > 1) ? " items" : " item";
         $("#total-qty").text(totalQty);
 
-
         $(".update-item-btn[data-type=" + type + "][data-id=" + id + "]").show();
 
         if (!state.updatedItems[type]) state.updatedItems[type] = {};

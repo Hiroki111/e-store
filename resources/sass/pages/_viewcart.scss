@@ -113,32 +113,8 @@
         .checkout-btn {
             background-color: red;
 
-            a {
-                color: white;
-            }
+            color: white;
+
         }
     }
-
-    // @media (max-width: 412px) {
-    //     #checkout-table th {
-    //         font-size: 15px;
-    //     }
-
-    //     .item-name-column {
-    //         display: none;
-    //     }
-
-    //     @media (max-width: 380px) {
-    //         tr img {
-    //             max-width: 80px;
-    //         }
-    //     }
-    // }
-
-    // #ground-total,
-    // #total-qty {
-    //     @media (max-width: 412px) {
-    //         font-size: 1rem;
-    //     }
-    // }
 }
