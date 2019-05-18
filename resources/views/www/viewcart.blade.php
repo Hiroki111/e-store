@@ -1,71 +1,57 @@
 @extends('www.layout.master')
-
 @section('title', 'Checkout - View Cart')
-
 @section('content')
-
 <script type="text/javascript" src="/js/viewcart.js"></script>
-<div class="container">
-	<div class="row">
-		<div class="col-10 offset-md-1">
-			<h3 class="font-weight-bold font-arial" style="margin: 20px 0 0 0;">View Cart</h3>
-			<table id="checkout-table" class="table">
-				<thead>
-					<tr style="border-bottom: 2px solid black;">
-						<th class="font-arial">Your Items</th>
-						<th class="font-arial"></th>
-						<th class="font-arial">Quantity</th>
-						<th class="font-arial"></th>
-						<th class="font-arial" style="padding-right: 0;
-						float: right;">Price</th>
-					</tr>
-				</thead>
-				<tbody style="border-bottom: 1px solid #dee2e6;">
-					@foreach($cart as $item)
-					<tr id="{{$item->type}}-{{$item->id}}-tr">
-						<td style="width: 10%">
-							<a href="{{$item->url}}"><img src="{{$item->src}}" style="max-height: 100px; display: block; margin: 0 auto;"></a>
-						</td>
-						<td>
-							<div>
-								<h5 class="font-weight-bold font-arial"><a href="{{$item->url}}" style="color: red;">{{$item->name}}</a></h5>
-								<p style="margin: 0;">Each ${{$item->price}}</p>
-							</div>
-						</td>
-						<td>
-							<div>
-								<div>
-									<input type="number" class="item-qty-input" name="{{$item->type}}-{{$item->id}}" data-type="{{$item->type}}" data-id="{{$item->id}}" data-price="{{$item->price}}" min="1" max="50" value="{{$item->qty}}" style="text-align: center; max-width: 70px;">
-								</div>
-							</div>
-						</td>
-						<td>
-							<div>
-								<button class="remove-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: red; padding: 0;"><i class="fa fa-times" aria-hidden="true" style="padding-right: 5px;"></i>Remove</button>
-							</div>
-							<div>
-								<button class="update-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: blue; padding: 0; margin: 10px 0 0 0; display: none;"><i class="fa fa-cart-plus" aria-hidden="true" style="padding-right: 5px;"></i>Update</button>
-							</div>
-						</td>
-						<td style="width: 10%; padding-right: 0;">
-							<div><p class="font-weight-bold pull-right" data-total-price="{{$item->type}}{{$item->id}}">${{$item->total_price}}</p></div>
-						</td>
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
-		</div>
-		<hr>
-		<div class="col-11">
-			<h3 id="ground-total" class="font-weight-bold font-arial pull-right">Total ${{$cart->getTotalPrice()}}</h3>
-		</div>
-		<div class="col-11">
-			<h5 id="total-qty" class="font-weight-bold pull-right">{{ $cart->count }} @if($cart->count > 1) items @else item @endif</h5>
-		</div>
-		<div class="col-11" style="padding-bottom: 10px;">
-			<span class="pull-right"><a href="/" class="viewcart-link">Continue Shopping</a> OR <button class="btn font-weight-bold" style="background-color: red;"><a href="/checkout-option" class="viewcart-link" style="color: white;">Checkout</a></button></span>
-		</div>
-	</div>
+<div class="viewcart">
+    <div class="viewcart-wrapper">
+        <h3 class="font-weight-bold font-arial page-title">View Cart</h3>
+        <div class="item-wrapper">
+            @foreach($cart as $item)
+            <hr />
+            <div class="item" id="{{$item->type}}-{{$item->id}}-tr">
+                <div class="item-info-wrap">
+                    <div class="item-img">
+                        <a href="{{$item->url}}"><img src="{{$item->src}}"></a>
+                    </div>
+                    <div class="item-info">
+                        <h5 class="font-weight-bold font-arial"><a class="item-name" href="{{$item->url}}">{{$item->name}}</a></h5>
+                        <div class="each-price-wrap">
+                            <span class="each-price">Each ${{$item->price}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-checkout-info">
+                    <div class="quantity-and-update">
+                        <div class="quantity">
+                            <span class="input-group-text" id="basic-addon1">Quantity</span>
+                            <input type="number" class="form-control item-qty-input" name="{{$item->type}}-{{$item->id}}" data-type="{{$item->type}}" data-id="{{$item->id}}" data-price="{{$item->price}}" min="1" max="50" value="{{$item->qty}}" style="text-align: center; max-width: 70px;">
+                        </div>
+                        <div class="update-button">
+                            <button class="update-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: blue; padding: 0; display: none;"><i class="fa fa-cart-plus" aria-hidden="true" style="padding-right: 5px;"></i>Update</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="price">
+                            <p class="font-weight-bold" data-total-price="{{$item->type}}{{$item->id}}">${{$item->total_price}}</p>
+                        </div>
+                        <div class="remove-button">
+                            <button class="remove-item-btn btn" data-type="{{$item->type}}" data-id="{{$item->id}}" style="color: red; padding: 0;"><i class="fa fa-times" aria-hidden="true" style="padding-right: 5px;"></i>Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <hr>
+        <div class="botton-heading">
+            <h3 id="ground-total" class="font-weight-bold font-arial">Total ${{$cart->getTotalPrice()}}</h3>
+        </div>
+        <div class="botton-heading">
+            <h5 id="total-qty" class="font-weight-bold">{{ $cart->count }} @if($cart->count > 1) items @else item @endif</h5>
+        </div>
+        <div class="botton-heading">
+            <span class="continue-shopping-span"><a href="/" class="viewcart-link">Continue Shopping</a> OR <button class="checkout-btn btn font-weight-bold"><a href="/checkout-option" class="viewcart-link">Checkout</a></button></span>
+        </div>
+    </div>
 </div>
-
 @endsection

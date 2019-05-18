@@ -1,0 +1,18 @@
+.bundle {
+    &-image {
+        max-height: 300px;
+        margin: auto;
+
+        @media (max-width: 412px) {
+            max-width: 395px;
+        }
+
+        @media (max-width: 395px) {
+            max-width: 360px;
+        }
+
+        @media (max-width: 360px) {
+            max-width: 340px;
+        }
+    }
+}

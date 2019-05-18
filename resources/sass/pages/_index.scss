@@ -1,5 +1,5 @@
 .container.marketing {
-	
+
     hr {
         margin: 30px 0;
     }
@@ -57,6 +57,12 @@
 
             @media (max-width: 1000px) {
                 width: 50%;
+            }
+
+            @media (max-width: 412px) {
+                .card-text {
+                    font-size: 1rem;
+                }
             }
         }
     }

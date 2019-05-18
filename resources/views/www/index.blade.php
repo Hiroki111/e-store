@@ -1,7 +1,7 @@
 @extends('www.layout.master')
 @section('title', 'Top')
 @section('content')
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="max-width: 1140px; width: 100%; margin: 0 auto 30px auto;">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -53,7 +53,7 @@
             <p class="font-arial"><a href="/orderandpayment">VIEW DETAILS &raquo;</a></p>
         </div>
     </div>
-    <hr>
+    <hr style="margin: 15px 0 30px 0;">
     <h1 class="font-arial">Special Bundles</h1>
     <div class="bundle-container">
         @foreach($recommendedBundles as $bundle)

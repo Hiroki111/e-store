@@ -15,11 +15,11 @@
   </ul>
 </div>
 
-<div class="container">
+<div class="bundle container">
   <div class="row">
     <div class="col-sm-12">
       <div style="max-width: 100%; display: flex;">
-        <img style="max-height: 300px; margin: auto;" src="{{$bundle->src_large}}">
+        <img class="bundle-image" src="{{$bundle->src_large}}">
       </div>
     </div>
     <div class="col-sm-8">

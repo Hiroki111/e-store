@@ -2,11 +2,12 @@
     font-family: Arial, Helvetica, sans-serif;
     margin-right: auto;
     margin-left: auto;
-    width: 83.3%;
     position: relative;
     padding-right: 15px;
     padding-left: 15px;
     color: #444;
+    max-width: 1140px;
+    width: 100%;
 
     &__header {
         padding: 25px 10px;
@@ -54,6 +55,10 @@
         i {
             color: #f12e18;
             padding: 0 1vw;
+
+            @media (min-width: 1200px) {
+                padding: 0 12px;
+            }
         }
 
         @for $i from 1 through 8 {
@@ -62,6 +67,10 @@
                 animation-name: iconShown#{$i};
                 animation-timing-function: linear;
                 animation-duration: 5.5s;
+
+                @media (min-width: 1200px) {
+                    font-size: 60px;
+                }
             }
         }
 
@@ -72,17 +81,28 @@
             animation-name: truckMoveIn;
             animation-duration: 5s;
             animation-timing-function: linear;
+
+            @media (min-width: 1200px) {
+                font-size: 144px;
+            }
         }
     }
 
     &__table {
+        @media (max-width: 412px) {
+            font-size: 77%;
+        }
+
         &-header {
             font-weight: bold;
             text-transform: uppercase;
         }
 
         .delivery-options {
-            font-size: 15px;
+            @media (min-width: 412px) {
+                font-size: 15px;
+            }
+
             font-weight: bold;
             text-transform: uppercase;
         }
