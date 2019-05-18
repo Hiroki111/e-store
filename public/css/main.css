@@ -1159,6 +1159,8 @@
   position: relative;
   margin: auto;
   padding-top: 50px;
+  padding-right: 25px;
+  padding-left: 25px;
 }
 
 .order-and-payment h1 {
