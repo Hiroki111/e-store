@@ -160,6 +160,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
+        Aws\Laravel\AwsServiceProvider::class,
     ],
 
     /*
@@ -210,6 +211,7 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
 
         'Hashids'      => Vinkla\Hashids\Facades\Hashids::class,
+        'AWS'          => Aws\Laravel\AwsFacade::class,
     ],
 
 ];

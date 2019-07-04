@@ -40,6 +40,6 @@ class SendOrderConfirmationEmail implements ShouldQueue
     public function handle()
     {
         Mail::to($this->order->email)
-            ->send(new OrderConfirmationEmail($this->order));
+            ->queue(new OrderConfirmationEmail($this->order));
     }
 }
